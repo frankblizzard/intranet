@@ -7,8 +7,55 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  	<div id="container">
+  	  	  	<div id="topline">
+  			<div id="avatar">
+  				<%= image_tag ('dummy_user.jpg'), :title => 'dummy' %>
+  			</div>
+  			<div id="userinfo">
+  				<span class="username">
+  					Thomas
+  				</span><br/>
+  				<span id="mails">
+  					2 new mails
+  				</span>
+  			</div>
+  			
+  			<div id="toolbar">
+  				<div id="settings">
+  					<a title="settings" id="settings_link" href="javascript:void(0);"></a>
+  				</div>
+  				<div id="logout">
+  					<a title="logout" id="logout_link" href="javascript:void(0);"></a>
+  				</div>
+  				
+  			</div>
+  		
+  		</div>
+  		
+  		
+  		<div id="main_menu">
+  			<%= render 'main_menu' %>
+  		</div>
+  		
+  	
+  		<div id="content">
+  			<p class="notice"><%= notice %></p>
+	        <p class="alert"><%= alert %></p>
+  			<div id="headline">
+  			
+  			</div>
+  			
+  			<%= yield %>
+			
 
-<%= yield %>
-
-</body>
+  		
+	
+		</div>
+  	
+  	
+  	</div>  
+ </body>
+  
 </html>
+

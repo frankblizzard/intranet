@@ -23,6 +23,12 @@ end
 
 gem 'jquery-rails'
 
+
+# authentication
+
+gem 'devise', '1.4.9'
+gem 'cancan'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -35,13 +41,15 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'rspec-rails', :group => [:test, :development]
 
-group :test do
+group :development, :test do
   gem 'database_cleaner'
   gem 'rails3-generators' #mainly for factory_girl & simple_form at this point
   gem 'factory_girl_rails'
   gem 'cucumber-rails'
+  gem 'rspec-rails'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'growl'
   gem 'capybara'
-  gem 'guard'
+  gem 'guard-rspec'
 end

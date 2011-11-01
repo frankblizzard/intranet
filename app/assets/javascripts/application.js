@@ -7,3 +7,30 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function optimiseContentSize () {
+	var fit_w = $(window).width() - 260;
+	var fit_h = $(window).height() - 20;
+	$('#content').width(fit_w);
+	$('#content').height(fit_h);
+}
+
+$(document).ready(function () {
+
+	optimiseContentSize();
+	$(window).bind('resize', optimiseContentSize);
+	$('.content_window .header a').each(function () {
+			$(this).click(function () {
+					$(this).parent().parent().find('.inner').slideToggle();
+					if ($(this).hasClass('open')) {
+						$(this).removeClass('open');
+						$(this).addClass('closed');
+					} else {
+						$(this).removeClass('closed');
+						$(this).addClass('open');
+
+					}
+				});
+		});
+					
+	});

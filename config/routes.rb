@@ -1,11 +1,12 @@
 Intranet::Application.routes.draw do
-  get "posts/new"
 
-  get "posts/edit"
+  resources :comments
 
-  get "posts/update"
+  devise_for :users
 
-  get "posts/destroy"
+  resources :post_categories
+
+  resources :posts
 
   get "home/index"
 

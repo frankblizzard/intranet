@@ -1,4 +1,9 @@
 class PostsController < ApplicationController
+  
+  def index
+    render 'home/index'
+  end
+
   def new
   end
 

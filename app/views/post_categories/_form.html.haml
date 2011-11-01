@@ -1,0 +1,13 @@
+= simple_form_for @post_category do |form|
+
+  -if @post_category.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@post_category.errors.count, "error")} prohibited this #{PostCategory.name.titleize} from being saved:"
+      %ul
+        - @post_category.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.input :name, :label => 'Name'
+
+  .actions
+    = form.button :submit
