@@ -3,51 +3,56 @@
 		%a.open= link_to "Blog", "javascript:void(0)", :class => 'open'
   	
 	.inner
-		.blogpost.first_post
-			.author
-				#avatar= image_tag('dummy_user.jpg')
-				.userinfo
-					%span.username Thomas
-					%br
-					%span.time yesterday at 12:25
-				
-				.post
-					.title
-						%span.category.important important
-						%span.name A Post
-
-					.text Another level, completely. The output seems to have slowed but the goods are still the goods, and yes they are more often than not better and have acres more personality and life than most of the other records that claim to be deep. Live, oh my god. Rick James, Marvin Gaye, and Prince are three figureheads that come to mind in the overall effect. The stageshow reeked of sex with his "bitch" on stage underneath a sheet writhing and darting around. Intensely personal, very spiritual, yet completely get your freak on. An odd territory, which very few people are able to really pull off. What's more is his whole family was present and had a barbeque immediately following the show! my hero.
-					
-		.comments
-			.comment
+	
+		#post_form= render 'post_form_fields'
+		
+		#postlist
+	    	
+			.blogpost.first_post
 				.author
 					#avatar= image_tag('dummy_user.jpg')
 					.userinfo
-						%span.username Horst
+						%span.username Thomas
 						%br
-						%span.time 14.10.11
-						%br
-						%span.time 18:45
-	    						
-				.comment_body The output seems to have slowed but the goods are still the goods, and yes they are more often than not better and have acres more personality and life than most of the other records 
-	    						
-				%br.clear
-       
-	    				
-			.comment
-				.author
-					#avatar= image_tag('dummy_user.jpg')
-					.userinfo
-						%span.username Horst
-						%br
-						%span.time 14.10.11
-						%br
-						%span.time 18:45
-				.comment_body Another comment
-				%br.clear
-				
-				.leave_comment= text_field_tag 'comment_form', 'leave a comment...', :class => 'comment_form', :onfocus => '$(this).val(\'\')'
+						%span.time yesterday at 12:25
 					
+					.post
+						.title
+							%span.category.important important
+							%span.name A Post
+        	
+						.text Another level, completely. The output seems to have slowed but the goods are still the goods, and yes they are more often than not better and have acres more personality and life than most of the other records that claim to be deep. Live, oh my god. Rick James, Marvin Gaye, and Prince are three figureheads that come to mind in the overall effect. The stageshow reeked of sex with his "bitch" on stage underneath a sheet writhing and darting around. Intensely personal, very spiritual, yet completely get your freak on. An odd territory, which very few people are able to really pull off. What's more is his whole family was present and had a barbeque immediately following the show! my hero.
+						
+			.comments
+				.comment
+					.author
+						#avatar= image_tag('dummy_user.jpg')
+						.userinfo
+							%span.username Horst
+							%br
+							%span.time 14.10.11
+							%br
+							%span.time 18:45
+	    							
+					.comment_body The output seems to have slowed but the goods are still the goods, and yes they are more often than not better and have acres more personality and life than most of the other records 
+	    							
+					%br.clear
+        	
+	    					
+				.comment
+					.author
+						#avatar= image_tag('dummy_user.jpg')
+						.userinfo
+							%span.username Horst
+							%br
+							%span.time 14.10.11
+							%br
+							%span.time 18:45
+					.comment_body Another comment
+					%br.clear
+					
+					.leave_comment= text_field_tag 'comment_form', 'leave a comment...', :class => 'comment_form', :onfocus => '$(this).val(\'\')'
+						
 				
 				
   					

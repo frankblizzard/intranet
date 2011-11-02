@@ -2,7 +2,7 @@ Intranet::Application.routes.draw do
 
   resources :comments
 
-  devise_for :users
+  devise_for :users, :path_names => { :sign_up => "register"}
 
   resources :post_categories
 

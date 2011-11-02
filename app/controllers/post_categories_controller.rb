@@ -1,4 +1,6 @@
 class PostCategoriesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /post_categories
   # GET /post_categories.json
   def index

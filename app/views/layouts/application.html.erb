@@ -9,24 +9,36 @@
 <body>
   	<div id="container">
   	  	  	<div id="topline">
-  			<div id="avatar">
-  				<%= image_tag ('dummy_user.jpg'), :title => 'dummy' %>
-  			</div>
-  			<div id="userinfo">
-  				<span class="username">
-  					Thomas
-  				</span><br/>
-  				<span id="mails">
-  					2 new mails
-  				</span>
-  			</div>
+			
+			<div id="login_menu">
+				<% if user_signed_in? %>
+					<div id="avatar">
+		  				<%= image_tag ('dummy_user.jpg'), :title => 'dummy' %>
+		  			</div>
+		  			<div id="userinfo">
+		  				<span class="username">
+		  					Thomas
+		  				</span><br/>
+		  				<span id="mails">
+		  					2 new mails
+		  				</span>
+		  			</div>
+					
+				<% else %>
+					<%= link_to 'Login', new_user_session_url %> |
+					<%= link_to 'Register', new_user_registration_url %>
+				<% end %>
+
+			</div>
+				
+
   			
   			<div id="toolbar">
   				<div id="settings">
   					<a title="settings" id="settings_link" href="javascript:void(0);"></a>
   				</div>
   				<div id="logout">
-  					<a title="logout" id="logout_link" href="javascript:void(0);"></a>
+  					<%= link_to "", destroy_user_session_url,  :id => 'logout_link', :method => :delete %>
   				</div>
   				
   			</div>

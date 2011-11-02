@@ -1,0 +1,5 @@
+<%= form_for Post.new, :remote => true do |f| %>
+  <%= f.hidden_field :user_id, :value => 1 %> 
+  <%= f.text_area :body, :rows => 5, :cols => 25 %>
+  <%= f.submit 'Post it', :id => 'post_submit_button' %>
+<% end %>

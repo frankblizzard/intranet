@@ -1,3 +1,34 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin shadow {
+	-moz-box-shadow: inset 0 3px 6px rgba(0,0,0,.6);
+	-webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.6);
+ 	box-shadow: inset 0 3px 6px rgba(0,0,0,.5);
+}
+
+@mixin round {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+#post_form {
+	position: relative;
+	
+	label {
+		color: #F6F8F7;
+		font-size: 14px;
+
+	}
+	textarea {
+		width: 455px;
+		height: 50px;
+		color: #3F4146;
+		font-size: 12px;
+		@include shadow;
+		@include round;
+	}
+}
