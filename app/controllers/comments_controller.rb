@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @comments = Comment.all
+    @commentable = find_commentable 
+    @comments = @commentable.comments
   end
 
   def show
@@ -21,12 +22,9 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(params[:comment])
-    if @comment.save
-      redirect_to @comment, :notice => 'Comment was successfully created.'
-    else
-      render :action => "new"
-    end
+    @commentable = find_commentable 
+    #@comment = @commentable.comments.build(params[:comment])
+    @comment = Comment.create!(params[:comment])
   end
 
   def update
@@ -45,6 +43,16 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to comments_url, :message => 'Comment deleted.'
-    end
   end
+  
+  # find commentable (parent) item
+  def find_commentable
+      params.each do |name, value|
+          if name =~ /(.+)_id$/
+              return $1.classify.constantize.find(value) unless name == 'user_id'
+          end
+      end
+      nil
+  end
+  
 end

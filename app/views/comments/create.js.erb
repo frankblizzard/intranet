@@ -1,0 +1,9 @@
+$("body").css("cursor", "progress");
+
+var string = "<%= @comment.commentable_type.downcase %>_<%= @comment.commentable_id %>";
+
+$('#'+string).next().prepend("<%= escape_javascript render(@comment) %>");
+$('#'+string).next().find('#comment_content').val("");
+
+
+$("body").css("cursor", "auto");

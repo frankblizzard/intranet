@@ -1,12 +1,17 @@
 Intranet::Application.routes.draw do
 
   resources :comments
+  
+  resources :users
 
   devise_for :users, :path_names => { :sign_up => "register"}
 
   resources :post_categories
 
-  resources :posts
+  resources :posts do 
+    resources :comments
+  end
+    
 
   get "home/index"
 

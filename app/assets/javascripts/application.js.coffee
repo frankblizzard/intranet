@@ -16,8 +16,18 @@ optimiseContentSize = ->
 	$('#content').height(fit_h)
 
 
+toggleLoading = ->
+	$('#loading').toggle()
+	
+	
 jQuery ->
 	optimiseContentSize()
+	
+	$('a[title!=""]').tipTip()
+	
+
+			
+	
 	$(window).bind('resize', optimiseContentSize)
 	$('.content_window .header a').each ->
 			$(this).click ->

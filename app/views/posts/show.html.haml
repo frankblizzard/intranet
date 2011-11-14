@@ -1,0 +1,9 @@
+.content_window
+	.post_single_view= render @post
+	
+%br
+
+.edit_links
+	= link_to 'Edit', edit_post_path(@post)
+	\|
+	= link_to 'Back', posts_path

@@ -31,4 +31,19 @@
 		@include shadow;
 		@include round;
 	}
+	input.string {
+		width: 355px;
+		height: 15px;
+		padding: 3px;
+		color: #3F4146;
+		font-size: 12px;
+		margin-bottom: 5px;
+		@include round;
+		@include shadow;
+	}
+	select {
+		position: absolute;
+		top: 4px;
+		right: 0;
+	}
 }

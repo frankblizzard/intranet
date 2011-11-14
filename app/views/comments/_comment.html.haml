@@ -1,0 +1,13 @@
+.comment
+	.author
+		#avatar= image_tag('dummy_user.jpg')
+		.userinfo
+			%span.username= comment.user.username
+			%br
+			%span.time= comment.created_at.strftime('%d.%m.%y')
+			%br
+			%span.time= comment.created_at.strftime('%H:%M')
+
+	.comment_body= markdown(comment.content)
+					
+	%br.clear

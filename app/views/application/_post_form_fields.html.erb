@@ -1,5 +1,7 @@
-<%= form_for Post.new, :remote => true do |f| %>
+<%= simple_form_for Post.new, :remote => true do |f| %>
   <%= f.hidden_field :user_id, :value => 1 %> 
-  <%= f.text_area :body, :rows => 5, :cols => 25 %>
-  <%= f.submit 'Post it', :id => 'post_submit_button' %>
+  <%= f.input :title, :class => 'text', :label => false, :input_html => { :value => 'title..', :onfocus => 'this.select();' } %>
+  <%= f.association :post_category, :prompt => 'category...' , :label => false %>   
+  <%= f.input :body, :rows => 5, :cols => 25, :label => false, :input_html => { :value => 'your post..', :onfocus => 'this.select();' } %>
+  <%= f.button :submit, :id => 'post_submit_button' %>
 <% end %>

@@ -23,7 +23,6 @@ end
 
 gem 'jquery-rails'
 
-
 # authentication
 
 gem 'devise', '1.4.9'
@@ -41,6 +40,11 @@ gem 'cancan'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+
+gem 'redcarpet'
+
+#pagination
+gem 'kaminari'
 
 group :development, :test do
   gem 'database_cleaner'
