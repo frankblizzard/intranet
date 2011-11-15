@@ -1,9 +1,8 @@
-$("body").css("cursor", "progress");
 $("#postlist .blogpost:first").removeClass('first_post');
 $("#postlist").prepend("<%= escape_javascript render(@post) %>");
 $("#post_title").val("");
 $("#post_body").val("");
 $("#postlist .blogpost:first").addClass('first_post');
 $("#postlist .blogpost:first").effect("highlight", { color:"#D3ECF4"}, 3000);
-$("body").css("cursor", "auto");
+
 	
