@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115105959) do
+ActiveRecord::Schema.define(:version => 20111115142137) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(:version => 20111115105959) do
     t.integer  "post_category_id"
   end
 
+  create_table "profiles", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "birthday"
+    t.string   "street"
+    t.string   "zip"
+    t.string   "city"
+    t.text     "bio"
+    t.string   "avatar"
+    t.string   "phone"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
@@ -52,16 +67,6 @@ ActiveRecord::Schema.define(:version => 20111115105959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
-    t.string   "avatar"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "street"
-    t.string   "zip"
-    t.string   "city"
-    t.text     "bio"
-    t.date     "bday"
-    t.string   "phone"
-    t.boolean  "freelancer",                            :default => false
     t.boolean  "admin",                                 :default => false
   end
 

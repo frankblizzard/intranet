@@ -139,6 +139,7 @@ GEM
     rdoc (3.11)
       json (~> 1.4)
     redcarpet (1.17.2)
+    rmagick (2.13.1)
     rspec (2.7.0)
       rspec-core (~> 2.7.0)
       rspec-expectations (~> 2.7.0)
@@ -210,6 +211,7 @@ DEPENDENCIES
   rails3-generators
   rb-fsevent
   redcarpet
+  rmagick
   rspec-rails
   sass-rails (~> 3.1.4)
   simple_form

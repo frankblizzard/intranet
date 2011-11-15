@@ -71,11 +71,15 @@ a:active {
 	top: 20px;
 }
 
-#topline #userinfo .username{
+#topline #userinfo .username a{
 	font-size: 16px;
 	font-weight: bold;
+	color: #F6F8F7 !important;
 }
 
+#topline #userinfo .username a:hover{
+	border-bottom: 1px dotted;
+}
 #topline #userinfo #mails{
 	font-size: 12px;
 	font-weight: normal;

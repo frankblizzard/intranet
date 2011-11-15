@@ -13,11 +13,11 @@
 			<div id="login_menu">
 				<% if user_signed_in? %>
 					<div id="avatar">
-		  				<%= image_tag ('dummy_user.jpg'), :title => 'dummy' %>
+		  				<%= current_user.profile.avatar.url.present? ? image_tag(current_user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") %>
 		  			</div>
 		  			<div id="userinfo">
 		  				<span class="username">
-		  					<%= current_user.username %>
+		  					<%= link_to current_user.username, profile_path(Profile.find_by_user_id(current_user.id)) %>
 		  				</span><br/>
 		  				<span id="mails">
 		  					2 new mails

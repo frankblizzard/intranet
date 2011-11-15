@@ -1,5 +1,7 @@
 Intranet::Application.routes.draw do
 
+  resources :profiles
+
   resources :comments
   
   get 'users/show'
