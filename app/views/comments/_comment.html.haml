@@ -1,6 +1,6 @@
 .comment
 	.author
-		#avatar= image_tag('dummy_user.jpg')
+		#avatar= current_user.profile.avatar.url.present? ? image_tag(current_user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg")
 		.userinfo
 			%span.username= comment.user.username
 			%br
