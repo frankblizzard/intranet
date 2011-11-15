@@ -18,16 +18,18 @@ optimiseContentSize = ->
 
 toggleLoading = ->
 	$('#loading').toggle()
+	console.log("toggle")
 	
 	
 jQuery ->
+	
 	optimiseContentSize()
 	
 	$('a[title!=""]').tipTip()
 	
+	# bind loading toggle to any form submitted by ajax
+	$("form").bind("ajax:before", toggleLoading).bind("ajax:complete", toggleLoading)
 
-			
-	
 	$(window).bind('resize', optimiseContentSize)
 	$('.content_window .header a').each ->
 			$(this).click ->

@@ -46,9 +46,11 @@ gem 'redcarpet'
 #pagination
 gem 'kaminari'
 
+gem 'carrierwave'
+
 group :development, :test do
   gem 'database_cleaner'
-  gem 'rails3-generators' #mainly for factory_girl & simple_form at this point
+  gem 'rails3-generators' # mainly for factory_girl & simple_form at this point
   gem 'factory_girl_rails'
   gem 'cucumber-rails'
   gem 'rspec-rails'

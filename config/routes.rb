@@ -2,7 +2,7 @@ Intranet::Application.routes.draw do
 
   resources :comments
   
-  resources :users
+  get 'users/show'
 
   devise_for :users, :path_names => { :sign_up => "register"}
 
@@ -11,8 +11,9 @@ Intranet::Application.routes.draw do
   resources :posts do 
     resources :comments
   end
-    
-
+  
+  match 'login' => 'users#login', :as => :login  
+  
   get "home/index"
 
   # The priority is based upon order of creation:

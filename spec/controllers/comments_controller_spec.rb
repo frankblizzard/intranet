@@ -24,7 +24,12 @@ describe CommentsController do
   # Comment. As you add validations to Comment, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :content => "ein kommentar",
+      :commentable_id => 1,
+      :commentable_type => "Post",
+      :user_id => 1
+    }
   end
 
   describe "GET index" do

@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @commentable = find_commentable 
+    #@commentable = find_commentable 
     #@comment = @commentable.comments.build(params[:comment])
     @comment = Comment.create!(params[:comment])
   end
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
   def find_commentable
       params.each do |name, value|
           if name =~ /(.+)_id$/
-              return $1.classify.constantize.find(value) unless name == 'user_id'
+              return $1.classify.constantize.find(value) 
           end
       end
       nil

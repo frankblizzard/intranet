@@ -289,7 +289,7 @@ a:hover {
 	}
 	
 	.header a {
-		color: #BBBEC3 !important;
+		color: #F6F8F7 !important;
 	}
 }
 
@@ -360,8 +360,11 @@ color: #d5d6d6;
   border: solid 1px #C66;
   color: #f13333;
 }
-p.notice {
-	
+#headline {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
 }
 
 #content .comments .comment .author {
@@ -390,4 +393,8 @@ p.notice {
 	-webkit-box-shadow: inset 0 5px 6px rgba(0,0,0,.6);
  	box-shadow: inset 0 5px 6px rgba(0,0,0,.5);
  	text-indent: 5px;
+}
+
+.content_window {
+	color: #F6F8F7;
 }
