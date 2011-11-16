@@ -1,32 +1,17 @@
-%p#notice= notice
+-present @user do |user_presenter|
 
-%p
-  %b First name:
-  = @profile.first_name
-%p
-  %b Last name:
-  = @profile.last_name
-%p
-  %b Street:
-  = @profile.street
-%p
-  %b Zip:
-  = @profile.zip
-%p
-  %b City:
-  = @profile.city
-%p
-  %b Bio:
-  = @profile.bio
-%p
-  %b Avatar:
-  = @profile.avatar
-%p
-  %b Phone:
-  = @profile.phone
-%p
-  %b User:
-  = @profile.user_id
+	#headline= "Contact"
+
+	#user.content_window
+		.header= link_to "Contact Details", "javascript:void(0)", :class => 'open', :title => "open / close"
+  	
+		.inner
+	
+			.avatar= user_presenter.avatar
+			.main_text= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+
+
 
 = link_to 'Edit', edit_profile_path(@profile)
 \|

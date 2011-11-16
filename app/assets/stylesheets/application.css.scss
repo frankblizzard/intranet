@@ -39,8 +39,10 @@ a {
 	color: #bbbec3 !important;
 }
 
-a:active {
-  outline: none;
+a:focus, a:active, a
+{
+	outline: none;
+	-moz-outline-style: none;
 }
 
 
@@ -209,6 +211,7 @@ span.not_logged_in {
 	font-size: 18px;
 	color: #f5f5f5;
 	display: block;
+	border-bottom: 0 !important;
 }
 #content .content_window .header a.open{
 	background: url("arrow_up.png") no-repeat right center;

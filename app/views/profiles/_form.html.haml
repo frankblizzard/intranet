@@ -1,5 +1,7 @@
 = simple_form_for @profile do |form|
 
+  = form.input :user_id, :label => 'User ID', :disabled => true
+
   -if @profile.errors.any?
     #errorExplanation
       %h2= "#{pluralize(@profile.errors.count, "error")} prohibited this #{Profile.name.titleize} from being saved:"
@@ -15,7 +17,6 @@
   = form.input :bio, :label => 'Bio'
   = form.input :avatar, :label => 'Avatar'
   = form.input :phone, :label => 'Phone'
-  = form.input :user_id, :label => 'User'
 
   .actions
     = form.button :submit

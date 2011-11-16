@@ -59,4 +59,5 @@ group :development, :test do
   gem 'growl'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'log_buddy'
 end
