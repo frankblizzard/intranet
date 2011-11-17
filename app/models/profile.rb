@@ -8,7 +8,7 @@ class Profile < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   attr_accessible :avatar, :phone, :full_name, :website, :bio,
-                  :birthday, :phone, :street, :zip, :city, :user_id
+                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description
   
   
 end

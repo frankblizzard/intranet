@@ -2,7 +2,7 @@
 	.author
 		#avatar= post.user.profile.avatar.url.present? ? image_tag(post.user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") 
 		.userinfo
-			%span.username= post.user.username
+			%span.username= link_to post.user.username, post.user.profile
 			%br
 			%span.time= post.created_at.strftime('%e %b %y')
 			%br

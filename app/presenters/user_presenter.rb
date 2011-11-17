@@ -43,6 +43,10 @@ class UserPresenter < BasePresenter
     end
   end
   
+  def email
+    h.mail_to user.email, user.email, :encode => 'hex'
+  end
+  
   def member_since
     user.created_at.strftime("%B %e, %Y")
   end
@@ -50,6 +54,12 @@ class UserPresenter < BasePresenter
   def phone
     handle_none user.profile.phone do
       user.profile.phone
+    end
+  end
+  
+  def job_description
+    handle_none user.profile.job_description do
+      user.profile.job_description
     end
   end
 

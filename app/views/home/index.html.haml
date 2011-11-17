@@ -8,5 +8,18 @@
 		#post_form= render 'post_form_fields'
 		
 		#postlist.page= render @posts
+	
+	
+	
+#infobox.content_window
+	.header= link_to "Info", "javascript:void(0)", :class => 'open', :title => "open / close"
+
+	.inner
+	
+		%p
+			-thomas = User.find_by_username("thomas").profile
+			- 
+			This is an alpha version. Feel free to test it and play around and report any bugs to
+			=link_to "Thomas", profile_path(thomas)
 	    	
 			

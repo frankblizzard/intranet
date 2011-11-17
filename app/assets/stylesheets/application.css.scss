@@ -291,8 +291,12 @@ a:hover {
 	color: #63666d;
 	
 	a {
-		//color: #63666d !important;
+		color: #63666d !important;
 		border-bottom: 1px dotted;
+	}
+	
+	.content_window a {
+		color: #BBBEC3 !important;
 	}
 	
 	.header a {
