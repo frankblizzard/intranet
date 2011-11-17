@@ -2,13 +2,12 @@
 
 %table
   %tr
-    %th First name
-    %th Last name
+    %th Full name
     %th Street
     %th Zip
     %th City
-    %th Bio
-    %th Avatar
+    %th Birthday
+    %th job_description
     %th Phone
     %th User
     %th
@@ -17,13 +16,12 @@
 
   - @profiles.each do |profile|
     %tr
-      %td= profile.first_name
-      %td= profile.last_name
+      %td= profile.full_name
       %td= profile.street
       %td= profile.zip
       %td= profile.city
-      %td= profile.bio
-      %td= profile.avatar
+      %td= profile.birthday
+      %td= profile.job_description
       %td= profile.phone
       %td= profile.user_id
       %td= link_to 'Show', profile

@@ -10,7 +10,8 @@
 		
 		.post
 			.title
-				%span.category{ :class => post.post_category.name }= post.post_category.name
+				-if post.post_category
+					%span.category{ :class => post.post_category.name }= post.post_category.name
 				%span.name= post.title
 
 			.text= markdown(post.body)

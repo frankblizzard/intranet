@@ -299,6 +299,10 @@ a:hover {
 		color: #BBBEC3 !important;
 	}
 	
+	.post a {
+		color: #63666d !important;
+	}
+	
 	.header a {
 		color: #F6F8F7 !important;
 	}
@@ -336,6 +340,9 @@ a:hover {
 position: relative;
 background-color: #2e323d;
 color: #d5d6d6;
+margin-left: 65px;
+position: relative;
+width: 373px;
 }
 
 #content .comments .comment {
@@ -383,8 +390,8 @@ color: #d5d6d6;
 	float: left;
 }
 #content .comments .comment .comment_body {
-	width: 68%;
-	float: left;
+    float: right;
+    width: 64%;
 }
 
 #content .comments .leave_comment {
@@ -392,7 +399,7 @@ color: #d5d6d6;
 }
 
 #content .comments .leave_comment input.comment_form{
-	width: 380px;
+	width: 295px;
 	margin-bottom: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
