@@ -9,14 +9,15 @@
         - @profile.errors.full_messages.each do |msg|
           %li= msg  
 
-  = form.input :first_name, :label => 'First Name'
-  = form.input :last_name, :label => 'Last Name'
+  = form.input :full_name, :label => 'Full Name'
   = form.input :street, :label => 'Street'
   = form.input :zip, :label => 'Zip'
   = form.input :city, :label => 'City'
   = form.input :bio, :label => 'Bio'
+  //.avatar= image_tag @profile.avatar.url(:thumb).present? ? image_tag(@profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg")
   = form.input :avatar, :label => 'Avatar'
   = form.input :phone, :label => 'Phone'
+  = form.input :website, :label => 'Website'
 
   .actions
     = form.button :submit

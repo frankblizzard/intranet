@@ -25,11 +25,13 @@
 	}
 	textarea {
 		width: 455px;
+		max-width: 455px;
 		height: 50px;
 		color: #3F4146;
 		font-size: 12px;
 		@include shadow;
 		@include round;
+		border: 0;
 	}
 	input.string {
 		width: 355px;
@@ -40,6 +42,7 @@
 		margin-bottom: 5px;
 		@include round;
 		@include shadow;
+		border: 0;
 	}
 	select {
 		position: absolute;

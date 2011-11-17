@@ -9,21 +9,75 @@ class UserPresenter < BasePresenter
     user.profile.avatar.url.present? ? h.image_tag(user.profile.avatar.url(:big)) : h.image_tag("dummy_user.jpg")
   end
   
-  def userinfo
-    "#{user.profile.first_name}"
+  def username
+    user.username
+  end
+  
+  def full_name
+    handle_none user.profile.full_name do
+      user.profile.full_name
+    end
   end
   
   def birthday
-    handle_none user.profile.birthday
+    handle_none user.profile.birthday do
+      user.profile.birthday
+    end
+  end
+  
+  def street
+    handle_none user.profile.street do
+      user.profile.street
+    end
+  end
+  
+  def city
+    handle_none user.profile.city do
+      user.profile.city
+    end
+  end
+  
+  def adress
+    handle_none get_adress do
+      get_adress
+    end
+  end
+  
+  def member_since
+    user.created_at.strftime("%B %e, %Y")
+  end
+
+  def phone
+    handle_none user.profile.phone do
+      user.profile.phone
+    end
+  end
+
+  def website
+    handle_none user.profile.website do
+      h.link_to(user.profile.website, user.profile.website)
+    end
   end
   
   def bio
     handle_none user.profile.bio do
-      h.markdown(user.bio)
+      h.markdown(user.profile.bio)
     end
   end
   
 private
+  
+  def get_adress
+    if user.profile.street && user.profile.city && user.profile.zip
+      "#{user.profile.street}, #{user.profile.zip} #{user.profile.city}"
+    elsif user.profile.street && user.profile.city
+       "#{user.profile.street}, #{user.profile.city}"
+    elsif user.profile.city
+       user.profile.city
+    else
+       nil
+    end
+  end
 
   def handle_none(value)
     if value.present?

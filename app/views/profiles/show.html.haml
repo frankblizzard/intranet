@@ -3,16 +3,31 @@
 	#headline= "Contact"
 
 	#user.content_window
-		.header= link_to "Contact Details", "javascript:void(0)", :class => 'open', :title => "open / close"
+		.header= link_to "Contact Details: #{user_presenter.username}", "javascript:void(0)", :class => 'open', :title => "open / close"
   	
 		.inner
 	
 			.avatar= user_presenter.avatar
 			.main_text= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			
+			%dl 
+				%dt= "Full Name"
+				%dd= user_presenter.full_name
+				%dt= "Member Since:"
+				%dd= user_presenter.member_since
+				%dt= "Adress"
+				%dd= user_presenter.adress
+				%dt= "birthday"
+				%dd= user_presenter.birthday
+				%dt= "Phone"
+				%dd= user_presenter.phone
+				%dt= "Website"
+				%dd= user_presenter.website
+				%dt= "Bio"
+				%dd= user_presenter.bio
 
 
-
-
-= link_to 'Edit', edit_profile_path(@profile)
-\|
-= link_to 'Back', profiles_path
+		.edit_links
+			= link_to 'Edit', edit_profile_path(@profile)
+			\|
+			= link_to 'Back', profiles_path
