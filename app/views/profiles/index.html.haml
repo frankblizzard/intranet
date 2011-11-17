@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th Username
     %th Full name
     %th Street
     %th Zip
@@ -9,13 +10,13 @@
     %th Birthday
     %th job_description
     %th Phone
-    %th User
     %th
     %th
     %th
 
   - @profiles.each do |profile|
     %tr
+      %td= profile.user.username
       %td= profile.full_name
       %td= profile.street
       %td= profile.zip
@@ -23,7 +24,6 @@
       %td= profile.birthday
       %td= profile.job_description
       %td= profile.phone
-      %td= profile.user_id
       %td= link_to 'Show', profile
       %td= link_to 'Edit', edit_profile_path(profile)
       %td= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete
