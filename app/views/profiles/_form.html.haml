@@ -18,7 +18,7 @@
   //.avatar= image_tag @profile.avatar.url(:thumb).present? ? image_tag(@profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg")
   = form.input :avatar, :label => 'Avatar'
   = form.input :phone, :label => 'Phone'
-  = form.input :birthday, :label => 'Birtday'
+  = form.input :birthday,:as => :date, :start_year => Date.today.year - 50, :end_year => Date.today.year - 18, :order => [:day, :month, :year], :label => 'Birthday'
   = form.input :website, :label => 'Website'
 
   .actions

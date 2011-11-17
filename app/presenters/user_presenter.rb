@@ -21,7 +21,7 @@ class UserPresenter < BasePresenter
   
   def birthday
     handle_none user.profile.birthday do
-      user.profile.birthday
+      user.profile.birthday.strftime("%B %e, %Y")
     end
   end
   
