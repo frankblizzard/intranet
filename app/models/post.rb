@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :post_category
   belongs_to :user
   
-  has_many :comments, :as => :commentable  
+  has_many :comments, :as => :commentable, :dependent => :destroy
   
   validates_presence_of :user_id
   #validates_presence_of :post_category_id

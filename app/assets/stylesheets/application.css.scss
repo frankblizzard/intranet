@@ -236,9 +236,23 @@ span.not_logged_in {
 	left: 20px;
 }
 
-.post a {
-	color: #3F4146 !important;
-	border-bottom: 1px dotted;	
+.post {
+	
+	position: relative;
+	
+	a {
+		color: #3F4146 !important;
+		border-bottom: 1px dotted !important;
+	}
+	
+	.edit {
+		position: absolute;
+		bottom: 5px;
+		right: 10px;
+		font-size: 10px;
+	}
+	
+	
 }
 
 a:hover {

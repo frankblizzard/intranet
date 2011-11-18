@@ -1,6 +1,6 @@
 .blogpost{:id => 'post_' + post.id.to_s }
 	.author
-		#avatar= post.user.profile.avatar.url.present? ? image_tag(post.user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") 
+		.post_avatar= post.user.profile.avatar.url.present? ? image_tag(post.user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") 
 		.userinfo
 			%span.username= link_to post.user.username, post.user.profile
 			%br
@@ -14,7 +14,12 @@
 					%span.category{ :class => post.post_category.name }= post.post_category.name
 				%span.name= post.title
 
-			.text= markdown(post.body)
+			.text= markdown(post.body)			
+			.edit
+				-if can? :update, post
+					=link_to "edit", edit_post_path(post)
+				-if can? :destroy, post
+					=link_to "delete", post, :confirm => 'Delete this post?', :method => :delete
 			
 
 .comments
