@@ -40,8 +40,9 @@ gem 'cancan'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-
+# markdown / autolink / embed
 gem 'redcarpet'
+gem 'auto_html'
 
 #pagination
 gem 'kaminari'

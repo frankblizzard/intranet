@@ -8,6 +8,6 @@
 			%br
 			%span.time= comment.created_at.strftime('%H:%M')
 
-	.comment_body= markdown(comment.content)
+	.comment_body= comment.content_html
 					
 	%br.clear

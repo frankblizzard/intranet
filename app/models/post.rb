@@ -1,6 +1,14 @@
 class Post < ActiveRecord::Base
   paginates_per 25
   
+  auto_html_for :body do
+     html_escape
+     image
+     youtube(:width => 400, :height => 250)
+     link :target => "_blank", :rel => "nofollow"
+     simple_format
+   end
+  
   belongs_to :post_category
   belongs_to :user
   

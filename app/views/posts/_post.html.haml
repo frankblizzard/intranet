@@ -14,7 +14,7 @@
 					%span.category{ :class => post.post_category.name }= post.post_category.name
 				%span.name= post.title
 
-			.text= markdown(post.body)			
+			.text= post.body_html
 			.edit
 				-if can? :update, post
 					=link_to "edit", edit_post_path(post)
