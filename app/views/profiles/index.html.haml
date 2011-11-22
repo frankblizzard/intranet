@@ -1,33 +1,31 @@
-%h1 Listing profiles
+%h1 Listing Users
 
-%table
-  %tr
-    %th Username
-    %th Full name
-    %th Street
-    %th Zip
-    %th City
-    %th Birthday
-    %th job_description
-    %th Phone
-    %th
-    %th
-    %th
-
-  - @profiles.each do |profile|
-    %tr
-      %td= profile.user.username
-      %td= profile.full_name
-      %td= profile.street
-      %td= profile.zip
-      %td= profile.city
-      %td= profile.birthday
-      %td= profile.job_description
-      %td= profile.phone
-      %td= link_to 'Show', profile
-      %td= link_to 'Edit', edit_profile_path(profile)
-      %td= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete
-
+.content_window.fullsize
+  .headline
+    .searchform
+      = text_field_tag "searchform", "search users...", :class => "table_search", :onfocus => 'this.select();'
+  .inner
+    %table.pretty
+      %tr
+        %th Username
+        %th Full name
+        %th E-Mail
+        %th Job description
+        %th
+        %th
+      
+    
+      - @profiles.each do |profile|
+        %tr
+          %td= profile.user.username
+          %td= profile.full_name
+          %td= profile.user.email
+          %td= profile.job_description
+          %td= link_to 'Show', profile
+          %td
+            -if can? :update, profile
+              = link_to 'Edit', edit_profile_path(profile) 
+    
 %br
 
-= link_to 'New Profile', new_profile_path
+/= link_to 'New Profile', new_profile_path, :class => 'new_object_link'

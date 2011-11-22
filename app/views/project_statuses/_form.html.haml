@@ -1,0 +1,13 @@
+= simple_form_for @project_status do |form|
+
+  -if @project_status.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@project_status.errors.count, "error")} prohibited this #{ProjectStatus.name.titleize} from being saved:"
+      %ul
+        - @project_status.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.input :name, :label => 'Name'
+
+  .actions
+    = form.button :submit

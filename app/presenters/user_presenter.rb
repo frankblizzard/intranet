@@ -78,11 +78,11 @@ class UserPresenter < BasePresenter
 private
   
   def get_adress
-    if user.profile.street && user.profile.city && user.profile.zip
+    if !user.profile.street.nil? && !user.profile.city.nil? && !user.profile.zip.nil?
       "#{user.profile.street}, #{user.profile.zip} #{user.profile.city}"
-    elsif user.profile.street && user.profile.city
+    elsif !user.profile.street.nil? && !user.profile.city.nil?
        "#{user.profile.street}, #{user.profile.city}"
-    elsif user.profile.city
+    elsif !user.profile.city.nil?
        user.profile.city
     else
        nil

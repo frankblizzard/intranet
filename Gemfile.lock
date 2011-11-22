@@ -109,9 +109,13 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     mime-types (1.17.2)
+    mocha (0.10.0)
+      metaclass (~> 0.0.1)
     multi_json (1.0.3)
     mysql2 (0.3.7)
+    nifty-generators (0.4.6)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
     polyglot (0.3.3)
@@ -217,7 +221,9 @@ DEPENDENCIES
   jquery-rails
   kaminari
   log_buddy
+  mocha
   mysql2
+  nifty-generators
   rails (= 3.1.1)
   rails3-generators
   rb-fsevent

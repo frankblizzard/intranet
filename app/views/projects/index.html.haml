@@ -1,0 +1,35 @@
+%h1 Listing Projects
+
+
+.content_window.fullsize
+  .headline
+    .searchform
+      = text_field_tag "searchform", "search projects...", :class => "table_search", :onfocus => 'this.select();'
+  .inner
+    %table.pretty
+      %tr
+        %th Nr
+        %th Name
+        %th Client
+        %th Description
+        %th Active
+        %th Hidden
+        %th
+        %th
+        %th
+      
+      - @projects.each do |project|
+        %tr
+          %td= project.nr
+          %td= project.name
+          %td= project.client_id
+          %td= project.description
+          %td= project.active
+          %td= project.hidden
+          %td= link_to 'Show', project
+          %td= link_to 'Edit', edit_project_path(project)
+          %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Project', new_project_path, :class => 'new_object_link'

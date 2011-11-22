@@ -1,5 +1,11 @@
 Intranet::Application.routes.draw do
 
+  resources :project_statuses
+
+  resources :projects
+
+  resources :clients
+
   resources :profiles
 
   resources :comments

@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   auto_html_for :content do
      html_escape
      image
-     youtube(:width => 250, :height => 156)
+     youtube(:width => 240, :height => 150)
      link :target => "_blank", :rel => "nofollow"
      simple_format
    end

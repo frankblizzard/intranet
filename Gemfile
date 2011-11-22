@@ -56,9 +56,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails'
   gem 'rspec-rails'
+  gem 'nifty-generators'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'growl'
   gem 'capybara'
   gem 'guard-rspec'
+  gem "mocha"
   gem 'log_buddy'
 end

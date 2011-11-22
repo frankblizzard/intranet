@@ -1,0 +1,31 @@
+%h1 Listing clients
+
+
+.content_window.fullsize
+  .headline
+    .searchform
+      = text_field_tag "searchform", "search clients...", :class => "table_search", :onfocus => 'this.select();'
+  .inner
+    %table.pretty
+      %tr
+        %th Name
+        %th Full name
+        %th Client nr
+        %th Website
+        %th
+        %th
+        %th
+    
+      - @clients.each do |client|
+        %tr
+          %td= client.name
+          %td= client.full_name
+          %td= client.client_nr
+          %td= client.website
+          %td= link_to 'Show', client
+          %td= link_to 'Edit', edit_client_path(client)
+          %td= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete
+    
+    %br
+
+= link_to 'New Client', new_client_path, :class => 'new_object_link'
