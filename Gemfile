@@ -63,4 +63,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem "mocha"
   gem 'log_buddy'
+  gem 'ffaker'
 end
