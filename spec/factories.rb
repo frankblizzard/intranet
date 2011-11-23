@@ -31,4 +31,24 @@ FactoryGirl.define do
     commentable_type "Post"
   end
   
+  factory :client do
+    name "MyString"
+    full_name "MyString"
+    client_nr "MyString"
+    website "MyString"
+  end
+  
+  factory :project_status do
+    name "MyString"
+  end
+  
+  factory :project do
+    nr "MyString"
+    name "MyString"
+    client_id 1
+    description "MyText"
+    active false
+    hidden false
+  end
+  
 end
