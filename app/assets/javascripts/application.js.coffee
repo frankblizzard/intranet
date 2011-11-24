@@ -9,6 +9,7 @@
 //= require jquery_ujs
 //= require_tree .
 
+
 optimiseContentSize = ->
 	fit_w = $(window).width() - 260
 	fit_h = $(window).height() - 20
@@ -19,16 +20,35 @@ optimiseContentSize = ->
 toggleLoading = ->
 	$('#loading').toggle()
 	console.log("toggle")
-	
+
+
+
+
+loadMoreResults = -> 
+  current_page++
+  $.ajax {
+		url : '/posts.js?page=' + current_page,
+		method: 'GET',
+		beforeSend: ->
+			$("#load_more_image").show()
+			$("#load_more .button").hide()
+		complete: ->
+			$("#load_more_image").hide()
+			$("#load_more .button").show()
+	}
+
+current_page = 1
 	
 jQuery ->
-	
+
 	optimiseContentSize()
 	
 	$('a[title!=""]').tipTip()
 	
 	# bind loading toggle to any form submitted by ajax
 	$("form").bind("ajax:before", toggleLoading).bind("ajax:complete", toggleLoading)
+	
+	$('#more_results').bind('click', loadMoreResults)
 
 	$(window).bind('resize', optimiseContentSize)
 	$('.content_window .header a').each ->

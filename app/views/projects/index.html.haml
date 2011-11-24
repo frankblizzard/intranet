@@ -26,9 +26,9 @@
           %td= project.description
           %td= project.active
           %td= project.hidden
-          %td= link_to 'Show', project
-          %td= link_to 'Edit', edit_project_path(project)
-          %td= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to image_tag('zoom_in.png'), project, :title => 'details'
+          %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
+          %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete
 
 %br
 

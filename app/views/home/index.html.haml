@@ -8,6 +8,10 @@
 		#post_form= render 'post_form_fields'
 		
 		#postlist.page= render @posts
+		
+	#load_more
+		#load_more_image= image_tag('loading.png')
+		.button= content_tag :button, "load more results", :id => 'more_results'
 	
 	
 	
@@ -18,8 +22,8 @@
 	
 		%p
 			-thomas = User.find_by_username("thomas").profile
-			- 
+			-
 			This is an alpha version. Feel free to test it and play around and report any bugs to
-			=link_to "Thomas", profile_path(thomas)
+			-link_to "Thomas", profile_path(thomas)
 	    	
 			

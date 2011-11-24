@@ -1,9 +1,13 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user!
   #before_filter :authenticate_user!
   
   def index
     @posts = Post.order('created_at desc').page(params[:page])
-    render 'home/index'
+    respond_to do |format|
+      format.html { render 'home/index' }
+      format.js { render 'posts/index.js' }
+    end
   end
 
 

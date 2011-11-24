@@ -39,9 +39,27 @@ body {
 
 #container {
 	
+	#more_results {
+		background-color: #333742;
+		color: #D5D6D6;
+		@include round;
+		border: 0;
+		border: 1px solid #2E323D;
+		padding: 5px;
+		-moz-box-shadow: 2px 2px 5px #222;
+		-webkit-box-shadow: 2px 2px 5px #222;
+		box-shadow: 2px 2px 5px #222;
+	}
+	
+	#more_results:hover {
+		background-color: #555D6A;
+		cursor:pointer;
+		@include round;
+		padding: 5px;
+	}
 
 }
-#main_menu a {
+#main_menu span.title {
 	font-size: 17px;
 }
 
@@ -226,14 +244,18 @@ span.not_logged_in {
 
 table.pretty {
 	
-	th {
-		padding-right: 20px;
-		
+	border-collapse: collapse;
+	
+	th, td {
+		padding-right: 20px;	
 	}
 	
-	tr {
-		border-bottom: 1px solid #F5F5F5;
-				
+	td {
+		border-top: 1px solid #F5F5F5;			
+	}
+	
+	a {
+		border-bottom: 0 !important;
 	}
 	
 }

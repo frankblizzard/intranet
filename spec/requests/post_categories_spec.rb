@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+
 describe "PostCategories" do
   describe "GET /post_categories" do
     it "works! (now write some real specs)" do

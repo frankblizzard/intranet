@@ -22,9 +22,9 @@
           %td= client.full_name
           %td= client.client_nr
           %td= client.website
-          %td= link_to 'Show', client
-          %td= link_to 'Edit', edit_client_path(client)
-          %td= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to image_tag('zoom_in.png'), client, :title => 'details'
+          %td= link_to image_tag('edit.png'), edit_client_path(client), :title => 'edit'
+          %td= link_to image_tag('delete.png'), client, :title => 'delete', :confirm => 'Are you sure?', :method => :delete
     
     %br
 

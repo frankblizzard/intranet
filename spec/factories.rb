@@ -1,14 +1,19 @@
 FactoryGirl.define do
   
-  factory :user do
-    first_name 'John'
-    last_name  'Doe'
-    username   'johndoe'
-    passwort   'secret'
-    password_confirmation {|u| u.password}
-    sequence(:email) {|n| "email#{n}@factory.com" }
-    admin      false
+  factory :user do |u|
+    u.sequence(:username) {|n| "johndoe#{n}" }
+    u.password   'secret'
+    u.password_confirmation {|u| u.password}
+    u.sequence(:email) {|n| "email#{n}@factory.com" }
+    u.after_build { |p| Factory(:profile, :user_id => u.id)} 
   end
+  
+  factory :profile do |p|
+    p.full_name "Thomas Maximini"
+    p.user  { |u| u.association(:user) }
+    p.avatar "dummy.jpg"
+  end
+
 
   factory :admin, :parent => :user do
     admin true

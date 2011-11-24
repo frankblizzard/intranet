@@ -1,21 +1,21 @@
 %ul
   %li{:class => current_page?(:controller => 'home', :action => 'index') ? 'active' : ''}
-    = link_to_unless_current("Home / Blog", { :controller => 'home', :action => "index" })
+    %span.title= link_to_unless_current("Home / Blog", { :controller => 'home', :action => "index" })
     %br/
     %span.sub_info
       bla blab bla
   %li{:class => current_page?(:controller => 'projects', :action => 'index') ? 'active' : ''}
-    = link_to_unless_current("Projects", { :controller => 'projects', :action => "index" })
+    %span.title= link_to_unless_current("Projects", { :controller => 'projects', :action => "index" })
     %br/
     %span.sub_info
       bla blab bla
   %li{:class => current_page?(:controller => 'comments', :action => 'index') ? 'active' : ''}
-    %a{:href => "#"} Timetracking
+    %span.title Timetracking
     %br/
     %span.sub_info
       bla blab bla
   %li{:class => current_page?(:controller => 'profiles', :action => 'index') ? 'active' : ''}
-    = link_to_unless_current("Contacts", { :controller => 'profiles', :action => "index" })
+    %span.title= link_to_unless_current("Contacts", { :controller => 'profiles', :action => "index" })
     %br/
     %span.sub_info
       bla blab bla
