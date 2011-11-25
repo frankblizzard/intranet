@@ -18,6 +18,13 @@
 	border-radius: 5px;
 }
 
+@mixin ambos_white {
+	text-shadow: 0 1px #FFFFFF;
+}
+
+@mixin ambos_black {
+	text-shadow: 0 1px #000000;
+}
 
 body {
 	background-image: linear-gradient(left , rgb(44,47,56) 36%, rgb(50,54,65) 50%);
@@ -214,7 +221,7 @@ span.not_logged_in {
 	width: 500px;
 	display:block;
 	float: left;
-	margin: 20px;
+	margin: 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -239,7 +246,15 @@ span.not_logged_in {
 		color: #F5F5F5;
 	}
 	
+	
+	.edit_links {
+    position: absolute;
+    right: 10px;
+		bottom: 10px;
+  }
+	
 }
+
 
 
 table.pretty {
@@ -251,7 +266,7 @@ table.pretty {
 	}
 	
 	td {
-		border-top: 1px solid #F5F5F5;			
+		border-top: 1px solid #bcbec2;			
 	}
 	
 	a {
@@ -270,11 +285,11 @@ table.pretty {
 }
 #content .content_window .header a{
 	width: 98%;
-	font-wight: bold;
 	font-size: 18px;
 	color: #f5f5f5;
 	display: block;
 	border-bottom: 0 !important;
+	@include ambos_black;
 }
 #content .content_window .header a.open{
 	background: url("arrow_up.png") no-repeat right center;
@@ -344,6 +359,19 @@ a:hover {
 
 .fullsize {
 	width: 80% !important;
+	background-image: linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -o-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -moz-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -webkit-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -ms-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+
+	background-image: -webkit-gradient(
+		linear,
+		right top,
+		left top,
+		color-stop(0.28, rgb(116,122,130)),
+		color-stop(0.85, rgb(72,80,92))
+	);
 }
 
 #content .blogpost .author .userinfo .time{ 
@@ -363,12 +391,11 @@ a:hover {
 	
 }
 
-#yield {
-	padding: 10px;
-}
+
 
 #yield {
 	color: #63666d;
+	padding: 10px;
 	
 	a {
 		color: #63666d !important;
@@ -377,6 +404,11 @@ a:hover {
 	
 	.content_window a {
 		color: #BBBEC3 !important;
+	}
+	
+	.content_window a.blue {
+		color: #3eb1e7 !important;
+		border-bottom: 0;
 	}
 	
 	.post a {
@@ -390,6 +422,29 @@ a:hover {
 	.author a {
 		border-bottom: 0;
 	}
+	
+	h1 {
+		padding-left:10px;
+		@include ambos_white;
+		position: relative;
+		
+		span.projectnr {
+			font-size: 50px;
+		}
+		
+		span.clientname, span.projectname {
+			font-size: 20px;
+			position: absolute;
+			left: 130px;
+			top: -10px;
+		}
+		
+		span.projectname {
+			top: 10px;
+		}
+		
+	}
+	
 }
 
 #content .blogpost .post .title{ 

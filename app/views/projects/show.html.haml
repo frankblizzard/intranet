@@ -1,22 +1,38 @@
-%p
-  %b Nr:
-  = @project.nr
-%p
-  %b Name:
-  = @project.name
-%p
-  %b Client:
-  = @project.client_id
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Active:
-  = @project.active
-%p
-  %b Hidden:
-  = @project.hidden
+-present @project do |project_presenter|
 
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+	%h1.project_h1
+		%span.projectnr= project_presenter.project_nr
+		%span.clientname= project_presenter.client
+		%span.projectname= project_presenter.title
+
+	#project.content_window.fullsize
+		.header= link_to "Project Details", "javascript:void(0)", :class => 'open', :title => "open / close"
+  	
+		.inner
+			.column
+				.subtitle Description
+				.subcontent
+					.description= project_presenter.description
+			
+			.column
+				.subtitle Involved People
+				.subcontent
+					.description= project_presenter.description
+			
+			.column
+				.subtitle Tasks
+				.subcontent
+					.tasks= project_presenter.tasks
+			
+			%br.clear
+	        
+
+
+		.edit_links
+			-if can? :update, @project
+				= link_to 'Edit', edit_project_path(@project)
+				\|
+			= link_to 'Back', projects_path
+
+
+

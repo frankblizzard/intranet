@@ -7,4 +7,6 @@ class Project < ActiveRecord::Base
   belongs_to :client
   belongs_to :project_status
   
+  has_many :tasks
+  
 end

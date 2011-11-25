@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/jchunky/table_builder.git
+  revision: 861e57bc1c1cddcf877db950fb400226be15ea71
+  specs:
+    table_builder (0.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -234,4 +240,5 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.1.4)
   simple_form
+  table_builder (= 0.0.3)!
   uglifier (>= 1.0.3)

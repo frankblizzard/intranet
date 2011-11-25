@@ -1,1 +1,5 @@
+<% current_page = params[:page] || 1 %>
 $("#postlist").append("<%= escape_javascript render(@posts) %>");
+<% if params[:page].to_i >= @posts.num_pages %>
+	$('#more_results').hide();
+<% end %>

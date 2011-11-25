@@ -1,8 +1,12 @@
 Intranet::Application.routes.draw do
 
+  resources :tasks
+
   resources :project_statuses
 
-  resources :projects
+  resources :projects do
+    resources :tasks
+  end
 
   resources :clients
 

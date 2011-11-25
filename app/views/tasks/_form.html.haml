@@ -1,0 +1,16 @@
+= simple_form_for @task do |form|
+
+  -if @task.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this #{Task.name.titleize} from being saved:"
+      %ul
+        - @task.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.input :name, :label => 'Name'
+  = form.input :description, :label => 'Description'
+  = form.input :project_id, :label => 'Project'
+  = form.input :deadline, :label => 'Deadline'
+
+  .actions
+    = form.button :submit
