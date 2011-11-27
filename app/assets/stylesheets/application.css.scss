@@ -252,6 +252,54 @@ span.not_logged_in {
     right: 10px;
 		bottom: 10px;
   }
+
+	#calendar {
+		
+		table {
+			width: 70%;
+			th, td {
+				height: 20px;
+				width: 95px;
+				margin: 5px;
+			}
+			
+			td {
+				height: 85px;
+				width: 75px;
+				//border: 1px solid;
+				@include round;
+				position: relative;
+				padding: 10px;
+				background-color: #474d59;
+				
+				.calendar_day {
+					width: 10px;
+					height: 15px;
+					margin: -35px 0 0 -5px;
+				}
+				
+			}
+			
+			td:hover, td:active {
+				background-color: #84c065 !important;
+				cursor: pointer;
+			}
+			
+			td.weekend {
+				background-color: #4e5662;
+			}
+			td.notmonth {
+				background-color: #535b68;
+			}
+			td.today {
+				border: 1px solid #84c065;
+			}
+			
+			
+		}
+		
+		
+	}
 	
 }
 

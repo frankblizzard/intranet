@@ -9,8 +9,8 @@
     %br/
     %span.sub_info
       bla blab bla
-  %li{:class => current_page?(:controller => 'comments', :action => 'index') ? 'active' : ''}
-    %span.title Timetracking
+  %li{:class => current_page?(:controller => 'hours', :action => 'index') ? 'active' : ''}
+    %span.title= link_to_unless_current("Timetracking", { :controller => 'hours', :action => "index" }) 
     %br/
     %span.sub_info
       bla blab bla

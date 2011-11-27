@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111124163643) do
+ActiveRecord::Schema.define(:version => 20111125145739) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(:version => 20111124163643) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hours", :force => true do |t|
+    t.date     "date"
+    t.float    "amount"
+    t.boolean  "extra",       :default => false
+    t.boolean  "holiday",     :default => false
+    t.boolean  "ill",         :default => false
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
