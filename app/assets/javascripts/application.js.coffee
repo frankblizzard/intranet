@@ -57,9 +57,11 @@ jQuery ->
 					if $(this).hasClass('open')
 						$(this).removeClass('open')
 						$(this).addClass('closed')
+						$(this).parent().parent().find('.edit_links').hide()
 					else 
 						$(this).removeClass('closed')
 						$(this).addClass('open')
+						$(this).parent().parent().find('.edit_links').show()
 
 					
 		

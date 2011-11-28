@@ -255,8 +255,11 @@ span.not_logged_in {
 
 	#calendar {
 		
+		min-height: 650px;
+		
 		table {
 			width: 70%;
+			border-spacing: 5px;
 			th, td {
 				height: 20px;
 				width: 95px;
@@ -290,6 +293,11 @@ span.not_logged_in {
 			}
 			td.notmonth {
 				background-color: #535b68;
+				
+				.calendar_day {
+					color: #707681;
+				}
+				
 			}
 			td.today {
 				border: 1px solid #84c065;
