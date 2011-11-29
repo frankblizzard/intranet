@@ -40,17 +40,7 @@ class HoursController < ApplicationController
   # POST /hours
   # POST /hours.json
   def create
-    @hour = Hour.new(params[:hour])
-
-    respond_to do |format|
-      if @hour.save
-        format.html { redirect_to @hour, notice: 'Hour was successfully created.' }
-        format.json { render json: @hour, status: :created, location: @hour }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @hour.errors, status: :unprocessable_entity }
-      end
-    end
+    @hour = Hour.create!(params[:hour])
   end
 
   # PUT /hours/1

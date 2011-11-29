@@ -260,6 +260,11 @@ span.not_logged_in {
 		table {
 			width: 70%;
 			border-spacing: 5px;
+			
+			th {
+				text-shadow: 0 1px #000000;
+			}
+			
 			th, td {
 				height: 20px;
 				width: 95px;
@@ -269,7 +274,7 @@ span.not_logged_in {
 			td {
 				height: 85px;
 				width: 75px;
-				//border: 1px solid;
+				border: 1px solid #474d59;
 				@include round;
 				position: relative;
 				padding: 10px;
@@ -283,9 +288,14 @@ span.not_logged_in {
 				
 			}
 			
-			td:hover, td:active {
-				background-color: #84c065 !important;
+			td:hover, td.active {
 				cursor: pointer;
+			}
+			td.active {
+				background-color: #84c065 !important;
+			}
+			td:hover {
+				border: 1px dashed #D7D8DD !important;
 			}
 			
 			td.weekend {
@@ -615,4 +625,27 @@ width: 373px;
 	-webkit-box-shadow: inset 0 5px 6px rgba(0,0,0,.6);
  	box-shadow: inset 0 5px 6px rgba(0,0,0,.5);
  	text-indent: 5px;
+}
+
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #535B68;
+    }
+  }
 }

@@ -16,6 +16,13 @@
         = calendar.day(:day_method => :date) do |date, hours|
           .calendar_day
             = date.day
+            = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
+          .hour
+            -if hours
+              %ul
+                -for hour in hours
+                  %li= link_to hour.description, hour
+					
 
     #sidepanel
       .overview

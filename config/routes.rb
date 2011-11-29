@@ -1,5 +1,7 @@
 Intranet::Application.routes.draw do
 
+  resources :work_categories
+
   resources :hours
 
   resources :tasks

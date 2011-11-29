@@ -1,0 +1,19 @@
+%h1 Listing work_categories
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @work_categories.each do |work_category|
+    %tr
+      %td= work_category.name
+      %td= link_to 'Show', work_category
+      %td= link_to 'Edit', edit_work_category_path(work_category)
+      %td= link_to 'Destroy', work_category, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Work category', new_work_category_path

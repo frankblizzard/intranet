@@ -1,0 +1,11 @@
+= simple_form_for [Hour.new], :remote => true do |f|
+		= f.hidden_field :user_id, :value => current_user.id
+		= f.input :date, :as => :string
+		= f.input :description, :rows => 5, :cols => 20, :onfocus => 'this.select()'
+		= f.input :extra
+		= f.input :holiday
+		= f.input :ill
+		= f.input :project_name, :label => "Project", :hint => "Type Nr. or Name, will autocomplete"
+		= f.association :work_category
+		%br.clear
+		= f.button :submit, :as => :image, :src => "images/accept.png"
