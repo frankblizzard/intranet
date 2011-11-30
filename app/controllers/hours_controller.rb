@@ -9,7 +9,7 @@ class HoursController < ApplicationController
   # GET /hours
   # GET /hours.json
   def index
-    @hours = Hour.all
+    @hours = current_user.hours
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html # index.html.erb

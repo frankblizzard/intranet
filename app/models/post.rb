@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  paginates_per 1
+  paginates_per 15
   
   auto_html_for :body do
      html_escape

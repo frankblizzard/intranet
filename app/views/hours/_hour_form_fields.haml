@@ -3,9 +3,9 @@
   = f.input :date, :as => :string, :value => Date.today.strftime("%Y-%m-%d")
   = f.input :amount, :label => "Hours"
   = f.input :description, :rows => 5, :cols => 20, :onfocus => 'this.select()'
-  = f.input :extra
-  = f.input :holiday
-  = f.input :ill
+  = f.input :extra, :label_html => { :class => 'extra' }
+  = f.input :holiday, :label_html => { :class => 'holiday' }
+  = f.input :ill, :label_html => { :class => 'ill' }
   = f.hidden_field :project_id, :id => "real_project_id"
   .input.text.required
     %label.string.optional Project

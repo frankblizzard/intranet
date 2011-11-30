@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_one  :profile
   
+  has_many :hours
+  
   validates_uniqueness_of :username
   
   after_create :set_profile

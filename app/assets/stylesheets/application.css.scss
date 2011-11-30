@@ -340,24 +340,34 @@ span.not_logged_in {
 				margin-top: 1px;
  	  	}
 			li.extra {
-				background-color: yellow;
+				background-color: #d9eb75;
 			}
 			li.holiday {
-				background-color: green;
+				background-color: #5e904b;
 			}
 			li.regular {
-				background-color: blue;
+				background-color: #398BB4;
 			}
 			li.ill {
-				background-color: red;
+				background-color: #dc5c71;
 			}
+			
+			
    }	
 		
 	}
 	
 }
 
-
+label.extra {
+	color: #d9eb75;
+}
+label.holiday {
+	color: #5e904b;
+}
+label.ill {
+	color: #dc5c71;
+}
 
 table.pretty {
 	
