@@ -22,7 +22,7 @@ module ApplicationHelper
     else 
       klass = "regular title"
     end
-    content_tag :li, '', :class => klass, :style => "height: #{ hour.percent_day }%", :title => "#{hour.amount} hours | #{hour.project.name_number} | #{hour.description}"
+    content_tag :li, '', :class => klass, :style => "height: #{ hour.percent_day }%", :title => "#{hour.amount} hours | #{hour.project.name_number} | #{hour.description}", :data => { :hour_id => hour.id}
   end
   
 end

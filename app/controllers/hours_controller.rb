@@ -10,12 +10,14 @@ class HoursController < ApplicationController
   # GET /hours.json
   def index
     @hours = current_user.hours
+
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @hours }
     end
   end
+  
 
   # GET /hours/1
   # GET /hours/1.json
@@ -25,6 +27,7 @@ class HoursController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @hour }
+      format.js
     end
   end
 

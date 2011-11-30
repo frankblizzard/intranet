@@ -4,5 +4,8 @@ tablecell.append("<%= escape_javascript hour_tag(@hour) %>");
 tablecell.prepend("<li class=\"spacer\" style=\"height:<%= @spacer_height %>%;\"></li>")
 tablecell.css("bottom", tablecell.find("li").length + "px");
 tablecell.find("li:last").tipTip();
+$('.ajax_form input.string, .ajax_form input.float, .ajax_form input.text, .ajax_form select, .ajax_form input.text, .ajax_form textarea').each( function () {
+	$(this).val("");
+})
 
 

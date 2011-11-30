@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+
 jQuery ->
   $('#calendar table td').each ->
     $(this).click ->
@@ -9,7 +10,16 @@ jQuery ->
       $(this).addClass('active')
       date = $(this).find('.calendar_date').attr('data-date')
       $('#new_hour #hour_date').val(date)
+			
   $('ul.stunden li.title').tipTip()
+
+  $('ul.stunden li.extra, ul.stunden li.regular, ul.stunden li.ill, ul.stunden li.holiday').each ->
+	  $(this).click ->
+      $('ul.stunden li.active').removeClass('active')
+      $(this).addClass('active')
+      $.get '/hours/'+$(this).attr('data-hour-id')+'.js', { hour: $(this).attr('data-hour-id') }
+		  
+			  
 
 
 		
