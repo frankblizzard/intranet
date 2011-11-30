@@ -14,15 +14,17 @@
       = calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| 
         = calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
         = calendar.day(:day_method => :date) do |date, hours|
-          .calendar_day
-            = date.day
-            = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
-          .hour
-            -if hours
-              %ul
-                -for hour in hours
-                  %li= link_to hour.description, hour
-					
+          .wrapper_div
+            .hour
+              -if hours
+                %ul.stunden{:style => "bottom: #{Hour.number_of_entries(current_user, date)}px;"}
+                  = content_tag :li, '', :class => 'spacer', :style => "height: #{ 100 - Hour.total_percent_day(current_user, date) }%"
+                  -for hour in hours
+                    = hour_tag(hour)
+            .calendar_day
+              = date.day
+              = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
+
 
     #sidepanel
       .overview

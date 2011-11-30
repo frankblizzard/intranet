@@ -9,4 +9,20 @@ class Project < ActiveRecord::Base
   
   has_many :tasks
   
+  attr_accessible :nr, :name, :client_id, :project_status_id, :hidden, :active, :description
+  
+  attr_reader :name_number, :profile_tokens
+  
+  scope :active, where(:active => '1')
+  scope :visible, where(:hidden => '0')
+  
+  def name_number
+    "#{self.nr} - #{self.name}"
+  end
+  
+  # helper function for jQuery tokenized input
+  def profile_tokens=(ids)
+    self.profile_ids = ids.split(',')
+  end
+  
 end

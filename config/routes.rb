@@ -2,7 +2,9 @@ Intranet::Application.routes.draw do
 
   resources :work_categories
 
-  resources :hours
+  resources :hours do
+     get :autocomplete_project_name, :on => :collection
+  end
 
   resources :tasks
 

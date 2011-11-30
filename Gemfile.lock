@@ -145,6 +145,8 @@ GEM
       railties (= 3.1.1)
     rails3-generators (0.17.4)
       railties (>= 3.0.0)
+    rails3-jquery-autocomplete (1.0.4)
+      rails (~> 3.0)
     railties (3.1.1)
       actionpack (= 3.1.1)
       activesupport (= 3.1.1)
@@ -234,6 +236,7 @@ DEPENDENCIES
   nifty-generators
   rails (= 3.1.1)
   rails3-generators
+  rails3-jquery-autocomplete
   rb-fsevent
   redcarpet
   rmagick

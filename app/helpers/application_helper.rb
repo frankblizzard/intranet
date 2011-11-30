@@ -11,4 +11,18 @@ module ApplicationHelper
     presenter
   end
   
+  def hour_tag(hour)
+    klass = ""
+    if hour.ill 
+      klass = "ill title"
+    elsif hour.extra
+      klass = "extra title"
+    elsif hour.holiday
+      klass = "holiday title"
+    else 
+      klass = "regular title"
+    end
+    content_tag :li, '', :class => klass, :style => "height: #{ hour.percent_day }%", :title => "#{hour.amount} hours | #{hour.project.name_number} | #{hour.description}"
+  end
+  
 end

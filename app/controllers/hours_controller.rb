@@ -1,4 +1,11 @@
 class HoursController < ApplicationController
+  
+  autocomplete :project, :name, :display_value => :name_number
+  
+  def get_autocomplete_items(parameters)
+    items = Project.select("DISTINCT CONCAT_WS(' ', nr, name, id) AS full_name, nr, name, id").where(["CONCAT_WS(' ', nr, name) LIKE ?", "%#{parameters[:term]}%"])
+  end
+  
   # GET /hours
   # GET /hours.json
   def index
@@ -41,6 +48,7 @@ class HoursController < ApplicationController
   # POST /hours.json
   def create
     @hour = Hour.create!(params[:hour])
+    @spacer_height = 100 - Hour.total_percent_day(current_user, @hour.date)
   end
 
   # PUT /hours/1

@@ -50,7 +50,7 @@
 	#sidepanel {
 		
 		position: absolute;
-		left: 790px;
+		left: 74%;
 		top: 30px;
 		width: 240px;
 		padding: 20px;
@@ -74,7 +74,7 @@
 					color: #cccdcf;
 					padding: 5px;
 				}
-				.string input {
+				.string input, .text input, .float input {
 					width: 180px;
 				}
 				

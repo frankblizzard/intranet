@@ -12,6 +12,11 @@
  	box-shadow: inset 0 3px 6px rgba(0,0,0,.5);
 }
 
+@mixin drop_shadow {
+  -moz-box-shadow: -3px 3px 7px rgba(0,0,0,.3);;
+  -webkit-box-shadow: -3px 3px 7px rgba(0,0,0,.3);;
+  box-shadow: -3px 3px 7px rgba(0,0,0,.3);;
+}
 @mixin round {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -198,6 +203,7 @@ a:focus, a:active, a
 	z-index: 2;
 	position: relative;
 	overflow: auto;
+	@include drop_shadow;
 	
 	#loading {
 		position: fixed;
@@ -234,7 +240,7 @@ span.not_logged_in {
 	color: #F6F8F7;
 	
 	.table_search {
-		margin: 20px 0 0 20px;
+		margin: 20px 0 20px 20px;
 		width: 200px;
 		height: 16px;
 		@include round;
@@ -258,7 +264,7 @@ span.not_logged_in {
 		min-height: 650px;
 		
 		table {
-			width: 70%;
+			width: 74%;
 			border-spacing: 5px;
 			
 			th {
@@ -276,15 +282,20 @@ span.not_logged_in {
 				width: 75px;
 				border: 1px solid #474d59;
 				@include round;
-				position: relative;
-				padding: 10px;
 				background-color: #474d59;
+				
+				.wrapper_div {
+					position: relative;
+					width: 100%;
+					height: 100%;
+				}
 				
 				.calendar_day {
 					width: 10px;
 					height: 15px;
-					margin: -35px 0 0 -5px;
+					padding: 5px;
 				}
+				
 				
 			}
 			
@@ -315,7 +326,32 @@ span.not_logged_in {
 			
 			
 		}
-		
+ 	  ul.stunden {
+ 	  	padding: 0;
+ 	  	margin:0;
+ 	  	list-style: none;
+ 	  	position: absolute;
+ 	  	bottom: 0;
+ 	  	left: 30px;
+			height: 100%;
+    
+ 	  	li {
+ 	  		width: 35px;
+				margin-top: 1px;
+ 	  	}
+			li.extra {
+				background-color: yellow;
+			}
+			li.holiday {
+				background-color: green;
+			}
+			li.regular {
+				background-color: blue;
+			}
+			li.ill {
+				background-color: red;
+			}
+   }	
 		
 	}
 	
@@ -634,18 +670,20 @@ ul.ui-autocomplete {
   padding: 0;
   border: solid 1px #999;
   cursor: default;
+  color: #d1d1d1 !important;
   li {
     background-color: #FFF;
     border-top: solid 1px #DDD;
     margin: 0;
     padding: 0;
     a {
-      color: #000;
+      color: #1d1d1d !important;
       display: block;
       padding: 3px;
     }
     a.ui-state-hover, a.ui-state-active {
       background-color: #535B68;
+			color: #d1d1d1 !important;
     }
   }
 }

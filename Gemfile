@@ -53,6 +53,9 @@ gem 'rmagick'
 # calendar
 gem 'table_builder', '0.0.3', :git => 'git://github.com/jchunky/table_builder.git'
 
+# autocomplete
+gem 'rails3-jquery-autocomplete'
+
 group :development, :test do
   gem 'database_cleaner'
   gem 'rails3-generators' # mainly for factory_girl & simple_form at this point

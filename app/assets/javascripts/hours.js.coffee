@@ -9,7 +9,8 @@ jQuery ->
       $(this).addClass('active')
       date = $(this).find('.calendar_date').attr('data-date')
       $('#new_hour #hour_date').val(date)
+  $('ul.stunden li.title').tipTip()
 
-  $('#hour_project_name').autocomplete
-    source: ['foo', 'fool', 'foobar']
+
+		
 	

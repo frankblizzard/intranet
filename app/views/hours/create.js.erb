@@ -1,0 +1,8 @@
+var tablecell = $("*[data-date=<%= escape_javascript @hour.date.strftime('%Y-%m-%d') %>]").parent().parent().find('ul.stunden');
+tablecell.find("li.spacer").remove();
+tablecell.append("<%= escape_javascript hour_tag(@hour) %>");
+tablecell.prepend("<li class=\"spacer\" style=\"height:<%= @spacer_height %>%;\"></li>")
+tablecell.css("bottom", tablecell.find("li").length + "px");
+tablecell.find("li:last").tipTip();
+
+
