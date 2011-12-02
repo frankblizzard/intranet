@@ -293,6 +293,7 @@ span.not_logged_in {
 					position: relative;
 					width: 100%;
 					height: 100%;
+					overflow: hidden;
 				}
 				
 				.calendar_day {
@@ -449,6 +450,19 @@ table.pretty {
 		border-bottom: 0 !important;
 	}
 	
+}
+
+
+#bug_report {
+	position: fixed;
+	left: 40px;
+	top: 450px;
+}
+
+.user_statistics {
+	color: #999;
+	font-size: 10px;
+	font-style: italic;
 }
 
 #content .content_window .header{

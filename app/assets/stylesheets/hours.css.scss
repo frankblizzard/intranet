@@ -71,6 +71,7 @@
 			input, textarea {
 				@include round;
 				background-color: #2a2e39;
+				border: 1px solid #CCCCCC;
 				border-bottom: 1px solid #cccdcf;
 				color: #cccdcf;
 				padding: 5px;

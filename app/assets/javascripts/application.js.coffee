@@ -8,6 +8,7 @@
 //= require jquery
 //= require jquery-ui
 //= require autocomplete-rails
+//= require facebox
 //= require jquery_ujs
 //= require_tree .
 
@@ -44,7 +45,7 @@ current_page = 1
 jQuery ->
 
 	optimiseContentSize()
-	
+	$('a[rel*=facebox]').facebox()
 	$('a[title!=""]').tipTip()
 	
 	# bind loading toggle to any form submitted by ajax

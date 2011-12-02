@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+  
   before_filter :authenticate_user!
-  #before_filter :authenticate_user!
   
   def index
     @posts = Post.order('created_at desc').page(params[:page])

@@ -1,0 +1,17 @@
+%p
+  %b User:
+  = link_to @bug.user.username, @bug.user.profile
+%p
+  %b Title:
+  = @bug.title
+%p
+  %b Description:
+  = markdown(@bug.description)
+
+
+.edit_links
+  = link_to "show all bugs", bugs_path
+  -if can? :update, @bug
+    =link_to "edit", edit_bug_path(@bug)
+  -if can? :destroy, @bug
+    =link_to "delete", @bug, :confirm => 'Delete this bug?', :method => :delete

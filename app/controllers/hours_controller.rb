@@ -1,5 +1,7 @@
 class HoursController < ApplicationController
   
+  before_filter :authenticate_user!
+  
   autocomplete :project, :name, :display_value => :name_number
   
   def get_autocomplete_items(parameters)
@@ -45,6 +47,7 @@ class HoursController < ApplicationController
   # GET /hours/1/edit
   def edit
     @hour = Hour.find(params[:id])
+    authorize! :edit, @hour
   end
 
   # POST /hours
@@ -58,16 +61,17 @@ class HoursController < ApplicationController
   # PUT /hours/1.json
   def update
     @hour = Hour.find(params[:id])
-
+    authorize! :update, @hour
     respond_to do |format|
       if @hour.update_attributes(params[:hour])
-        format.html { redirect_to @hour, notice: 'Hour was successfully updated.' }
+        format.html { redirect_to hours_path, notice: 'Hour was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
         format.json { render json: @hour.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /hours/1
@@ -75,7 +79,7 @@ class HoursController < ApplicationController
   def destroy
     @hour = Hour.find(params[:id])
     @hour.destroy
-
+    authorize! :destroy, @hour
     respond_to do |format|
       format.html { redirect_to hours_url }
       format.json { head :ok }

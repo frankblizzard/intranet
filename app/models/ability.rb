@@ -9,8 +9,8 @@ class Ability
      can :manage, :all
    else
      can :read, :all
-     can [:update, :destroy], [Post, Comment], :user_id => user.id
-     can :update, Profile, :user_id => user.id
+     can [:create, :update, :destroy], [Bug, Post, Comment, Hour], :user_id => user.id
+     can [:create, :update], Profile, :user_id => user.id
    end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

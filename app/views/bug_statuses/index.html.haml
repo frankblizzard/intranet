@@ -1,0 +1,19 @@
+%h1 Listing bug_statuses
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @bug_statuses.each do |bug_status|
+    %tr
+      %td= bug_status.name
+      %td= link_to 'Show', bug_status
+      %td= link_to 'Edit', edit_bug_status_path(bug_status)
+      %td= link_to 'Destroy', bug_status, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Bug status', new_bug_status_path

@@ -1,5 +1,5 @@
 - hour ||= Hour.new
-= simple_form_for hour, :remote => true do |f|
+= simple_form_for hour, :remote => hour.new_record? do |f|
   = f.hidden_field :user_id, :value => current_user.id
   = f.input :date, :as => :string, :value =>  Date.today.strftime("%Y-%m-%d")
   = f.input :amount, :label => "Hours"

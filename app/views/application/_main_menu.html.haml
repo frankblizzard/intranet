@@ -3,19 +3,21 @@
     %span.title= link_to_unless_current("Home / Blog", { :controller => 'home', :action => "index" })
     %br/
     %span.sub_info
-      bla blab bla
+    2 new posts
   %li{:class => current_page?(:controller => 'projects', :action => 'index') ? 'active' : ''}
     %span.title= link_to_unless_current("Projects", { :controller => 'projects', :action => "index" })
     %br/
     %span.sub_info
-      bla blab bla
+
   %li{:class => current_page?(:controller => 'hours', :action => 'index') ? 'active' : ''}
     %span.title= link_to_unless_current("Timetracking", { :controller => 'hours', :action => "index" }) 
     %br/
     %span.sub_info
-      bla blab bla
+      = "#{current_user.hours_today} hours today"
   %li{:class => current_page?(:controller => 'profiles', :action => 'index') ? 'active' : ''}
     %span.title= link_to_unless_current("Contacts", { :controller => 'profiles', :action => "index" })
     %br/
     %span.sub_info
-      bla blab bla
+
+#bug_report
+  = link_to image_tag("bug.png"), new_bug_path, :title => "report a bug"

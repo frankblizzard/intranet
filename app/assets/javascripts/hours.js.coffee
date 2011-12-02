@@ -13,7 +13,7 @@ jQuery ->
 			
   $('ul.stunden li.title').tipTip()
 
-  $('ul.stunden li.extra, ul.stunden li.regular, ul.stunden li.ill, ul.stunden li.holiday').each ->
+  $('ul.stunden li.extra, ul.stunden li.regular, ul.stunden li.holiday, .stunden .ill').each ->
 	  $(this).click ->
       $('ul.stunden li.active').removeClass('active')
       $(this).addClass('active')

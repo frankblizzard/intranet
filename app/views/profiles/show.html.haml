@@ -28,6 +28,10 @@
 				%dd= user_presenter.phone
 				%dt= "Website"
 				%dd= user_presenter.website
+				
+				%br
+				.user_statistics
+					= "#{user_presenter.username} shared #{@user.posts.count} Posts, posted #{@user.comments.count} comments and filed #{@user.bugs.count} bugs."
 
 
 		.edit_links

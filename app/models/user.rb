@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
   has_one  :profile
+  has_many :bugs
   
   has_many :hours
   
@@ -20,6 +21,10 @@ class User < ActiveRecord::Base
   
   def set_profile
     self.build_profile(:user_id => self.id)
+  end
+  
+  def hours_today
+    self.hours.where(:date => Date.today).to_a.sum { |hour| hour.amount }
   end
   
 end

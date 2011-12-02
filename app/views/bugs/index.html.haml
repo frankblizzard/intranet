@@ -1,0 +1,38 @@
+%h1 Listing bugs
+
+.content_window.fullsize
+  .headline
+    .searchform
+      = text_field_tag "searchform", "search bugs...", :class => "table_search", :onfocus => 'this.select();'
+    %br.clear
+  .inner
+    %table.pretty
+
+      %tr
+        %th #
+        %th Reporter
+        %th Title
+        %th Description
+        %th Status
+        %th
+        %th
+      
+      - @bugs.each do |bug|
+        %tr
+          %td= link_to bug.id, bug, :class => "blue"
+          %td= link_to bug.user.username, bug.user.profile
+          %td= bug.title
+          %td= bug.description
+          %td= bug.bug_status.name
+          %td= link_to 'Show', bug
+          %td
+            -if can? :update, bug
+              = link_to 'Edit', edit_bug_path(bug)
+
+  %br
+  .edit_links
+    = link_to 'File a Bug', new_bug_path, :class => "new_object_link"
+      
+%br
+
+

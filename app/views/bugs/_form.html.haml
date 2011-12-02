@@ -1,0 +1,16 @@
+= simple_form_for @bug do |form|
+
+  -if @bug.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@bug.errors.count, "error")} prohibited this #{Bug.name.titleize} from being saved:"
+      %ul
+        - @bug.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.hidden_field :user_id, :value => current_user.id
+  = form.input :title, :label => 'Title'
+  = form.association :bug_status, :label => 'Status'
+  = form.input :description, :label => 'Description'
+
+  .actions
+    = form.button :submit
