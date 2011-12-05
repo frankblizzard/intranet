@@ -17,6 +17,8 @@ class Project < ActiveRecord::Base
   scope :active, where(:active => '1')
   scope :visible, where(:hidden => '0')
   
+  accepts_nested_attributes_for :tasks
+  
   def name_number
     "#{self.nr} - #{self.name}"
   end

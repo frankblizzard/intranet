@@ -1,14 +1,19 @@
-%p
-  %b User:
-  = link_to @bug.user.username, @bug.user.profile
-%p
-  %b Title:
-  = @bug.title
-%p
-  %b Description:
-  = markdown(@bug.description)
+%h1= "Bug ##{@bug.id}: #{@bug.title}"
+
+.content_window
+  .post_single_view= render @bug
+  .comments
+    - if @bug.comments.size > 0
+      = render @bug.comments.order('created_at desc')
+
+    .leave_comment= render 'bug_comment_fields',  :bug_id => @bug.id
+  %br
+
+%br
 
 
+
+%br.clear
 .edit_links
   = link_to "show all bugs", bugs_path
   -if can? :update, @bug

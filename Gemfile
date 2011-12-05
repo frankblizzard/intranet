@@ -12,6 +12,7 @@ gem 'mysql2'
 gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
+gem "nested_form", :git => 'https://github.com/fxposter/nested_form.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

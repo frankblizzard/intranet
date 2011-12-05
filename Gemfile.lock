@@ -4,6 +4,12 @@ GIT
   specs:
     table_builder (0.0.3)
 
+GIT
+  remote: https://github.com/fxposter/nested_form.git
+  revision: 485d20acc2385583571d8dc4ab709a1a7d69d0b3
+  specs:
+    nested_form (0.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -233,6 +239,7 @@ DEPENDENCIES
   log_buddy
   mocha
   mysql2
+  nested_form!
   nifty-generators
   rails (= 3.1.1)
   rails3-generators

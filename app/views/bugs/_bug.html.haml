@@ -1,0 +1,23 @@
+.blogpost{:id => 'bug_' + bug.id.to_s }
+	.author
+		.post_avatar= bug.user.profile.avatar.url.present? ? image_tag(bug.user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") 
+		.userinfo
+			%span.username= link_to bug.user.username, bug.user.profile
+			%br
+			%span.time= bug.created_at.strftime('%e %b %y')
+			%br
+			%span.time= bug.created_at.strftime('%H:%M')
+			%br
+			%span.bug_status= "Status: #{bug.bug_status.name}"
+		
+		.post
+			.title
+				%span.name= bug.title
+
+			.text= markdown(bug.description)
+			.edit
+				-if can? :update, bug
+					=link_to "edit", edit_bug_path(bug)
+				-if can? :destroy, bug
+					=link_to "delete", bug, :confirm => 'Delete this bug?', :method => :delete
+			
