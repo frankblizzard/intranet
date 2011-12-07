@@ -13,9 +13,9 @@ class UserPresenter < BasePresenter
     user.username
   end
   
-  def full_name
-    handle_none user.profile.full_name do
-      user.profile.full_name
+  def name
+    handle_none user.profile.name do
+      user.profile.name
     end
   end
   

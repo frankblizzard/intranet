@@ -9,7 +9,7 @@
         - @profile.errors.full_messages.each do |msg|
           %li= msg  
 
-  = form.input :full_name, :label => 'Full Name'
+  = form.input :name, :label => 'Name', :hint => "Your full name, not your username"
   = form.input :street, :label => 'Street'
   = form.input :zip, :label => 'Zip'
   = form.input :city, :label => 'City'

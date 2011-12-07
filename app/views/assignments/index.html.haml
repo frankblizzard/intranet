@@ -1,0 +1,23 @@
+%h1 Listing assignments
+
+%table
+  %tr
+    %th Profile
+    %th Project
+    %th Role
+    %th
+    %th
+    %th
+
+  - @assignments.each do |assignment|
+    %tr
+      %td= assignment.profile_id
+      %td= assignment.project_id
+      %td= assignment.role
+      %td= link_to 'Show', assignment
+      %td= link_to 'Edit', edit_assignment_path(assignment)
+      %td= link_to 'Destroy', assignment, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Assignment', new_assignment_path

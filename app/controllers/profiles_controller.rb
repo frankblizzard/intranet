@@ -6,11 +6,10 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
-
+    @profiles = Profile.where("name like ?", "%#{params[:q]}%").order("name")
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @profiles }
+      format.json { render json: @profiles.map(&:attributes) }
     end
   end
 

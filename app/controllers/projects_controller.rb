@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
-
+    2.times { @project.tasks.new } 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }

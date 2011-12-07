@@ -24,6 +24,27 @@
 	}
 	
 	
+}
+
+.task_fields {
 	
+	h4, a.add_nested_fields {
+		margin-left: 120px;
+		
+	}
+	a.remove_nested_fields {
+		margin-left: 250px;
+	}
 	
+}
+
+.simple_form .fields {
+	border: 1px dashed #999;
+	padding: 10px;
+	width: 420px;
+	margin-left: 110px; 
+	
+	label {
+		text-align: left;
+	}
 }

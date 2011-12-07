@@ -43,7 +43,7 @@ class BugsController < ApplicationController
 
     respond_to do |format|
       if @bug.save
-        format.html { redirect_to bus_path, notice: 'Bug was successfully created.' }
+        format.html { redirect_to bugs_path, notice: 'Bug was successfully created.' }
         format.json { render json: @bug, status: :created, location: @bug }
       else
         format.html { render action: "new" }

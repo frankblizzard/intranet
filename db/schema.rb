@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202144755) do
+ActiveRecord::Schema.define(:version => 20111207122856) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "project_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bug_statuses", :force => true do |t|
     t.string   "name"
@@ -79,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20111202144755) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "full_name"
+    t.string   "name"
     t.date     "birthday"
     t.string   "street"
     t.string   "zip"

@@ -9,7 +9,7 @@
     %table.pretty
       %tr
         %th Username
-        %th Full name
+        %th Name
         %th E-Mail
         %th Job description
         %th
@@ -19,7 +19,7 @@
       - @profiles.each do |profile|
         %tr
           %td= profile.user.username
-          %td= profile.full_name
+          %td= profile.name
           %td= profile.user.email
           %td= profile.job_description
           %td= link_to 'Show', profile

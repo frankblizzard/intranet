@@ -3,13 +3,18 @@ class Profile < ActiveRecord::Base
   before_save :clear_empties
   
   validates_presence_of :user_id
+  validates_presence_of :name
   validates_uniqueness_of :user_id
   
   belongs_to :user
   
+  has_many :assignments
+  has_many :projects, :through => :assignments
+  
+  
   mount_uploader :avatar, AvatarUploader
   
-  attr_accessible :avatar, :phone, :full_name, :website, :bio,
+  attr_accessible :avatar, :phone, :name, :website, :bio,
                   :birthday, :phone, :street, :zip, :city, :user_id, :job_description
   
   

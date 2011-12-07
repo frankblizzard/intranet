@@ -67,5 +67,17 @@ jQuery ->
 						$(this).addClass('open')
 						$(this).parent().parent().find('.edit_links').show()
 
+
+  $('#project_profile_tokens').tokenInput('/profiles.json', {
+			crossDomain: false,
+			prePopulate: $('#project_profile_tokens').data('pre'),
+			theme: 'facebook',
+			preventDuplicates: true,
+			noResultsText: "Person not in system. Please add.",
+			animateDropdown: false
+		})
+		
+
+
 					
 		

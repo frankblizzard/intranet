@@ -1,0 +1,15 @@
+= simple_form_for @assignment do |form|
+
+  -if @assignment.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@assignment.errors.count, "error")} prohibited this #{Assignment.name.titleize} from being saved:"
+      %ul
+        - @assignment.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.input :profile_id, :label => 'Profile'
+  = form.input :project_id, :label => 'Project'
+  = form.input :role, :label => 'Role'
+
+  .actions
+    = form.button :submit

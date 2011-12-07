@@ -1,5 +1,7 @@
 Intranet::Application.routes.draw do
 
+  resources :assignments
+
   resources :bug_statuses
 
   resources :bugs

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   after_create :set_profile
   
   def set_profile
-    self.build_profile(:user_id => self.id)
+    self.build_profile(:user_id => self.id, :name => self.username)
   end
   
   def hours_today
