@@ -15,6 +15,10 @@
 	border-radius: 5px;
 }
 
+#timetracking {
+	width: 1050px !important;
+}
+
 .content_window {
 	
 	.simple_form .hint {
@@ -50,11 +54,11 @@
 	#sidepanel {
 		
 		position: absolute;
-		left: 74%;
+		left: 765px;
 		top: 30px;
 		width: 240px;
 		padding: 20px;
-		
+		@include round;
 		
 		.button {
 			margin: 10px 0;

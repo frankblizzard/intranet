@@ -1,39 +1,39 @@
 %h1 Listing Projects
 
-
-.content_window.fullsize
-  .headline
-    .searchform
-      = text_field_tag "searchform", "search projects...", :class => "table_search", :onfocus => 'this.select();'
-    %br.clear
-  .inner
-    %table.pretty
-      %tr
-        %th Nr
-        %th Name
-        %th Client
-        %th Description
-        %th Active
-        %th Hidden
-        %th
-        %th
-        %th
-      
-      - @projects.each do |project|
+#scrolldiv
+  .content_window.fullsize
+    .headline
+      .searchform
+        = text_field_tag "searchform", "search projects...", :class => "table_search", :onfocus => 'this.select();'
+      %br.clear
+    .inner
+      %table.pretty
         %tr
-          %td= link_to project.nr, project, :class => "blue"
-          %td= project.name
-          %td= link_to project.client.name, project.client, :class => 'blue'
-          %td= markdown(project.description)[0..29] + "..."
-          %td= project.active
-          %td= project.hidden
-          %td= link_to image_tag('zoom_in.png'), project, :title => 'details'
-          %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
-          %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete
-	
-					
-  .edit_links
-    = link_to 'New Project', new_project_path, :class => 'new_object_link'
-
+          %th Nr
+          %th Name
+          %th Client
+          %th Description
+          %th Active
+          %th Hidden
+          %th
+          %th
+          %th
+        
+        - @projects.each do |project|
+          %tr
+            %td= link_to project.nr, project, :class => "blue"
+            %td= project.name
+            %td= link_to project.client.name, project.client, :class => 'blue'
+            %td= markdown(project.description)[0..29] + "..."
+            %td= project.active
+            %td= project.hidden
+            %td= link_to image_tag('zoom_in.png'), project, :title => 'details'
+            %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
+            %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete
+  	
+  					
+    .edit_links
+      = link_to 'New Project', new_project_path, :class => 'new_object_link'
+  
 %br
 

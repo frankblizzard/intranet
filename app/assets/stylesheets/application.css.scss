@@ -36,6 +36,22 @@
 	text-shadow: 0 1px #000000;
 }
 
+@mixin background_transient {
+	background-image: linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -o-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -moz-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -webkit-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+	background-image: -ms-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
+
+	background-image: -webkit-gradient(
+		linear,
+		right top,
+		left top,
+		color-stop(0.28, rgb(116,122,130)),
+		color-stop(0.85, rgb(72,80,92))
+	);
+}
+
 body {
 	background-image: linear-gradient(left , rgb(44,47,56) 36%, rgb(50,54,65) 50%);
 	background-image: -o-linear-gradient(left , rgb(44,47,56) 36%, rgb(50,54,65) 50%);
@@ -80,9 +96,12 @@ body {
 	font-size: 17px;
 }
 
+#main_menu a, .content_window a {
+	color: #bbbec3 !important;
+}
 a {
 	text-decoration: none;
-	color: #bbbec3 !important;
+	color: #63666D !important;
 }
 
 a:focus, a:active, a
@@ -125,9 +144,7 @@ a:focus, a:active, a
 	color: #F6F8F7 !important;
 }
 
-#topline #userinfo .username a:hover{
-	border-bottom: 1px dotted;
-}
+
 #topline #userinfo #mails{
 	font-size: 12px;
 	font-weight: normal;
@@ -198,7 +215,7 @@ a:focus, a:active, a
 
 #content {
 	background-color: #d7d8dd;
-	width: 500px;
+	width: 950px;
 	height: 500px;
 	display:block;
 	margin: 0px 10px 0px 250px;
@@ -207,7 +224,7 @@ a:focus, a:active, a
 	border-radius: 10px;
 	z-index: 2;
 	position: relative;
-	overflow: auto;
+	overflow: hidden;
 	@include drop_shadow;
 	
 	#loading {
@@ -229,7 +246,7 @@ span.not_logged_in {
 }
 #content .content_window {
 	background-color: #555d6a;
-	width: 500px;
+	width: 580px;
 	display:block;
 	float: left;
 	margin: 10px;
@@ -523,6 +540,11 @@ table.pretty {
 	
 }
 
+#scrolldiv {
+	overflow: auto;
+	width: inherit;
+}
+
 a:hover {
 	background-color: none !important;
 }
@@ -548,20 +570,11 @@ a:hover {
 
 
 .fullsize {
-	width: 80% !important;
-	background-image: linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
-	background-image: -o-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
-	background-image: -moz-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
-	background-image: -webkit-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
-	background-image: -ms-linear-gradient(right , rgb(116,122,130) 28%, rgb(72,80,92) 85%);
-
-	background-image: -webkit-gradient(
-		linear,
-		right top,
-		left top,
-		color-stop(0.28, rgb(116,122,130)),
-		color-stop(0.85, rgb(72,80,92))
-	);
+	width: 950px !important;
+	@include background_transient
+}
+.smallsize {
+	width: 350px !important;
 }
 
 #content .blogpost .author .userinfo .time{ 
@@ -588,12 +601,12 @@ a:hover {
 	padding: 10px;
 	
 	a {
-		color: #63666d !important;
+		color: #63666d;
 		border-bottom: 1px dotted;
 	}
 	
 	.content_window a {
-		color: #BBBEC3 !important;
+		color: #BBBEC3;
 	}
 	
 	.content_window a.blue {
@@ -678,7 +691,7 @@ background-color: #2e323d;
 color: #d5d6d6;
 margin-left: 65px;
 position: relative;
-width: 373px;
+width: 455px;
 }
 
 #content .comments .comment {
@@ -694,7 +707,15 @@ width: 373px;
 
 .userinfo span {
 	line-height: 12px !important;
-	
+}
+
+
+.author .userinfo .username a {
+	font-size: 14px;
+	font-weight: bold;
+	color: #F6F8F7 !important;
+	text-shadow: 0 1px #000000;
+	line-height: 18px;
 }
 
 #flash_notice, #flash_error, #flash_alert, p.notice, p.error {
@@ -743,7 +764,7 @@ width: 373px;
 }
 
 #content .comments .leave_comment input.comment_form{
-	width: 295px;
+	width: 405px;
 	margin-bottom: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;

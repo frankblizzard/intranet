@@ -1,27 +1,28 @@
-#headline= "Home"
+%h1= "Home"
 
-#blog.content_window
-	.header= link_to "Blog", "javascript:void(0)", :class => 'open', :title => "open / close"
-  	
-	.inner
-	
-		#post_form= render 'post_form_fields'
+#scrolldiv
+	#blog.content_window
+		.header= link_to "Blog", "javascript:void(0)", :class => 'open', :title => "open / close"
+	  	
+		.inner
 		
-		#postlist.page= render @posts
-		
-	#load_more
-		#load_more_image= image_tag('loading.png')
-		.button= content_tag :button, "load more results", :id => 'more_results'
-	
-	
-	
-#infobox.content_window
-	.header= link_to "Info", "javascript:void(0)", :class => 'open', :title => "open / close"
-
-	.inner
-	
-		%p
-			This is an alpha version. Feel free to test it and play around and 
-			=link_to "report bugs", new_bug_path
-	    	
+			#post_form= render 'post_form_fields'
 			
+			#postlist.page= render @posts
+			
+		#load_more
+			#load_more_image= image_tag('loading.png')
+			.button= content_tag :button, "load more results", :id => 'more_results'
+		
+		
+		
+	#infobox.content_window.smallsize
+		.header= link_to "Info", "javascript:void(0)", :class => 'open', :title => "open / close"
+	
+		.inner
+		
+			%p
+				This is an alpha version. Feel free to test it and play around and 
+				=link_to "report bugs", new_bug_path
+		    	
+				

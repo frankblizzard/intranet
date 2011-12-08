@@ -4,8 +4,8 @@
 %br
 
 .edit_links
-  -if can? :update, post
-  	=link_to "edit", edit_post_path(post)
-  -if can? :destroy, post
-  	=link_to "delete", post, :confirm => 'Delete this post?', :method => :delete
+	-if can? :update, @post
+		=link_to "edit", edit_post_path(@post)
+	-if can? :destroy, @post
+		=link_to "delete", @post, :confirm => 'Delete this post?', :method => :delete
   
