@@ -19,7 +19,7 @@
 				.subcontent
 					.description= project_presenter.people
 			
-			.column
+			.column.tasks_col
 				.subtitle Tasks
 				.subcontent
 					.tasks= project_presenter.tasks
@@ -28,11 +28,11 @@
 	        
 
 
-		.edit_links
-			-if can? :update, @project
-				= link_to 'Edit', edit_project_path(@project)
-				\|
-			= link_to 'Back', projects_path
-
-
+			.edit_links
+				-if can? :update, @project
+					= link_to 'Edit', edit_project_path(@project)
+					\|
+				= link_to 'Back', projects_path
+    	
+    	
 

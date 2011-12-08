@@ -14,6 +14,7 @@
 //= require_tree .
 
 
+
 optimiseContentSize = ->
 	fit_w = $(window).width() - 260
 	i = 0

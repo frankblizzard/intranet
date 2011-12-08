@@ -10,6 +10,13 @@ GIT
   specs:
     nested_form (0.1.1)
 
+GIT
+  remote: https://github.com/spohlenz/tinymce-rails.git
+  revision: 73e4cd43c512fc6006e9103d13c7ddf0b68a2159
+  specs:
+    tinymce-rails (3.4.7)
+      railties (~> 3.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -251,4 +258,5 @@ DEPENDENCIES
   sass-rails (~> 3.1.4)
   simple_form
   table_builder (= 0.0.3)!
+  tinymce-rails!
   uglifier (>= 1.0.3)

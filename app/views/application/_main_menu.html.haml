@@ -13,7 +13,7 @@
     %span.title= link_to_unless_current("Timetracking", { :controller => 'hours', :action => "index" }) 
     %br/
     %span.sub_info
-      = "#{current_user.hours_today} hours today"
+      = "<span id='mydailyhours'>#{current_user.hours_today}</span> hours today".html_safe
   %li{:class => current_page?(:controller => 'profiles', :action => 'index') ? 'active' : ''}
     %span.title= link_to_unless_current("Contacts", { :controller => 'profiles', :action => "index" })
     %br/

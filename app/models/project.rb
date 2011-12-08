@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
   def name_number
-    "#{self.nr} - #{self.name}"
+    "#{self.nr} - #{self.name[0..24]}"
   end
   
   # helper function for jQuery tokenized input

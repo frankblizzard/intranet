@@ -8,16 +8,22 @@
   = f.input :holiday, :label_html => { :class => 'holiday' }
   = f.input :ill, :label_html => { :class => 'ill' }
   = f.hidden_field :project_id, :id => "real_project_id"
+  %br.clear
+  -unless hour.new_record?
+    .input.text= link_to hour.project.name_number, hour.project, :class => 'blue'
   .input.text.required
     %label.string.optional Project
     %br
     = autocomplete_field_tag 'fake_project', '', autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id'}, :class => "required"
     %span.hint Type Nr. or Name, will autocomplete
+    .tasks_hour_fields
+      =f.grouped_collection_select :task_id, Project.order("nr"), :tasks, :name_number, :id, :name, :include_blank => true
+
   = f.association :work_category, :label => "Category"
   %br.clear
   -if hour.new_record?
     = f.button :submit, :as => :image, :src => "images/accept.png"
   -else
     = f.button :submit, :label => 'update'
-    = link_to "delete record", hour, :confirm => 'Are you sure?', :method => :delete
+    = link_to "delete hour", hour, :confirm => 'Delete this hour?', :method => :delete
 

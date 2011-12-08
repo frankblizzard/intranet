@@ -7,9 +7,24 @@
 	
 	
 	.column {
-		width: 30%;
+		width: 265px;
 		float: left;
 		height: 100%;
+		
+		.subcontent {
+			padding: 10px 0 0 20px;
+
+		}
+		
+	}
+	
+	.tasks_col {
+		width: 300px;
+		
+		.subcontent {
+			padding: 10px 0 0 0px;
+
+		}
 		
 	}
 	
@@ -18,10 +33,7 @@
 		
 	}
 	
-	.subcontent {
-		padding: 10px 0 0 20px;
-		
-	}
+
 	
 	
 }
@@ -47,4 +59,23 @@
 	label {
 		text-align: left;
 	}
+}
+
+table.task_table {
+	width: 300px;
+	
+	td {
+		height: 20px;
+		display: block;
+		float:left;
+		padding: 5px;
+	}
+	
+	td.spent{
+		background-color: blue;
+	}
+	td.planned{
+		background-color: green;
+	}
+	
 }

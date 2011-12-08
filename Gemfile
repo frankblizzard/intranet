@@ -23,6 +23,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'tinymce-rails', :git => 'https://github.com/spohlenz/tinymce-rails.git'
 
 # authentication
 

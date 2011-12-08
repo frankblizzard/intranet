@@ -7,5 +7,5 @@ tablecell.find("li:last").tipTip();
 $('.ajax_form input.string, .ajax_form input.float, .ajax_form input.text, .ajax_form select, .ajax_form input.text, .ajax_form textarea').each( function () {
 	$(this).val("");
 })
-
+$('#mydailyhours').text("<%= current_user.hours_today %>");
 

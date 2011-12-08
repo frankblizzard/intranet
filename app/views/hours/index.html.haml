@@ -1,36 +1,37 @@
 %h1 Listing hours
 
-#timetracking.content_window.fullsize
-  .headline
-    .month
-      = link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
-      =h @date.strftime("%B %Y")
-      = link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d")
-    .searchform
-      = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
-    %br.clear
-  .inner
-    #calendar
-      = calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| 
-        = calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
-        = calendar.day(:day_method => :date) do |date, hours|
-          .wrapper_div
-            .hour
-              -if hours
-                %ul.stunden{:style => "bottom: #{Hour.number_of_entries(current_user, date)}px;"}
-                  = content_tag :li, '', :class => 'spacer', :style => "height: #{ 100 - Hour.total_percent_day(current_user, date) }%"
-                  -for hour in hours
-                    = hour_tag(hour)
-            .calendar_day
-              = date.day
-              = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
-
-
-    #sidepanel
-      .overview
-
-      .ajax_form= render 'hour_form_fields', :hour => nil
-
+#scrolldiv
+  #timetracking.content_window.fullsize
+    .headline
+      .month
+        = link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+        =h @date.strftime("%B %Y")
+        = link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d")
+      .searchform
+        = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
+      %br.clear
+    .inner
+      #calendar
+        = calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| 
+          = calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
+          = calendar.day(:day_method => :date) do |date, hours|
+            .wrapper_div
+              .hour
+                -if hours
+                  %ul.stunden{:style => "bottom: #{Hour.number_of_entries(current_user, date)}px;"}
+                    = content_tag :li, '', :class => 'spacer', :style => "height: #{ 100 - Hour.total_percent_day(current_user, date) }%"
+                    -for hour in hours
+                      = hour_tag(hour)
+              .calendar_day
+                = date.day
+                = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
+  
+  
+      #sidepanel
+        .overview
+  
+        .ajax_form= render 'hour_form_fields', :hour => nil
+  
 
 
 %br

@@ -14,6 +14,7 @@
   <%= form.input :nr, :label => 'Nr' %>
   <%= form.input :name, :label => 'Name' %>
   <%= form.association :client, :collection => Client.all(:order => 'name'), :prompt => "Choose a Client" %>
+  <%= form.association :project_status, :collection => ProjectStatus.all(:order => 'id'), :prompt => false %>
   <%= form.input :description, :label => 'Description' %>
   <%= form.input :active, :label => 'Active' %>
   <%= form.input :hidden, :label => 'Hidden' %>

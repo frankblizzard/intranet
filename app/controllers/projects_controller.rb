@@ -28,9 +28,9 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     propose_nr = Project.order("nr desc").first.nr + 1
-    @project = Project.new(:nr => propose_nr)
-    @project.tasks.new(:name => "Project Management", :description => "Project Managemnt / Coordination")
-    @project.tasks.new(:name => "Modeling Image XXX")
+    @project = Project.new(:nr => propose_nr, :active => true)
+    @project.tasks.new(:name => "Project Management", :description => "Project Management / Coordination", :deadline => Date.today + 2.months)
+    @project.tasks.new(:name => "Modeling Image XXX", :description => "Modeling Whiteviews / Interiors / Exteriors", :deadline => Date.today + 6.weeks)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
