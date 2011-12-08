@@ -20,6 +20,8 @@ class Project < ActiveRecord::Base
   
   scope :active, where(:active => '1')
   scope :visible, where(:hidden => '0')
+  scope :design, where(:web => '0')
+  scope :web, where(:web => '1')
   
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   

@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.active.visible.design.order("nr desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -27,8 +27,10 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @project = Project.new
-    2.times { @project.tasks.new } 
+    propose_nr = Project.order("nr desc").first.nr + 1
+    @project = Project.new(:nr => propose_nr)
+    @project.tasks.new(:name => "Project Management", :description => "Project Managemnt / Coordination")
+    @project.tasks.new(:name => "Modeling Image XXX")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }

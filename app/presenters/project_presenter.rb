@@ -40,7 +40,7 @@ class ProjectPresenter < BasePresenter
     handle_none project.assignments do
       str = '<ul class="profiles">'
       project.assignments.each do |p|
-        str += "<li>#{p.profile.name} <i>#{p.role ? "(p.role)" || ""})</i></li>"
+        str += "<li>#{p.profile.name} <i>#{p.role ? "(p.role)" : ""})</i></li>"
       end
       str += "</ul>"
       str.html_safe

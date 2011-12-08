@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207122856) do
+ActiveRecord::Schema.define(:version => 20111208110748) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20111207122856) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "nr"
+    t.integer  "nr"
     t.string   "name"
     t.integer  "client_id"
     t.text     "description"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20111207122856) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_status_id", :default => 1
+    t.boolean  "web",               :default => false
   end
 
   create_table "tasks", :force => true do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20111207122856) do
     t.date     "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "plan_hours"
   end
 
   create_table "users", :force => true do |t|

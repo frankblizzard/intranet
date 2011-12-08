@@ -1,3 +1,4 @@
+<div id="scrolldiv">
 <%= simple_nested_form_for @project do |form| %>
 
   <% if @project.errors.any? %>
@@ -16,7 +17,7 @@
   <%= form.input :description, :label => 'Description' %>
   <%= form.input :active, :label => 'Active' %>
   <%= form.input :hidden, :label => 'Hidden' %>
-
+  <%= form.input :web, :label => 'Web Project?' %>
 	<%= form.input :profile_tokens, :label => 'Involved People'%>
 	<br class="clear"/>
   <div class="task_fields">
@@ -24,6 +25,7 @@
     <%= form.fields_for :tasks do |task_form| %>
       <%= task_form.input :name %>
       <%= task_form.input :description  %>
+      <%= task_form.input :plan_hours %>
       <%= task_form.input :deadline %>
       <%= task_form.link_to_remove "Remove this task" %>
      <% end %>
@@ -33,3 +35,4 @@
     <%= form.button :submit %>
   </div>
 <% end %>
+</div>
