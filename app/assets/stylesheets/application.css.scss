@@ -13,9 +13,9 @@
 }
 
 @mixin drop_shadow {
-  -moz-box-shadow: -3px 3px 7px rgba(0,0,0,.3);;
-  -webkit-box-shadow: -3px 3px 7px rgba(0,0,0,.3);;
-  box-shadow: -3px 3px 7px rgba(0,0,0,.3);;
+  -moz-box-shadow: 3px 3px 7px rgba(0,0,0,.3);;
+  -webkit-box-shadow: 3px 3px 7px rgba(0,0,0,.3);;
+  box-shadow: 3px 3px 7px rgba(0,0,0,.3);;
 }
 @mixin drop_shadow_small {
   -moz-box-shadow: 2px 0px 4px rgba(0,0,0,.3);;
@@ -458,6 +458,7 @@ table.pretty {
 	
 	th, td {
 		padding-right: 20px;	
+		text-align: left;
 	}
 	
 	td {
