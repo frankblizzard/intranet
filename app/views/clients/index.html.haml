@@ -4,8 +4,11 @@
 .content_window.fullsize
   .headline
     .searchform
-      = text_field_tag "searchform", "search clients...", :class => "table_search", :onfocus => 'this.select();'
-    %br.clear
+      = form_tag clients_path, :method => :get
+      %p
+        = text_field_tag :search, params[:search], :class => "table_search", :onfocus => 'this.select();'
+        = submit_tag "Search", :name => nil
+      %br.clear
   .inner
     %table.pretty
       %tr

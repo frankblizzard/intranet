@@ -5,7 +5,11 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.order(:name)
+    @search = Client.search do
+      fulltext params[:search]
+    end 
+    
+    @clients = @search.results
 
     respond_to do |format|
       format.html # index.html.erb

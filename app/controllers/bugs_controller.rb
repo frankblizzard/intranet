@@ -2,7 +2,11 @@ class BugsController < ApplicationController
   # GET /bugs
   # GET /bugs.json
   def index
-    @bugs = Bug.order(:created_at)
+    @search = Bug.search do
+      fulltext params[:search]
+    end 
+    
+    @bugs = @search.results
 
     respond_to do |format|
       format.html # index.html.erb

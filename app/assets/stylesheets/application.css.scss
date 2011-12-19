@@ -96,6 +96,10 @@ body {
 	font-size: 17px;
 }
 
+#settings, #logout {
+	cursor:pointer;
+}
+
 #main_menu a, .content_window a {
 	color: #bbbec3 !important;
 }

@@ -5,4 +5,8 @@ class Client < ActiveRecord::Base
 
   has_many :projects
   
+  searchable do
+    text :name, :boost => 3
+  end
+  
 end

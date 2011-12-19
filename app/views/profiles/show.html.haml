@@ -34,8 +34,9 @@
 					= "#{user_presenter.username} shared #{@user.posts.count} Posts, posted #{@user.comments.count} comments and filed #{@user.bugs.count} bugs."
 
 
-		.edit_links
-			-if can? :update, @profile
-				= link_to 'Edit', edit_profile_path(@profile)
-				\|
-			= link_to 'Back', profiles_path
+			.edit_links
+				-if can? :update, @profile
+					= link_to 'Edit', edit_profile_path(@profile)
+					\|
+				= link_to 'Back', profiles_path
+    	

@@ -6,7 +6,14 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.active.visible.design.order("nr desc")
+    @search = Project.search do
+      fulltext params[:search]
+      paginate :page => params[:page]
+    end 
+    
+    @projects = @search.results
+    
+    #@projects = Project.active.visible.design.order("nr desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }

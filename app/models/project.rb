@@ -25,6 +25,19 @@ class Project < ActiveRecord::Base
   
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
+  searchable do
+    text :name, :boost => 5
+    text :description, :boost => 2
+    text :nr, :boost => 5
+    text :client do
+      client.name
+    end
+    text :tasks do 
+      tasks.map(&:name)
+    end
+  end
+  
+  
   def name_number
     "#{self.nr} - #{self.name[0..24]}"
   end
