@@ -17,6 +17,10 @@
 
 #post_form {
 	position: relative;
+	background-color: #D7D8DD;
+  padding: 20px 0;
+	@include round;
+	@include shadow;
 	
 	label {
 		color: #F6F8F7;
@@ -24,8 +28,8 @@
 
 	}
 	textarea {
-		width: 530px;
-		max-width: 530px;
+		width: 520px;
+		max-width: 520px;
 		padding: 5px;
 		height: 50px;
 		color: #3F4146;
@@ -33,9 +37,10 @@
 		@include shadow;
 		@include round;
 		border: 0;
+		margin-left: 5px;
 	}
 	input.string {
-		width: 435px;
+		width: 425px;
 		padding: 5px;
 		height: 15px;
 		padding: 3px;
@@ -45,10 +50,14 @@
 		@include round;
 		@include shadow;
 		border: 0;
+		margin-left: 5px;
 	}
 	select {
 		position: absolute;
-		top: 4px;
-		right: 0;
+		top: 20px;
+		right: 5px;
+	}
+	#post_submit_button {
+		margin-left: 5px;
 	}
 }

@@ -58,6 +58,14 @@ jQuery ->
 	$("form").bind("ajax:before", toggleLoading).bind("ajax:complete", toggleLoading)
 	
 	$('#more_results').bind('click', loadMoreResults)
+	
+	$('#post_title').blur ->
+		if $(this).val().length < 1
+			$(this).val('title...')
+
+	$('#post_body').blur ->
+		if $(this).val().length < 1
+			$(this).val('message..')
 
 	$(window).bind('resize', optimiseContentSize)
 	$('.content_window .header a').each ->
