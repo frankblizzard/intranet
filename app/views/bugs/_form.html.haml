@@ -7,7 +7,7 @@
         - @bug.errors.full_messages.each do |msg|
           %li= msg  
 
-  = form.hidden_field :user_id, :value => current_user.id
+  = form.hidden_field :user_id, :value => current_user.id if @bug.new_record?
   = form.input :title, :label => 'Title'
   = form.association :bug_status, :label => 'Status'
   = form.input :description, :label => 'Description'

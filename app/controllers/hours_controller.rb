@@ -39,7 +39,7 @@ class HoursController < ApplicationController
     @hour = Hour.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { redirect_to hours_url }
       format.json { render json: @hour }
     end
   end
@@ -53,8 +53,20 @@ class HoursController < ApplicationController
   # POST /hours
   # POST /hours.json
   def create
-    @hour = Hour.create!(params[:hour])
-    @spacer_height = 100 - Hour.total_percent_day(current_user, @hour.date)
+    # @hour = Hour.create!(params[:hour])
+    # @spacer_height = 100 - Hour.total_percent_day(current_user, @hour.date)
+    # redirect_to hours_path, notice: 'Hour successfully created.', month: @hour.date
+    @hour = Hour.new(params[:hour])
+
+    respond_to do |format|
+      if @hour.save
+        format.html { redirect_to hours_path, date: @hour.date, notice: 'Hour was successfully created.' }
+        format.json { render json: @hour, status: :created, location: @hour }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @hour.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PUT /hours/1

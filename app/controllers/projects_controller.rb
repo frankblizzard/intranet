@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    propose_nr = Project.order("nr desc").first.nr + 1
+    propose_nr = Integer(Project.order("nr desc").first.nr) + 1
     @project = Project.new(:nr => propose_nr, :active => true)
     @project.tasks.new(:name => "Project Management", :description => "Project Management / Coordination", :deadline => Date.today + 2.months)
     @project.tasks.new(:name => "Modeling Image XXX", :description => "Modeling Whiteviews / Interiors / Exteriors", :deadline => Date.today + 6.weeks)

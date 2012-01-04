@@ -25,7 +25,7 @@
         - @projects.each do |project|
           %tr
             %td= link_to project.nr, project, :class => "blue"
-            %td= project.name
+            %td= link_to project.name, project, :class => "blue"
             %td= link_to project.client.name, project.client, :class => 'blue'
             %td= markdown(project.description)[0..29] + "..."
             %td= project.active
@@ -33,7 +33,8 @@
             %td= link_to image_tag('zoom_in.png'), project, :title => 'details'
             %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
             %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete
-  	
+
+      .paginator= paginate @projects
   					
     .edit_links
       = link_to 'New Project', new_project_path, :class => 'new_object_link'

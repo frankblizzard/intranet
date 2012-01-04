@@ -26,9 +26,9 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
   searchable do
+    text :nr, :boost => 5
     text :name, :boost => 5
     text :description, :boost => 2
-    text :nr, :boost => 5
     text :client do
       client.name
     end
@@ -47,4 +47,14 @@ class Project < ActiveRecord::Base
     self.profile_ids = ids.split(',')
   end
   
+  protected
+  
+  def ensure_no_hours
+    if self.hours.count > 0
+      return false
+    else
+      return true
+    end
+  end
+
 end

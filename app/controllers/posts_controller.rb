@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @search = Post.search do
       fulltext params[:search]
       paginate :page => params[:page]
+      order_by :created_at, :desc
     end 
     
     @posts = @search.results

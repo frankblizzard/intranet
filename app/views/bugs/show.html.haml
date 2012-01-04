@@ -8,15 +8,17 @@
 
     .leave_comment= render 'bug_comment_fields',  :bug_id => @bug.id
   %br
+  %br.clear
+  .edit_links
+  %br
+    = link_to "show all bugs", bugs_path
+    -if can? :update, @bug
+      =link_to "edit", edit_bug_path(@bug)
+    -if can? :destroy, @bug
+      =link_to "delete", @bug, :confirm => 'Delete this bug?', :method => :delete
+
 
 %br
 
 
 
-%br.clear
-.edit_links
-  = link_to "show all bugs", bugs_path
-  -if can? :update, @bug
-    =link_to "edit", edit_bug_path(@bug)
-  -if can? :destroy, @bug
-    =link_to "delete", @bug, :confirm => 'Delete this bug?', :method => :delete

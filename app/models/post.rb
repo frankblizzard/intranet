@@ -22,6 +22,7 @@ class Post < ActiveRecord::Base
   searchable do
     text :title, :boost => 3
     text :body
+    time :created_at  
     text :comments do 
       comments.map(&:content)
     end
