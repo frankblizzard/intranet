@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     @search = Project.search do
       fulltext params[:search]
       paginate :page => params[:page]
+      order_by :nr, :desc
     end 
     
     @projects = @search.results

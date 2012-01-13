@@ -4,6 +4,7 @@ class BugsController < ApplicationController
   def index
     @search = Bug.search do
       fulltext params[:search]
+      order_by :id
     end 
     
     @bugs = @search.results

@@ -39,7 +39,7 @@ class HoursController < ApplicationController
     @hour = Hour.new
 
     respond_to do |format|
-      format.html { redirect_to hours_url }
+      format.html { redirect_to hours_url, :test => 'test' }
       format.json { render json: @hour }
     end
   end
@@ -60,10 +60,10 @@ class HoursController < ApplicationController
 
     respond_to do |format|
       if @hour.save
-        format.html { redirect_to hours_path, date: @hour.date, notice: 'Hour was successfully created.' }
+        format.html { redirect_to hours_path, notice: 'Hour was successfully created.', :month => @hour.date, :test => 'test' }
         format.json { render json: @hour, status: :created, location: @hour }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to hours_path, :notice => 'An error occured. Maybe not all fields filled out?' }
         format.json { render json: @hour.errors, status: :unprocessable_entity }
       end
     end

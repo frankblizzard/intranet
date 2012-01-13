@@ -12,6 +12,7 @@ capybara-*.html
 /coverage/
 /spec/tmp/*
 **.orig
+/solr/data/*
 config/*.yml
 rerun.txt
 pickle-email-*.html

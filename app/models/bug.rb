@@ -12,6 +12,7 @@ class Bug < ActiveRecord::Base
   searchable do
     text :title, :boost => 3
     text :description
+    integer :id
   end
   
 end
