@@ -1,4 +1,4 @@
-= form_for [@commentable, Comment.new], :remote => true, :html => {:id => nil, :class => 'new_comment_form'} do |f|
+= form_for [@commentable, Comment.new], :remote => false, :html => {:id => nil, :class => 'new_comment_form'} do |f|
 	#new_comment.add_comment
 		= f.hidden_field :user_id, :value => current_user.id
 		= f.hidden_field :commentable_id, :value => bug_id
