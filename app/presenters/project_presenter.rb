@@ -61,6 +61,22 @@ class ProjectPresenter < BasePresenter
     end  
   end
   
+  
+  def hours_spent
+    handle_none project.hours do
+      str = '<div class="subtitle">Project Hours</div>'
+      str += '<ul class="profiles">'
+      project.project_users.each do |u|
+        profile = Profile.find_by_user_id(u)
+        str += "<li>#{profile.name} - <i>#{project.total_hours(u)} hours (#{project.total_hours(u, true)} extra)</i></li>"
+      end
+      str += "<li>---------------------------</li>"
+      str += "<li><b>Summe: #{project.total_hours} (#{project.total_hours(nil, true)} extra)</b></li>"
+      str += "</ul>"
+      str.html_safe
+    end  
+  end
+      
 private
   
 

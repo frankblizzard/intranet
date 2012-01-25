@@ -48,6 +48,28 @@ class Project < ActiveRecord::Base
     self.profile_ids = ids.split(',')
   end
   
+  # gives total hours of project or, if a user is given, the total hours of this user on the project
+  def total_hours(user=nil, extra = false)
+    if user
+      hours = self.hours.where(:user_id => user)
+    else
+      hours = self.hours
+    end
+    if extra
+      hours = hours.where(:extra => true)
+    end
+    hours.to_a.sum { |hour| hour.amount }
+  end
+  
+  # returns a list of all user ids that booked hours on this project
+  def project_users
+    user_list = []
+    self.hours.each do |h|
+      user_list << h.user_id
+    end
+    user_list.uniq
+  end
+  
   protected
   
   def ensure_no_hours

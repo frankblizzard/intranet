@@ -7,6 +7,9 @@ class Ability
    user ||= User.new # guest user (not logged in)
    if user.admin?
      can :manage, :all
+   elsif user.project_manager?
+     can :manage, [Project, Client, Task]
+     cannot :destroy, :project
    else
      can :read, :all
      can [:create, :update, :destroy], [Bug, Post, Comment, Hour], :user_id => user.id
