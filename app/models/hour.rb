@@ -11,6 +11,9 @@ class Hour < ActiveRecord::Base
   belongs_to :work_category
   
   scope :day, lambda {|day| where(:date => day) }
+  scope :holiday, where(:holiday => true)
+  scope :ill, where(:ill => true) # ill
+  scope :by_month, lambda { |d| { :conditions => { :date => d.beginning_of_month..d.end_of_month } } }
   
   def project_name
     project.try(:name)

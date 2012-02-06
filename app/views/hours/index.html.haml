@@ -25,8 +25,63 @@
               .calendar_day
                 = date.day
                 = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
-  
-  
+
+
+      #hours_overview
+        %table.pretty
+          %tr
+            %th
+              Monat
+            %th
+              Stunden
+            %th
+              Überstunden
+            %th
+              Urlaubstage
+            %th
+              Kranktage
+          - summe_stunden = 0
+          - summe_ueberstunden = 0
+          - summe_urlaub = 0
+          - summe_krank = 0
+          - i = 1
+          - while i >= 0 do 
+            %tr
+              %td.left
+                - d = @date << i
+                - month = d.month
+                - year = d.year
+                = d.strftime('%B')
+              %td
+                = @user.monthly_hours(year, month)
+                - summe_stunden += @user.monthly_hours(year, month)
+              %td
+                = @user.extra_hours(year, month)
+                - summe_ueberstunden += @user.extra_hours(year, month)
+              %td
+                = @user.monthly_holidays(year, month)
+                - summe_urlaub += @user.monthly_holidays(year, month)
+              %td
+                = @user.monthly_illdays(year, month)
+                - summe_krank += @user.monthly_illdays(year, month)
+                - i -= 1
+          %tr
+            %td.left
+              %b
+                Summe
+            %td
+              %b
+                = summe_stunden
+            %td
+              %b
+                = summe_ueberstunden
+            %td
+              %b
+                = summe_urlaub
+            %td
+              %b
+                = summe_krank  
+        
       #sidepanel
         .overview
   

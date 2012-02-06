@@ -460,13 +460,19 @@ table.pretty {
 	
 	border-collapse: collapse;
 	
-	th, td {
+	th, td.left {
 		padding-right: 20px;	
-		text-align: left;
+		text-align: left !important;
+	}
+	
+	th {
+		font-weight: normal;
 	}
 	
 	td {
-		border-top: 1px solid #bcbec2;			
+		border-top: 1px solid #bcbec2;	
+		text-align: center;		
+		padding-right: 20px;	
 	}
 	
 	a {
@@ -475,6 +481,9 @@ table.pretty {
 	
 }
 
+#hours_overview td, #hours_overview th{
+	font-size: 10px !important;
+}
 
 #blog {
 	
