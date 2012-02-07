@@ -1,0 +1,27 @@
+.blogpost{:id => 'image_' + image.id.to_s }
+	.author
+		.image_avatar= image.user.profile.avatar.url.present? ? image_tag(image.user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") 
+		.userinfo
+			%span.username= link_to image.user.username, image.user.profile
+			%br
+			%span.time= image.created_at.strftime('%e %b %y')
+			%br
+			%span.time= image.created_at.strftime('%H:%M')
+		
+		.post
+			.title
+				%span.name= image.name
+
+			.image= image_tag(image.source.url(:small))
+			.edit
+				-if can? :update, image
+					=link_to "edit", edit_image_path(image)
+				-if can? :destroy, image
+					=link_to "delete", image, :confirm => 'Delete this image?', :method => :delete
+			
+
+.comments
+	- if image.comments.size > 0
+		= render image.comments.order('created_at desc')
+
+	.leave_comment= render 'image_comment_fields',  :image_id => image.id

@@ -1,0 +1,12 @@
+.content_window
+	.post_single_view= render @image
+	
+%br
+
+.edit_links
+	-if can? :update, @image
+		=link_to "edit", edit_image_path(@image)
+	-if can? :destroy, @image
+		=link_to "delete", @image, :confirm => 'Delete this image?', :method => :delete
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120125105939) do
+ActiveRecord::Schema.define(:version => 20120207132311) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(:version => 20120125105939) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "work_category_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.float    "rating"
+    t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "post_categories", :force => true do |t|
@@ -147,6 +157,16 @@ ActiveRecord::Schema.define(:version => 20120125105939) do
     t.string   "username"
     t.boolean  "admin",                                 :default => false
     t.boolean  "project_manager",                       :default => false
+    t.string   "avatar"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "zip"
+    t.string   "city"
+    t.text     "bio"
+    t.date     "bday"
+    t.string   "phone"
+    t.boolean  "freelancer",                            :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

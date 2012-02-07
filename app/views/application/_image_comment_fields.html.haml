@@ -1,0 +1,7 @@
+= form_for [@commentable, Comment.new], :remote => true, :html => {:id => nil, :class => 'new_comment_form'} do |f|
+	#new_comment.add_comment
+		= f.hidden_field :user_id, :value => current_user.id
+		= f.hidden_field :commentable_id, :value => image_id
+		= f.hidden_field :commentable_type, :value => 'Image'
+		= f.text_field :content, :size => 55,  :value => 'leave a comment...', :onfocus => 'this.select()', :class => 'comment_form'
+		= f.submit "send" 

@@ -1,0 +1,27 @@
+%h1 Listing images
+
+%table
+  %tr
+    %th Name
+    %th User
+    %th Project
+    %th Rating
+    %th Source
+    %th
+    %th
+    %th
+
+  - @images.each do |image|
+    %tr
+      %td= image.name
+      %td= image.user_id
+      %td= image.project_id
+      %td= image.rating
+      %td= image.source
+      %td= link_to 'Show', image
+      %td= link_to 'Edit', edit_image_path(image)
+      %td= link_to 'Destroy', image, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Image', new_image_path
