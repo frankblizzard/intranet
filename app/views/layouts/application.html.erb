@@ -2,75 +2,74 @@
 <html>
 <head>
   <title>Intranet</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
-  	<div id="container">
-  	  	  	<div id="topline">
-			
-			<div id="login_menu">
-				<% if user_signed_in? %>
-					<div id="avatar">
-		  				<%= current_user.profile.avatar.url.present? ? image_tag(current_user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") %>
-		  			</div>
-		  			<div id="userinfo">
-		  				<span class="username">
-		  					<%= link_to current_user.username, profile_path(Profile.find_by_user_id(current_user.id)) %>
-		  				</span><br/>
-		  				<span id="mails">
-		  					no new mails
-		  				</span>
-		  			</div>
-					
 
-				<% end %>
+   <div id="container">
+   <div id="topline">
 
-			</div>
-				
+<div id="login_menu">
+<% if user_signed_in? %>
+<div id="avatar">
+<%= current_user.profile.avatar.url.present? ? image_tag(current_user.profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg") %>
+</div>
+<div id="userinfo">
+<span class="username">
+<%= link_to current_user.username, profile_path(Profile.find_by_user_id(current_user.id)) %>
+</span><br/>
+<span id="mails">
+no new mails
+</span>
+</div>
 
-  			<% if user_signed_in? %>
-  			<div id="toolbar">
-  				<div id="settings">
-  					<%= link_to "", profile_path(Profile.find_by_user_id(current_user.id)),  :id => 'settings_link', :title => "Settings" %>
-  				</div>
-  				<div id="logout">
-  					<%= link_to "", destroy_user_session_url,  :id => 'logout_link', :method => :delete, :title => "Logout" %>
-  				</div>
-  				
-  			</div>
-  			<% end %>
-  		</div>
-  		
-  		
-  		<div id="main_menu">
-  			<%= render 'main_menu' if current_user %>
-  		</div>
-  		
-  	
-  		<div id="content">
-		<div id="loading">Loading...</div>
-			<% if notice %>
-  				<p id="flash_notice"><%= notice %></p>
-			<% end %>
-			<% if alert %>
-	        	<p id="flash_alert"><%= alert %></p>
-			<% end %>
-	
-  			<div id="yield">
-  				<%= yield %>
-			</div>
-			
 
-  		
-	
-		</div>
-  	
-  	
-  	</div>  
+<% end %>
+
+</div>
+
+
+   <% if user_signed_in? %>
+   <div id="toolbar">
+   <div id="settings">
+   <%= link_to "", profile_path(Profile.find_by_user_id(current_user.id)), :id => 'settings_link', :title => "Settings" %>
+   </div>
+   <div id="logout">
+   <%= link_to "", destroy_user_session_url, :id => 'logout_link', :method => :delete, :title => "Logout" %>
+   </div>
+  
+   </div>
+   <% end %>
+   </div>
+  
+  
+   <div id="main_menu">
+   <%= render 'main_menu' if current_user %>
+   </div>
+  
+  
+   <div id="content">
+<div id="loading">Loading...</div>
+<% if notice %>
+   <p id="flash_notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+<p id="flash_alert"><%= alert %></p>
+<% end %>
+
+   <div id="yield">
+   <%= yield %>
+</div>
+
+
+  
+
+</div>
+  
+  
+   </div>
  </body>
   
 </html>
-
