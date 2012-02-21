@@ -6,15 +6,14 @@
 		%span.projectname= project_presenter.title
 
 	#project.content_window.fullsize
-		.header= link_to "Project Details", "javascript:void(0)", :class => 'open', :title => "open / close"
+		.header= link_to "Project Overview", "javascript:void(0)", :class => 'open', :title => "open / close"
   	
 		.inner
 			.column
 				.subtitle Description
 				.subcontent
 					.description= markdown(project_presenter.description)
-				.hours_spent
-					= project_presenter.hours_spent
+
 			
 			.column
 				.subtitle Involved People
@@ -27,14 +26,25 @@
 					.tasks= project_presenter.tasks
 			
 			%br.clear
-	        
-
-
 			.edit_links
 				-if can? :update, @project
 					= link_to 'Edit', edit_project_path(@project)
 					\|
-				= link_to 'Back', projects_path
+				= link_to 'Back', projects_path			
+			
+				
+	#project_statistics.content_window.fullsize
+		.header= link_to "Project Details", "javascript:void(0)", :class => 'open', :title => "open / close"
+	
+		.inner
+			.column
+				.hour_details= project_presenter.hour_details
+	
+			%br.clear
+		        
+
+
+
     	
     	
 

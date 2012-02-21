@@ -76,7 +76,42 @@ class ProjectPresenter < BasePresenter
       str.html_safe
     end  
   end
-      
+     
+  def hour_details
+    handle_none project.hours do
+      str = '<div class="subtitle">Time spent on this project</div>'
+      str += '<div class="hours_detail_table"><table>'
+      str += '<tr><th>Name</th><th>Hours</th><th>Extra Hours</th></tr>'
+      project.project_users.each do |u|
+        profile = Profile.find_by_user_id(u)
+        str += '<tr>'
+        str += "<td>#{link_to profile.name, profile}</td><td>#{project.total_hours(u)}</td><td>#{project.total_hours(u, true)}</td><td class='hour_details'><a class='detail_link' href='#'>details</a>"
+        
+        #adding a detailed table
+        
+        str += '<div class="user_hours"><table>'
+        # add detailed overview per user
+        str += "<tr><th>date</th><th>hours</th><th>extra</th><th>description</th><th>task</th></tr>"
+        project.user_hours(u).each do |h|
+          str += "<tr><td>#{link_to h.date.strftime('%d.%m.%y'), edit_hour_path(h)}</td><td>#{h.amount}</td><td>#{h.extra? ? 'yes' : 'no' }</td><td>#{h.description}</td><td>#{h.task.name}</td></tr>"
+        end
+        
+        str += "</table>"
+        
+        str += '</td>'
+        
+        
+        
+        str += '</tr>'
+      end
+      str += '<tr class="table_total">'
+      str += "<td><b>Summe</b></td><td><b>#{project.total_hours}</b></td><td><b>#{project.total_hours(nil, true)}</b></td>"
+      str += "</tr></table>"
+      str.html_safe
+    end  
+  end
+
+ 
 private
   
 

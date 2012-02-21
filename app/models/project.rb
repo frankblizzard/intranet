@@ -61,6 +61,11 @@ class Project < ActiveRecord::Base
     hours.to_a.sum { |hour| hour.amount }
   end
   
+  # return an array of hours that a given user booked on this project
+  def user_hours(user)
+    hours = self.hours.where(:user_id => user).order(:date)
+  end
+  
   # returns a list of all user ids that booked hours on this project
   def project_users
     user_list = []

@@ -39,6 +39,55 @@
 		
 	}
 	
+	.hours_detail_table {
+		
+		margin-top: 20px;
+		width: 500px;
+
+		table {
+			border: 1px solid;
+			border-collapse: collapse;
+		}
+
+		tr {
+			border: 1px solid;
+			border-collapse: collapse;
+		}
+
+		
+		th, td {
+			text-align:left;
+			white-space: no-wrap;
+			border: 1px solid;
+			border-collapse: collapse;
+			padding: 2px 10px;
+			min-width: 100px;
+		}
+		
+		.user_hours {
+			display: none;
+			
+			table {
+				width: 350px;
+				margin: 10px;
+				border: 0;
+				
+				td, th {
+					min-width: 0;
+					width: auto;
+				}
+				
+			}
+			
+		.table_total td{
+			font-weight: bold;
+			
+		}	
+			
+		}
+		
+	}
+	
 	.subtitle {
 		font-size: 16px;
 		
