@@ -93,7 +93,7 @@ class ProjectPresenter < BasePresenter
         # add detailed overview per user
         str += "<tr><th>date</th><th>hours</th><th>extra</th><th>description</th><th>task</th></tr>"
         project.user_hours(u).each do |h|
-          str += "<tr><td>#{link_to h.date.strftime('%d.%m.%y'), edit_hour_path(h)}</td><td>#{h.amount}</td><td>#{h.extra? ? 'yes' : 'no' }</td><td>#{h.description}</td><td>#{h.task.name}</td></tr>"
+          str += "<tr><td>#{link_to h.date.strftime('%d.%m.%y'), edit_hour_path(h)}</td><td>#{h.amount}</td><td>#{h.extra? ? 'yes' : 'no' }</td><td>#{h.description}</td><td>#{h.task.nil? ? 'none' : h.task.name }</td></tr>"
         end
         
         str += "</table>"

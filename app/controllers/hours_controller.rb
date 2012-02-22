@@ -14,6 +14,11 @@ class HoursController < ApplicationController
     @user = current_user
     @hours = @user.hours
     
+    if current_user.admin?
+      params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).order("date").to_a : session[:hour_user_id] ? @hours = Hour.where("user_id = ?", session[:hour_user_id]).order("date").to_a : @hours = Hour.all
+        session[:hour_user_id] = params[:user_id] if params[:user_id]
+    end
+    
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html # index.html.erb

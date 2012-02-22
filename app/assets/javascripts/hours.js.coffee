@@ -31,6 +31,8 @@ jQuery ->
   tasks = $('#hour_task_id').html()
   $('#fake_project').bind 'railsAutocomplete.select', (event, data) ->
       updateTasksField(data.item.value, tasks)
+  $("#hour_user_id").change ->
+	  window.location.replace "/hours?user_id=" + $(this).val() #+ "&view_mode=<%= params[:view_mode] %>"
   $('ul.stunden li.extra, ul.stunden li.regular, ul.stunden li.holiday, .stunden .ill').each ->
     $(this).click ->
       $('ul.stunden li.active').removeClass('active')

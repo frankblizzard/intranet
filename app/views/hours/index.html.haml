@@ -1,5 +1,14 @@
 %h1 Listing hours
 
+#calendar_stats
+  -if current_user.admin? || current_user.controller?
+    .username
+      Show User:
+    .user_selection
+      =collection_select(:hour, :user_id, User.order("username"), :id, :username, {:prompt => "select user", :selected => session[:hour_user_id] })
+
+
+
 #scrolldiv
   #timetracking.content_window.fullsize
     .headline

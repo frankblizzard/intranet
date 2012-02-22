@@ -4,6 +4,7 @@ class Hour < ActiveRecord::Base
   validates_presence_of :project_id
   validates_presence_of :user_id
   validates_presence_of :date
+  validates_presence_of :description
   
   belongs_to :user
   belongs_to :project

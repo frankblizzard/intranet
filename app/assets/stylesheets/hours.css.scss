@@ -19,6 +19,14 @@
 	width: 1050px !important;
 }
 
+#calendar_stats {
+  position: absolute;
+  right: 25px;
+  top: 20px;
+  width: 100px;
+}
+
+
 .content_window {
 	
 	.simple_form .hint {
@@ -51,6 +59,7 @@
 		
 	}
 	
+
 	#sidepanel {
 		
 		position: absolute;

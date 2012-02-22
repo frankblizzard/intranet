@@ -5,42 +5,43 @@
 		%span.clientname= project_presenter.client
 		%span.projectname= project_presenter.title
 
-	#project.content_window.fullsize
-		.header= link_to "Project Overview", "javascript:void(0)", :class => 'open', :title => "open / close"
+	#scrolldiv
+		#project.content_window.fullsize
+			.header= link_to "Project Overview", "javascript:void(0)", :class => 'open', :title => "open / close"
+  		
+			.inner
+				.column
+					.subtitle Description
+					.subcontent
+						.description= markdown(project_presenter.description)
   	
-		.inner
-			.column
-				.subtitle Description
-				.subcontent
-					.description= markdown(project_presenter.description)
-
-			
-			.column
-				.subtitle Involved People
-				.subcontent
-					.description= project_presenter.people
-			
-			.column.tasks_col
-				.subtitle Tasks
-				.subcontent
-					.tasks= project_presenter.tasks
-			
-			%br.clear
-			.edit_links
-				-if can? :update, @project
-					= link_to 'Edit', edit_project_path(@project)
-					\|
-				= link_to 'Back', projects_path			
-			
 				
-	#project_statistics.content_window.fullsize
-		.header= link_to "Project Details", "javascript:void(0)", :class => 'open', :title => "open / close"
-	
-		.inner
-			.column
-				.hour_details= project_presenter.hour_details
-	
-			%br.clear
+				.column
+					.subtitle Involved People
+					.subcontent
+						.description= project_presenter.people
+				
+				.column.tasks_col
+					.subtitle Tasks
+					.subcontent
+						.tasks= project_presenter.tasks
+				
+				%br.clear
+				.edit_links
+					-if can? :update, @project
+						= link_to 'Edit', edit_project_path(@project)
+						\|
+					= link_to 'Back', projects_path			
+				
+					
+		#project_statistics.content_window.fullsize
+			.header= link_to "Project Details", "javascript:void(0)", :class => 'open', :title => "open / close"
+		
+			.inner
+				.column
+					.hour_details= project_presenter.hour_details
+		
+				%br.clear
 		        
 
 
