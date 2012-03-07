@@ -27,8 +27,15 @@
 }
 
 
+.hour_editor .tasks_hour_fields {
+    margin-left: 121px;
+margin-top: 10px;
+}
+
 .content_window {
-	
+	.debug_status {
+		color: #000;
+	}
 	.simple_form .hint {
 		margin-left: 0;
 		font-size: 9px;
@@ -59,8 +66,14 @@
 		
 	}
 	
+	
+
+	
 
 	#sidepanel {
+		
+		
+		
 		
 		position: absolute;
 		left: 765px;
@@ -107,6 +120,7 @@
 			
 			label {
 				text-align: left;
+				font-size: 12px;
 			}
 			
 			#hour_description {

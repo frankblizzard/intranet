@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 tasks = null
+task_clicked = 0
 
 updateTasksField = (name, html) ->
   $('#hour_task_id').hide()
@@ -28,13 +29,17 @@ uncheckAll = ->
 
 jQuery ->
   $('#hour_task_id').hide()
+  $('.show_tasks select').show()
   tasks = $('#hour_task_id').html()
   $('#fake_project').bind 'railsAutocomplete.select', (event, data) ->
       updateTasksField(data.item.value, tasks)
   $("#hour_user_id").change ->
 	  window.location.replace "/hours?user_id=" + $(this).val() #+ "&view_mode=<%= params[:view_mode] %>"
+  $("#month_date_2i").change ->
+ 	  window.location.replace "/hours?month=" + $("#month_date_1i").val() + "-" + $("#month_date_2i").val() + "-01"
   $('ul.stunden li.extra, ul.stunden li.regular, ul.stunden li.holiday, .stunden .ill').each ->
     $(this).click ->
+      task_clicked = $(this).attr("data-task-id")
       $('ul.stunden li.active').removeClass('active')
       $(this).addClass('active')
       $.ajax
@@ -45,6 +50,9 @@ jQuery ->
         success: (data) ->
           name = $("#fake_project").val()
           updateTasksField(name, tasks)
+          if task_clicked != undefined
+            $("#hour_task_id option[value$='" + task_clicked + "']").attr('selected', true)
+					
       
 	
   $('#calendar table td').each ->

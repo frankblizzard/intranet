@@ -1,20 +1,29 @@
-= simple_form_for @hour do |form|
-
-  -if @hour.errors.any?
-    #errorExplanation
-      %h2= "#{pluralize(@hour.errors.count, "error")} prohibited this #{Hour.name.titleize} from being saved:"
-      %ul
-        - @hour.errors.full_messages.each do |msg|
-          %li= msg  
-
-  = form.input :date, :label => 'Date'
-  = form.input :amount, :label => 'Amount'
-  = form.input :extra, :label => 'Extra'
-  = form.input :holiday, :label => 'Holiday'
-  = form.input :ill, :label => 'Ill'
-  = form.input :project_id, :label => 'Project'
-  = form.input :user_id, :label => 'User'
-  = form.input :task_id, :label => 'Task'
-
-  .actions
-    = form.button :submit
+.hour_editor
+  
+  = simple_form_for @hour do |form|
+  
+    -if @hour.errors.any?
+      #errorExplanation
+        %h2= "#{pluralize(@hour.errors.count, "error")} prohibited this #{Hour.name.titleize} from being saved:"
+        %ul
+          - @hour.errors.full_messages.each do |msg|
+            %li= msg  
+  
+    = form.input :date, :label => 'Date'
+    = form.input :amount, :label => 'Amount'
+    = form.input :extra, :label => 'Extra'
+    = form.input :holiday, :label => 'Holiday'
+    = form.input :ill, :label => 'Ill'
+    = form.input :description, :label => 'Description'
+    = form.hidden_field :user_id, :value => @hour.user.id
+    = form.hidden_field :project_id, :id => "real_project_id"
+    .input.text.required
+      %label.string.optional Project
+      %br
+      = autocomplete_field_tag 'fake_project', '', autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id'}, :class => "required", :value => @hour.project.name_number
+      %span.hint Type Nr. or Name, will autocomplete
+      .tasks_hour_fields.show_tasks
+        =form.grouped_collection_select :task_id, Project.order("nr"), :tasks, :name_number, :id, :name, :include_blank => true, :html_options => { :id => "task_indicator"}
+ 
+    .actions
+      = form.button :submit

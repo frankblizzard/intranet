@@ -7,7 +7,9 @@ class ClientsController < ApplicationController
   def index
     @search = Client.search do
       fulltext params[:search]
-    end 
+      paginate :page => params[:page]
+
+    end
     
     @clients = @search.results
 

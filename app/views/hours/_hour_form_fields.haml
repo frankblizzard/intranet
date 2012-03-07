@@ -19,7 +19,6 @@
     .tasks_hour_fields
       =f.grouped_collection_select :task_id, Project.order("nr"), :tasks, :name_number, :id, :name, :include_blank => true
 
-  = f.association :work_category, :label => "Category"
   %br.clear
   -if hour.new_record?
     = f.button :submit, :as => :image, :src => "images/accept.png"

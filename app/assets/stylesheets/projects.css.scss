@@ -95,12 +95,23 @@
 	
   .paginator {
 	float: right;
-	margin-top: -3px;
+  margin-right: 5px;
+  margin-top: -5px;
 }
 	
 	
 
 	
+	
+}
+
+.task_details {
+	font-size: 12px;
+	
+	.task_description {
+		font-size: 12px;
+		font-style: italic;
+	}
 	
 }
 
@@ -142,6 +153,9 @@ table.task_table {
 	}
 	td.planned{
 		background-color: green;
+	}
+	td.red {
+		background-color: red !important;
 	}
 	
 }

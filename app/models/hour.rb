@@ -25,7 +25,7 @@ class Hour < ActiveRecord::Base
   end
   
   def percent_day
-    daily_hours = 10
+    daily_hours = 12
     percentage = self.amount * 100 / daily_hours
     percentage  
   end 

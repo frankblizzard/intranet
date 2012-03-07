@@ -16,7 +16,12 @@ class HoursController < ApplicationController
     
     if current_user.admin?
       params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).order("date").to_a : session[:hour_user_id] ? @hours = Hour.where("user_id = ?", session[:hour_user_id]).order("date").to_a : @hours = Hour.all
-        session[:hour_user_id] = params[:user_id] if params[:user_id]
+      session[:hour_user_id] = params[:user_id] if params[:user_id]
+      
+      if(session[:hour_user_id])
+        @user = User.find(session[:hour_user_id])
+      end
+      
     end
     
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
@@ -66,7 +71,7 @@ class HoursController < ApplicationController
 
     respond_to do |format|
       if @hour.save
-        format.html { redirect_to hours_path, notice: 'Hour was successfully created.', :month => @hour.date, :test => 'test' }
+        format.html { redirect_to hours_path(:month => @hour.date), notice: 'Hour was successfully created.' }
         format.json { render json: @hour, status: :created, location: @hour }
       else
         format.html { redirect_to hours_path, :notice => 'An error occured. Maybe not all fields filled out?' }
@@ -82,7 +87,7 @@ class HoursController < ApplicationController
     authorize! :update, @hour
     respond_to do |format|
       if @hour.update_attributes(params[:hour])
-        format.html { redirect_to hours_path, notice: 'Hour was successfully updated.' }
+        format.html { redirect_to hours_path(:month => @hour.date), notice: 'Hour was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

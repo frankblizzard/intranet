@@ -1,6 +1,6 @@
 $('#sidepanel .ajax_form').html("<%= escape_javascript ( render 'hour_form_fields', :hour => @hour )  %>");
 $('#sidepanel #real_project_id').val("<%= @hour.project.id %>");
-$('#sidepanel #fake_project').val("<%= escape_javascript @hour.project.name_number %>");
+$('#sidepanel #fake_project').val("<%= escape_javascript @hour.project.name_number.html_safe %>");
 $('#calendar table td').each(function () {
 	$(this).click(function (event) {
 		$('#sidepanel .ajax_form').html("<%= escape_javascript(render(:partial => 'hour_form_fields', :hour => nil)) %>");

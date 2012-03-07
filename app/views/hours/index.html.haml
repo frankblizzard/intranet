@@ -1,7 +1,7 @@
 %h1 Listing hours
 
 #calendar_stats
-  -if current_user.admin? || current_user.controller?
+  -if current_user.admin?
     .username
       Show User:
     .user_selection
@@ -16,6 +16,7 @@
         = link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
         =h @date.strftime("%B %Y")
         = link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d")
+        .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :selected => @date.month) 
       .searchform
         = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
       %br.clear
@@ -26,9 +27,9 @@
           = calendar.day(:day_method => :date) do |date, hours|
             .wrapper_div
               .hour
-                -if hours
-                  %ul.stunden{:style => "bottom: #{Hour.number_of_entries(current_user, date)}px;"}
-                    = content_tag :li, '', :class => 'spacer', :style => "height: #{ 100 - Hour.total_percent_day(current_user, date) }%"
+                -if true
+                  %ul.stunden{:style => "bottom: #{Hour.number_of_entries(@user, date)}px;"}
+                    = content_tag :li, '', :class => 'spacer', :style => "height: #{ 100 - Hour.total_percent_day(@user, date) }%"
                     -for hour in hours
                       = hour_tag(hour)
               .calendar_day
