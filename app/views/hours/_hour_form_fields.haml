@@ -1,6 +1,6 @@
 - hour ||= Hour.new
 = simple_form_for hour, :remote => false do |f|
-  = f.hidden_field :user_id, :value => current_user.id
+  = f.hidden_field :user_id, :value => session[:hour_user_id] ? session[:hour_user_id] : current_user.id
   = f.input :date, :as => :string, :value =>  Date.today.strftime("%Y-%m-%d")
   = f.input :amount, :label => "Hours"
   = f.input :description, :rows => 5, :cols => 20, :onfocus => 'this.select()'

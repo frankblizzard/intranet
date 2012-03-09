@@ -6,6 +6,10 @@ class Hour < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :description
   
+  validates_numericality_of :amount, :greater_than => 0, :less_than => 24, :message => 'amount must be between 0.25 and 24 :) - use dot not comma'
+  validates_format_of :amount, :with => /^\d+??(?:\.\d{0,2})?$/
+  
+  
   belongs_to :user
   belongs_to :project
   belongs_to :task

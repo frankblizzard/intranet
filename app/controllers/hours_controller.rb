@@ -12,18 +12,15 @@ class HoursController < ApplicationController
   # GET /hours.json
   def index
     @user = current_user
-    @hours = @user.hours
     
     if current_user.admin?
-      params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).order("date").to_a : session[:hour_user_id] ? @hours = Hour.where("user_id = ?", session[:hour_user_id]).order("date").to_a : @hours = Hour.all
       session[:hour_user_id] = params[:user_id] if params[:user_id]
-      
+      session[:hour_user_id] = current_user.id if session[:hour_user_id].nil?
       if(session[:hour_user_id])
         @user = User.find(session[:hour_user_id])
       end
-      
     end
-    
+    @hours = @user.hours
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html # index.html.erb
@@ -74,7 +71,7 @@ class HoursController < ApplicationController
         format.html { redirect_to hours_path(:month => @hour.date), notice: 'Hour was successfully created.' }
         format.json { render json: @hour, status: :created, location: @hour }
       else
-        format.html { redirect_to hours_path, :notice => 'An error occured. Maybe not all fields filled out?' }
+        format.html { redirect_to hours_path, :flash => { :error => "you have errors in the form: #{ @hour.errors.full_messages.to_s }" } }
         format.json { render json: @hour.errors, status: :unprocessable_entity }
       end
     end
