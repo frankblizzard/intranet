@@ -72,8 +72,10 @@ jQuery ->
         uncheckAll()
         $("#hour_holiday").attr "checked", true
         $("#hour_amount").val "8"
-        $("#fake_project").val "000 - Urlaub"
-        $("#real_project_id").val "36"
+        $("#fake_project").val "00 - Absence"
+        $("#real_project_id").val "189"
+        $("#hour_task_id").val "72"
+        $('.show_tasks select').show()
         $("#hour_description").val "Holiday"
         $("#hour_work_category_id option").eq(7).attr "selected", "selected"
 
@@ -83,24 +85,41 @@ jQuery ->
         uncheckAll()
         $("#hour_ill").attr "checked", true
         $("#hour_amount").val "8"
-        $("#fake_project").val "001 - Krank"
-        $("#real_project_id").val "37"
+        $("#fake_project").val "00 - Absence"
+        $("#real_project_id").val "189"
+        $("#hour_task_id").val "73"
+        $('.show_tasks select').show()
         $("#hour_description").val "Krank"
         $("#hour_work_category_id option").eq(7).attr "selected", "selected"
 
-  $("#hour_feiertag").click ->
+  $("#hour_comp_time").click ->
     if $(this).is(":checked")
-      if confirm("Was this day vacation (Feiertag) ? (your input might be overwritten) ?")
+      if confirm("Was this day comp time (Überstunden Abbau) ? (your input might be overwritten) ?")
         uncheckAll()
-        $("#hour_feiertag").attr "checked", true
+        $("#hour_comp_time").attr "checked", true
         $("#hour_amount").val "8"
-        $("#fake_project").val "010 - Feiertag"
-        $("#real_project_id").val "57"
-        $("#hour_description").val "Feiertag"
+        $("#fake_project").val "00 - Absence"
+        $("#real_project_id").val "189"
+        $("#hour_task_id").val "72"
+        $('.show_tasks select').show()
+        $("#hour_description").val "Comp Time (FZA)"
         $("#hour_work_category_id option").eq(7).attr "selected", "selected"
 
-  
-
+	 $("#hour_public_holiday").click ->
+	   if $(this).is(":checked")
+	     if confirm("Was this day public holiday (Feiertag) ? (your input might be overwritten) ?")
+	       uncheckAll()
+	       $("#hour_public_holiday").attr "checked", true
+	       $("#hour_amount").val "8"
+	       $("#fake_project").val "00 - Absence"
+	       $("#real_project_id").val "189"
+	       $("#hour_task_id").val "72"
+	       $('.show_tasks select').show()
+	       $("#hour_description").val "Public Holiday / Feiertag"
+	       $("#hour_work_category_id option").eq(7).attr "selected", "selected"
+   
+   
+   
 
 		
 	

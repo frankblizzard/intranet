@@ -6,6 +6,8 @@ class Hour < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :description
   
+  validate :project_locked
+  
   validates_numericality_of :amount, :greater_than => 0, :less_than => 24, :message => 'amount must be between 0.25 and 24 :) - use dot not comma'
   validates_format_of :amount, :with => /^\d+??(?:\.\d{0,2})?$/
   
@@ -41,6 +43,14 @@ class Hour < ActiveRecord::Base
   
   def self.number_of_entries(user, date=Date.today)
     Hour.where(:date => date, :user_id => user.id).count
+  end
+  
+  private
+  
+  def project_locked
+    if project.locked?
+      errors.add :base, 'can not book hours because this project is locked - please contact project manager.'
+    end
   end
   
   

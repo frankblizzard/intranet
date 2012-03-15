@@ -26,6 +26,10 @@ module ApplicationHelper
       klass = "extra title"
     elsif hour.holiday
       klass = "holiday title"
+    elsif hour.comp_time
+      klass = "comp_time title"
+    elsif hour.public_holiday
+      klass = "public_holiday title"
     else 
       klass = "regular title"
     end

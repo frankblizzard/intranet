@@ -4,6 +4,7 @@
 		%span.projectnr= project_presenter.project_nr
 		%span.clientname= project_presenter.client
 		%span.projectname= project_presenter.title
+		%span.locked= image_tag('locked-icon.png', :width => 50, :title => 'Project is locked.') if @project.locked?
 
 	#scrolldiv
 		#project.content_window.fullsize
@@ -20,6 +21,11 @@
 					.subtitle Involved People
 					.subcontent
 						.description= project_presenter.people
+					%br
+					%br
+					.subtitle Status
+					.subcontent
+						.description= project_presenter.status
 				
 				.column.tasks_col
 					.subtitle Tasks

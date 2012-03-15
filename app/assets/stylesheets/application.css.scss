@@ -419,6 +419,7 @@ span.not_logged_in {
 				);
 			}
 			li.ill {
+				@include drop_shadow_small;
 				background-image: linear-gradient(left , rgb(163,83,98) 21%, rgb(220,92,114) 65%, rgb(122,67,77) 100%);
 				background-image: -o-linear-gradient(left , rgb(163,83,98) 21%, rgb(220,92,114) 65%, rgb(122,67,77) 100%);
 				background-image: -moz-linear-gradient(left , rgb(163,83,98) 21%, rgb(220,92,114) 65%, rgb(122,67,77) 100%);
@@ -432,6 +433,42 @@ span.not_logged_in {
 					color-stop(0.21, rgb(163,83,98)),
 					color-stop(0.65, rgb(220,92,114)),
 					color-stop(1, rgb(122,67,77))
+				);
+			}
+			li.public_holiday {
+				@include drop_shadow_small;
+				background-image: linear-gradient(left , rgb(74,186,175) 4%, rgb(39,239,222) 52%, rgb(74,186,175) 100%);
+				background-image: -o-linear-gradient(left , rgb(74,186,175) 4%, rgb(39,239,222) 52%, rgb(74,186,175) 100%);
+				background-image: -moz-linear-gradient(left , rgb(74,186,175) 4%, rgb(39,239,222) 52%, rgb(74,186,175) 100%);
+				background-image: -webkit-linear-gradient(left , rgb(74,186,175) 4%, rgb(39,239,222) 52%, rgb(74,186,175) 100%);
+				background-image: -ms-linear-gradient(left , rgb(74,186,175) 4%, rgb(39,239,222) 52%, rgb(74,186,175) 100%);
+
+				background-image: -webkit-gradient(
+					linear,
+					left top,
+					right top,
+					color-stop(0.04, rgb(74,186,175)),
+					color-stop(0.52, rgb(39,239,222)),
+					color-stop(1, rgb(74,186,175))
+				);
+
+
+			}
+			li.comp_time {
+				@include drop_shadow_small;
+				background-image: linear-gradient(left , rgb(158,90,155) 4%, rgb(216,114,209) 52%, rgb(158,90,155) 100%);
+				background-image: -o-linear-gradient(left , rgb(158,90,155) 4%, rgb(216,114,209) 52%, rgb(158,90,155) 100%);
+				background-image: -moz-linear-gradient(left , rgb(158,90,155) 4%, rgb(216,114,209) 52%, rgb(158,90,155) 100%);
+				background-image: -webkit-linear-gradient(left , rgb(158,90,155) 4%, rgb(216,114,209) 52%, rgb(158,90,155) 100%);
+				background-image: -ms-linear-gradient(left , rgb(158,90,155) 4%, rgb(216,114,209) 52%, rgb(158,90,155) 100%);
+
+				background-image: -webkit-gradient(
+					linear,
+					left top,
+					right top,
+					color-stop(0.04, rgb(158,90,155)),
+					color-stop(0.52, rgb(216,114,209)),
+					color-stop(1, rgb(158,90,155))
 				);
 			}
 			
@@ -655,6 +692,12 @@ a:hover {
 		
 		span.projectnr {
 			font-size: 50px;
+		}
+		
+		span.locked {
+			position: absolute;
+			left: 900px;
+			top: -5px;
 		}
 		
 		span.clientname, span.projectname {

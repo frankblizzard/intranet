@@ -12,6 +12,12 @@ class ProjectPresenter < BasePresenter
       project.name
     end
   end
+  
+  def status
+    handle_none project.project_status do
+      project.project_status.name
+    end
+  end
 
   def client
     handle_none project.client.name do
@@ -38,7 +44,7 @@ class ProjectPresenter < BasePresenter
       
       
       project.tasks.order("deadline asc").each do |t|
-        str += "<li class='task_details'><b>#{t.name} <i>(#{t.deadline.strftime('%d.%m.%y')})</i></b><br/>"
+        str += "<li class='task_details'><b>#{t.id} - #{t.name} <i>(#{t.deadline.strftime('%d.%m.%y')})</i></b><br/>"
         
         # calculate with relative to maximum
         task_width = (t.plan_hours / hundred_percent) * max_width
@@ -101,7 +107,7 @@ class ProjectPresenter < BasePresenter
       project.project_users.each do |u|
         profile = Profile.find_by_user_id(u)
         str += '<tr>'
-        str += "<td>#{link_to profile.name, profile}</td><td>#{profile.job_description}</td><td>#{project.total_hours(u)}</td><td>#{project.total_hours(u, true)}</td><td class='hour_details'><a class='detail_link' href='#'>details</a>"
+        str += "<td>#{link_to profile.name, profile if profile.name }</td><td>#{profile.job_description}</td><td>#{project.total_hours(u)}</td><td>#{project.total_hours(u, true)}</td><td class='hour_details'><a class='detail_link' href='#'>details</a>"
         
         #adding a detailed table
         

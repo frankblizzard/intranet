@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207132311) do
+ActiveRecord::Schema.define(:version => 20120315154503) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20120207132311) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "work_category_id"
+    t.boolean  "public_holiday"
+    t.boolean  "comp_time"
   end
 
   create_table "images", :force => true do |t|
@@ -119,16 +121,17 @@ ActiveRecord::Schema.define(:version => 20120207132311) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "nr"
     t.string   "name"
-    t.integer  "client_id"
     t.text     "description"
-    t.boolean  "active",            :default => true
-    t.boolean  "hidden",            :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_status_id", :default => 1
-    t.boolean  "web",               :default => false
+    t.string   "nr"
+    t.integer  "client_id"
+    t.boolean  "hidden",                         :default => false
+    t.integer  "project_status_id", :limit => 1, :default => 1,     :null => false
+    t.boolean  "web",                            :default => false, :null => false
+    t.boolean  "active",                         :default => true,  :null => false
+    t.boolean  "locked"
   end
 
   create_table "tasks", :force => true do |t|
