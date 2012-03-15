@@ -100,7 +100,7 @@ jQuery ->
         $("#hour_amount").val "8"
         $("#fake_project").val "00 - Absence"
         $("#real_project_id").val "189"
-        $("#hour_task_id").val "72"
+        $("#hour_task_id").val "135"
         $('.show_tasks select').show()
         $("#hour_description").val "Comp Time (FZA)"
         $("#hour_work_category_id option").eq(7).attr "selected", "selected"
@@ -113,7 +113,7 @@ jQuery ->
 	       $("#hour_amount").val "8"
 	       $("#fake_project").val "00 - Absence"
 	       $("#real_project_id").val "189"
-	       $("#hour_task_id").val "72"
+	       $("#hour_task_id").val "74"
 	       $('.show_tasks select').show()
 	       $("#hour_description").val "Public Holiday / Feiertag"
 	       $("#hour_work_category_id option").eq(7).attr "selected", "selected"
