@@ -16,10 +16,6 @@ class ProjectsController < ApplicationController
     
     @projects = Project.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
-    end
   end
 
   # GET /projects/1

@@ -6,6 +6,12 @@ jQuery ->
 	$('.hour_details .detail_link').each ->
 		$(this).click ->
 			$(this).next().slideToggle()
+
+	$("#projects th a, #projects .pagination a").live "click", ->
+	    $.getScript @href
+	    false
+  	
+
 	$("#projects_search input").keyup ->
 	  $.get $("#projects_search").attr("action"), $("#projects_search").serialize(), null, "script"
 	  false
