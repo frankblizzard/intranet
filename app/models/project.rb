@@ -38,6 +38,13 @@ class Project < ActiveRecord::Base
     end
   end
   
+  def self.search(search)  
+    if search  
+      where('name LIKE ? OR nr LIKE ?', "%#{search}%", "%#{search}%")  
+    else  
+      scoped  
+    end  
+  end
   
   def name_number
     "#{self.nr} - #{self.name[0..24]}"

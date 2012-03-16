@@ -6,3 +6,7 @@ jQuery ->
 	$('.hour_details .detail_link').each ->
 		$(this).click ->
 			$(this).next().slideToggle()
+	$("#projects_search input").keyup ->
+	  $.get $("#projects_search").attr("action"), $("#projects_search").serialize(), null, "script"
+	  false
+  

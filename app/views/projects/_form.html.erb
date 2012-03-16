@@ -16,8 +16,6 @@
   <%= form.association :client, :collection => Client.all(:order => 'name'), :prompt => "Choose a Client" %>
   <%= form.association :project_status, :collection => ProjectStatus.all(:order => 'id'), :prompt => false %>
   <%= form.input :description, :label => 'Description' %>
-  <%= form.input :active, :label => 'Active', :hint => 'project is currently active' %>
-  <%= form.input :hidden, :label => 'Hidden', :hint => 'will not be displayed in overview' %>
   <%= form.input :web, :label => 'Web Project?', :hint => 'project not relevant for 3D artists' %>
   <%= form.input :locked, :label => 'Lock Project', :hint => 'Hours cannot be changed anymore - no new bookings on this project' %>
 	<%= form.input :profile_tokens, :label => 'Involved People',  :input_html => { :data => { :pre => @project.profiles.map(&:attributes).to_json }} %>

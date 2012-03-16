@@ -504,7 +504,25 @@ table.pretty {
 	
 	th {
 		font-weight: normal;
-		padding-right: 20px;
+
+		padding: 5px 20px 5px 5px;
+		
+		.current {  
+		  padding-right: 12px;  
+		  background-repeat: no-repeat;  
+		  background-position: right center;  
+		}
+		
+		.asc {   
+		  background-image: url(arrow_up.png);   
+		 padding-right: 25px;
+		}
+		
+		.desc {   
+		  background-image: url(arrow_down.png);   
+		padding-right: 25px;
+		}
+		
 	}
 	
 	td {
