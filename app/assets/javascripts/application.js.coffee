@@ -11,6 +11,7 @@
 //= require facebox
 //= require nested_form
 //= require jquery_ujs
+//= require tinymce-jquery
 //= require_tree .
 
 

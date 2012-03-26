@@ -18,8 +18,8 @@
     
       - @profiles.each do |profile|
         %tr
-          %td= profile.user.username
-          %td= profile.name
+          %td= link_to profile.user.username, profile, :class => 'blue'
+          %td= link_to profile.name, profile, :class => 'blue'
           %td= profile.user.email
           %td= profile.job_description
           %td= link_to 'Show', profile

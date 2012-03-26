@@ -1,3 +1,4 @@
+<%= tinymce_assets %>
 <div id="scrolldiv">
 <%= simple_nested_form_for @project do |form| %>
 
@@ -15,7 +16,8 @@
   <%= form.input :name, :label => 'Name' %>
   <%= form.association :client, :collection => Client.all(:order => 'name'), :prompt => "Choose a Client" %>
   <%= form.association :project_status, :collection => ProjectStatus.all(:order => 'id'), :prompt => false %>
-  <%= form.input :description, :label => 'Description' %>
+  <%= form.input :description, :label => 'Description',  :input_html => {:class => "tinymce", :rows => 40, :cols => 40, 
+:value =>  @project.new_record? ? "<p>e: / i: / a:</p><p style=\"text-align: left;\">(+ 1 free close-up?)</p><hr /><p>(Short project description?)</p>	<p>(Update of 000?)</p>	<hr /><ol><li>Offer no:</li><li>Billing Address:</li>	<li>Invoice no:</li></ol>".html_safe : ""} %>
   <%= form.input :web, :label => 'Web Project?', :hint => 'project not relevant for 3D artists' %>
   <%= form.input :locked, :label => 'Lock Project', :hint => 'Hours cannot be changed anymore - no new bookings on this project' %>
 	<%= form.input :profile_tokens, :label => 'Involved People',  :input_html => { :data => { :pre => @project.profiles.map(&:attributes).to_json }} %>
@@ -36,3 +38,4 @@
   </div>
 <% end %>
 </div>
+<%= tinymce %>

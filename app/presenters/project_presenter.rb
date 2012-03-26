@@ -62,7 +62,7 @@ class ProjectPresenter < BasePresenter
           str += "<tr><td class='spent #{ 'red' if width_done > task_width }' style='width:#{width_done}px;'>spent: #{t.total_hours}</td></tr>"
           str += "</table>"
           str += "<br/>" 
-          str += "<div class='task_description'>#{t.description}</div>"
+          str += "<div class='task_description'>#{markdown(t.description)}</div>"
           str += "<br/>" 
         end
         str += "</li>"

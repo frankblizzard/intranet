@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.4'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # gem 'sqlite3'
 
-gem 'mysql2'
+gem 'mysql2', '0.3.11'
 
 gem 'haml'
 gem 'haml-rails', :group => :development
@@ -23,7 +23,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'tinymce-rails', :git => 'https://github.com/spohlenz/tinymce-rails.git'
+gem 'tinymce-rails' #, :git => 'https://github.com/spohlenz/tinymce-rails.git'
 
 # authentication
 

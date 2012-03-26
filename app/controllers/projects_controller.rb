@@ -90,4 +90,10 @@ class ProjectsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def sort_column  
+    controller_name.classify.constantize.column_names.include?(params[:sort]) ? params[:sort] : "nr"  
+  end
+  
+  
 end
