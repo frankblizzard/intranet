@@ -1,5 +1,7 @@
 Intranet::Application.routes.draw do
 
+  get "monitoring/index"
+
   resources :images
 
   resources :assignments
@@ -39,6 +41,8 @@ Intranet::Application.routes.draw do
   end
   
   match 'login' => 'users#login', :as => :login  
+  
+  match 'monitor' => 'monitoring#index', :as => :monitor
   
   get "home/index"
 

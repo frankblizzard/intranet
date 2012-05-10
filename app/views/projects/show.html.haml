@@ -2,7 +2,7 @@
 
 	%h1.project_h1
 		%span.projectnr= project_presenter.project_nr
-		%span.clientname= project_presenter.client
+		%span.clientname= link_to project_presenter.client, @project.client
 		%span.projectname= project_presenter.title
 		%span.locked= image_tag('locked-icon.png', :width => 50, :title => 'Project is locked.') if @project.locked?
 
@@ -17,7 +17,7 @@
 						.description= project_presenter.description.html_safe
   	
 				
-				.column
+				.column.middle_col
 					.subtitle Involved People
 					.subcontent
 						.description= project_presenter.people
@@ -26,6 +26,11 @@
 					.subtitle Status
 					.subcontent
 						.description= project_presenter.status
+					%br
+					%br
+					.subtitle Deadline
+					.subcontent
+						.description= @project.deadline.strftime('%d.%m.%y')
 				
 				.column.tasks_col
 					.subtitle Tasks

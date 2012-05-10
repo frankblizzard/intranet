@@ -9,7 +9,7 @@ class ProjectPresenter < BasePresenter
 
   def title
     handle_none project.name do
-      project.name
+      name = project.web? ? "#{project.name} (web)" : project.name
     end
   end
   
@@ -35,26 +35,31 @@ class ProjectPresenter < BasePresenter
     handle_none project.tasks do
       str = '<ul class="tasks">'
       # hundred_percent = 250 # define the width in pixels that should be used to display 100% plan hours
-      
-      # use 100% for the task with the most hours in project
-      hundred_percent = project.tasks.order('plan_hours desc').first.plan_hours
-      # width of the maximum element 
-      max_width = 250
-      
-      
-      
+ 
       project.tasks.order("deadline asc").each do |t|
-        str += "<li class='task_details'><b>#{t.id} - #{t.name} <i>(#{t.deadline.strftime('%d.%m.%y')})</i></b><br/>"
+         # width of the maximum element 
+        max_width = 250
+        hundred_percent = 250
         
-        # calculate with relative to maximum
-        task_width = (t.plan_hours / hundred_percent) * max_width
+        str += "<li class='task_details'><b>#{t.name}</b>"
+        
+        str += " (id: #{t.id})" if current_user.admin? 
+        
+        str += "<br/>"
+
         
         if t.plan_hours
+          
+          # use 100% for the task with the most hours in project
+          hundred_percent = project.tasks.order('plan_hours desc').first.plan_hours
+           # calculate with relative to maximum
+          task_width = (t.plan_hours / hundred_percent) * max_width
+          
           percent_done = t.total_hours > 0 ? (t.total_hours / hundred_percent) : 0
           if percent_done > 0
             width_done = percent_done * max_width
           else
-            width_done = 30
+            width_done = 0
           end
           
           str += "<table class=\"task_table\">"
@@ -64,6 +69,15 @@ class ProjectPresenter < BasePresenter
           str += "<br/>" 
           str += "<div class='task_description'>#{markdown(t.description)}</div>"
           str += "<br/>" 
+        else
+          
+          str += "<table class=\"task_table\">"
+          str += "<tr><td class='spent style='width:#{width_done}px;'>spent: #{t.total_hours}</td></tr>"
+          str += "</table>"
+          str += "<br/>" 
+          str += "<div class='task_description'>#{markdown(t.description)}</div>"
+          str += "<br/>"
+        
         end
         str += "</li>"
       end
@@ -103,11 +117,11 @@ class ProjectPresenter < BasePresenter
     handle_none project.hours do
       str = '<div class="subtitle">Time spent on this project</div>'
       str += '<div class="hours_detail_table"><table>'
-      str += '<tr><th>Name</th><th>Job</th><th>Hours</th><th>Extra Hours</th></tr>'
+      str += '<tr><th>Name (Job)</th><th width="20">Hours</th><th>Extra</th><td><a id=\'all_detail_link\' href=\'#\'>open all</a></td></tr>'
       project.project_users.each do |u|
         profile = Profile.find_by_user_id(u)
         str += '<tr>'
-        str += "<td>#{link_to profile.name, profile if profile.name }</td><td>#{profile.job_description}</td><td>#{project.total_hours(u)}</td><td>#{project.total_hours(u, true)}</td><td class='hour_details'><a class='detail_link' href='#'>details</a>"
+        str += "<td>#{link_to profile.name, profile if profile.name } (#{profile.job_description})</td><td>#{project.total_hours(u)}</td><td>#{project.total_hours(u, true)}</td><td class='hour_details'><a class='detail_link' href='#'>details</a>"
         
         #adding a detailed table
         
@@ -127,7 +141,7 @@ class ProjectPresenter < BasePresenter
         str += '</tr>'
       end
       str += '<tr class="table_total">'
-      str += "<td><b>Summe</b></td><td>--</td><td><b>#{project.total_hours}</b></td><td><b>#{project.total_hours(nil, true)}</b></td>"
+      str += "<td><b>Summe</b></td><td><b>#{project.total_hours}</b></td><td><b>#{project.total_hours(nil, true)}</b></td><td><b>--</b></td>"
       str += "</tr></table>"
       str.html_safe
     end  

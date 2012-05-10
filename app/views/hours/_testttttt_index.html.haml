@@ -1,7 +1,7 @@
 %h1 Listing hours
 
 #calendar_stats
-  -if current_user.admin? || current_user.project_manager?
+  -if current_user.admin?
     .username
       Show User:
     .user_selection
@@ -28,10 +28,9 @@
             .wrapper_div
               .hour
                 -if true
-                  %ul.stunden{:style => "bottom: #{Hour.number_of_entries(@user, date)}px;"}
-                    = content_tag :li, '', :class => 'spacer', :style => "height: #{ 100 - Hour.total_percent_day(@user, date) }%"
+                  %ul.text_stunden{:style => "bottom: #{Hour.number_of_entries(@user, date)}px;"}
                     -for hour in hours
-                      = hour_tag(hour)
+                      = content_tag :li, "#{hour.amount} - #{hour.project.nr}", :class => 'text_hour'
               .calendar_day
                 = date.day
                 = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
@@ -39,61 +38,26 @@
 
       #hours_overview
         %table.pretty
-          %thead
-            %tr
-              %th
-                Monat
-              %th
-                Stunden
-              %th
-                Überstunden
-              %th
-                Comp Time (h)
-              %th
-                Urlaubstage
-              %th
-                Kranktage
+          %tr
+            %th
+              Monat
+            %th
+              Stunden
+            %th
+              Überstunden
+            %th
+              Urlaubstage
+            %th
+              Kranktage
           - summe_stunden = 0
           - summe_ueberstunden = 0
           - summe_urlaub = 0
           - summe_krank = 0
-          - summe_comp = 0
-          - stunden2011, krank2011, urlaub2011, ueberstunden2011, comp2011 = 0
-          - i = 0
-          - d = Date.new(2011, 1 , 1)
-          - while d <= Date.today do 
-            -if d == Date.new(2012,1,1)
-              %tr.summe_2011
-                %td.left
-                  %b
-                    Summe 2011
-                %td
-                  %b
-                    - stunden2011 = summe_stunden
-                    = stunden2011
-                    - summe_stunden = 0
-                %td
-                  %b
-                    - ueberstunden2011 = summe_ueberstunden
-                    = ueberstunden2011
-                    - summe_ueberstunden = 0
-                %td
-                  %b
-                    - comp2011 = summe_comp
-                    = comp2011
-                    - summe_comp = 0
-                %td
-                  %b
-                    - urlaub2011 = summe_urlaub
-                    = urlaub2011
-                    - summe_urlaub = 0
-                %td
-                  %b
-                    - krank2011 = summe_krank
-                    = krank2011
-                    - summe_krank = 0
+          - i = 11
+          - while i >= 0 do 
             %tr
               %td.left
+                - d = @date << i
                 - month = d.month
                 - year = d.year
                 = d.strftime('%B')
@@ -104,21 +68,16 @@
                 = @user.extra_hours(year, month)
                 - summe_ueberstunden += @user.extra_hours(year, month)
               %td
-                - comp_time = @user.comp_time(year, month)
-                = comp_time
-                - summe_comp += comp_time
-              %td
                 = @user.monthly_holidays(year, month)
                 - summe_urlaub += @user.monthly_holidays(year, month)
               %td
                 = @user.monthly_illdays(year, month)
                 - summe_krank += @user.monthly_illdays(year, month)
-                - d = d >> 1
- 							
-          %tr.summe_2011
+                - i -= 1
+          %tr
             %td.left
               %b
-                Summe 2012
+                Summe
             %td
               %b
                 = summe_stunden
@@ -127,33 +86,11 @@
                 = summe_ueberstunden
             %td
               %b
-                = summe_comp
-            %td
-              %b
                 = summe_urlaub
             %td
               %b
                 = summe_krank  
-          %tr.summe_2011
-            %td.left
-              %b
-                Summe gesamt
-            %td
-              %b
-                = summe_stunden + stunden2011
-            %td
-              %b
-                = summe_ueberstunden + ueberstunden2011
-            %td
-              %b
-                = summe_comp + comp2011
-            %td
-              %b
-                = summe_urlaub + urlaub2011
-            %td
-              %b
-                = summe_krank + krank2011
-                    
+        
       #sidepanel
         .overview
   

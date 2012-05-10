@@ -5,6 +5,8 @@
 = render 'form'
 
 .edit_links
+  = link_to 'Update', "#", :id => "secondary_update_link"
+  \|
   = link_to 'Show', @project
   \|
   = link_to 'Back', projects_path

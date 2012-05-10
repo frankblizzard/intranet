@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315154503) do
+ActiveRecord::Schema.define(:version => 20120328153431) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(:version => 20120315154503) do
     t.datetime "updated_at"
     t.string   "website"
     t.string   "job_description"
+    t.boolean  "freelancer",       :default => false
+    t.date     "in_company_since"
+    t.float    "time_mon",         :default => 8.0
+    t.float    "time_tue",         :default => 8.0
+    t.float    "time_wed",         :default => 8.0
+    t.float    "time_thu",         :default => 8.0
+    t.float    "time_fri",         :default => 8.0
   end
 
   create_table "project_statuses", :force => true do |t|
@@ -128,10 +135,11 @@ ActiveRecord::Schema.define(:version => 20120315154503) do
     t.string   "nr"
     t.integer  "client_id"
     t.boolean  "hidden",                         :default => false
-    t.integer  "project_status_id", :limit => 1, :default => 1,     :null => false
-    t.boolean  "web",                            :default => false, :null => false
-    t.boolean  "active",                         :default => true,  :null => false
+    t.integer  "project_status_id", :limit => 1, :default => 1,            :null => false
+    t.boolean  "web",                            :default => false,        :null => false
+    t.boolean  "active",                         :default => true,         :null => false
     t.boolean  "locked"
+    t.date     "deadline",                       :default => '2012-03-28'
   end
 
   create_table "tasks", :force => true do |t|

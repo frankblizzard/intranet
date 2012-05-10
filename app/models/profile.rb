@@ -1,5 +1,7 @@
 class Profile < ActiveRecord::Base
   
+  acts_as_birthday :birthday
+  
   before_save :clear_empties
   
   validates_presence_of :user_id
@@ -14,9 +16,13 @@ class Profile < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
   
-  attr_accessible :avatar, :phone, :name, :website, :bio,
+  attr_accessible :avatar, :phone, :name, :website, :bio, :time_mon, :time_tue, :time_wed, :time_thu, :time_fri, :in_company_since, :freelancer,
                   :birthday, :phone, :street, :zip, :city, :user_id, :job_description
   
+  
+  def self.next_birthdays
+    self.find_birthdays_for(Date.today, Date.today + 30.days)
+  end
   
   
 private

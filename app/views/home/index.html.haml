@@ -1,4 +1,4 @@
-%h1= "Home"
+%h1= "#{current_user.username.capitalize}'s Dashboard"
 
 #scrolldiv
 	#blog.content_window
@@ -19,14 +19,59 @@
 			.button= content_tag :button, "load more results", :id => 'more_results'
 		
 		
-		
 	#infobox.content_window.smallsize
-		.header= link_to "Info", "javascript:void(0)", :class => 'open', :title => "open / close"
-	
+		.header= link_to "My Next Deadlines", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
 		.inner
-		
+  
 			%p
-				This is an alpha version. Feel free to test it and play around and 
-				=link_to "report bugs", new_bug_path
-		    	
-				
+				-@next_deadlines.each do |dl|
+					= content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')		
+  
+	#infobox.content_window.smallsize
+		.header= link_to "My Upcoming Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+		.inner
+  
+			%p
+				-@upcoming_projects.each do |dl|
+					= content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+
+
+	#infobox.content_window.smallsize
+		.header= link_to "My Continuous Tasks", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+		.inner
+  
+			%p
+				-@continous_projects.each do |dl|
+					= content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+  
+	#infobox.content_window.smallsize
+		.header= link_to "Absences", "javascript:void(0)", :class => 'open', :title => "open / close"
+  	
+		.inner
+  	
+			%p
+				-@ill_peeps.each do |ill|
+					= content_tag(:div, "#{link_to ill.user.profile.name, ill.user.profile} (krank)".html_safe)
+			%p
+				-@comp_time_peeps.each do |hd|
+					= content_tag(:div, "#{link_to hd.user.profile.name, hd.user.profile} (fza)".html_safe)
+			%p
+				-@holiday_peeps.each do |hd|
+					= content_tag(:div, "#{link_to hd.user.profile.name, hd.user.profile} (urlaub)".html_safe)
+  	  
+ 
+	#infobox.content_window.smallsize
+		.header= link_to "Next Birthdays", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+		.inner
+  
+			%p
+				-@next_birthdays.each do |bd|
+					= content_tag(:div, "#{bd.name} - #{bd.birthday.strftime('%d. %b')} (#{bd.birthday_age})", :class => 'birthday')
+		
+		
+
+	

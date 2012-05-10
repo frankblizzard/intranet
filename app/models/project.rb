@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
   
+  acts_as_birthday :deadline
+  
   validates_presence_of :nr
   validates_presence_of :client_id
   validates_presence_of :name
@@ -22,6 +24,12 @@ class Project < ActiveRecord::Base
   scope :visible, where(:hidden => '0')
   scope :design, where(:web => '0')
   scope :web, where(:web => '1')
+  scope :in_progress, where(:project_status_id => '1')
+  scope :future, :conditions => [' deadline >= ? ', Date.today ]
+  scope :with_user, lambda { |user_id| joins(:assignments).where(:user_id => user_id) }
+  scope :with_status, lambda { |status_id| where( :project_status_id => status_id ) }
+  scope :continous, where(:project_status_id => '2')
+  scope :scheduled, where(:project_status_id => '4')
   
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
@@ -44,6 +52,18 @@ class Project < ActiveRecord::Base
     else  
       scoped  
     end  
+  end
+  
+  def self.next_deadlines(profile)
+    profile.projects.in_progress.order(:deadline)
+  end
+
+  def self.upcoming_projects(profile)
+    profile.projects.scheduled.order(:deadline)
+  end
+  
+  def self.continous_projects(profile)
+    profile.projects.continous.order(:nr)
   end
   
   def name_number

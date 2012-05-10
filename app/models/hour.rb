@@ -20,6 +20,9 @@ class Hour < ActiveRecord::Base
   scope :day, lambda {|day| where(:date => day) }
   scope :holiday, where(:holiday => true)
   scope :ill, where(:ill => true) # ill
+  scope :comp_time, where(:comp_time => true) # ill
+  scope :normal, where(:comp_time => false) # normal hours
+  scope :not_future,  where('date <= ?', Date.today)
   scope :by_month, lambda { |d| { :conditions => { :date => d.beginning_of_month..d.end_of_month } } }
   
   def project_name

@@ -34,8 +34,12 @@ class ProjectsController < ApplicationController
   def new
     propose_nr = Integer(Project.order("nr desc").first.nr) + 1
     @project = Project.new(:nr => propose_nr, :active => true)
-    @project.tasks.new(:name => "Project Management", :description => "Project Management / Coordination", :deadline => Date.today + 2.months)
-    @project.tasks.new(:name => "Modeling Image XXX", :description => "Modeling Whiteviews / Interiors / Exteriors", :deadline => Date.today + 6.weeks)
+    @project.tasks.new(:name => "Project Mgmt", :description => "")
+    @project.tasks.new(:name => "Pre-P", :description => "Moodboards | Examining project data, plans, briefing, etc.")
+    @project.tasks.new(:name => "Web", :description => "Flatfinder/Boligvelger (eve-Estate)  |  CMS/Website (eve-Publisher)  |  Landingpage")
+    @project.tasks.new(:name => "Undividable 3D work for exteriors", :description => "Modeling/texturing of buildings and their surroundings. Populating/detailing with plants, outdoor furniture, traffic, etc.")
+    @project.tasks.new(:name => "Undividable 3D work for interiors", :description => "Modeling/texturing of X apartments. Setting up furniture, accessories, decoration according to moodboards.")
+    @project.tasks.new(:name => "#{propose_nr}-01_e", :description => "Scene setup, lighting and detail adjustments, rendering with subsequent post-production/compositing.")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }

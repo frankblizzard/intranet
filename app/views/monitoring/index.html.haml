@@ -1,0 +1,89 @@
+%h1 Monitoring
+
+#scrolldiv
+  .wrapdiv
+    .headline_biggy OFFERING
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "New Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
+
+      .inner
+
+        %p
+          -@new_projects.each do |dl|
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+						
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "Offered Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
+    
+      .inner
+    
+        %p
+          -@offered_projects.each do |dl|
+            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+						
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "Declined Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
+   
+      .inner
+   
+        %p
+          -@declined_projects.each do |dl|
+            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+
+  .wrapdiv
+    .headline_biggy RUNNING
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "In Progress", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+      .inner
+  
+        %p
+          -@progress_projects.each do |dl|
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+  
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "Scheduling", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+      .inner
+  
+        %p
+          -@scheduled_projects.each do |dl|
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+  
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "On Hold", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+      .inner
+  
+        %p
+          -@hold_projects.each do |dl|
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+
+  .wrapdiv
+    .headline_biggy INVOICING
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "Completed", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+      .inner
+  
+        %p
+          -@completed_projects.each do |dl|
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+  
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "Invoiced Germany", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+      .inner
+  
+        %p
+          -@invoiced_ger_projects.each do |dl|
+            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+  
+    #infobox.content_window.smallsize.monitor
+      .header= link_to "Invoiced Norway", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+      .inner
+  
+        %p
+          -@invoiced_nor_projects.each do |dl|
+            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')

@@ -76,7 +76,9 @@ jQuery ->
         $("#real_project_id").val "189"
         $("#hour_task_id").val "72"
         $('.show_tasks select').show()
-        $("#hour_description").val "Urlaub"
+        $("#hour_description").val "Urlaub
+
+"
         $("#hour_work_category_id option").eq(7).attr "selected", "selected"
 
   $("#hour_ill").click ->

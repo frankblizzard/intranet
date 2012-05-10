@@ -1,0 +1,33 @@
+// Place all the styles related to the monitoring controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin round {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.wrapdiv {
+	
+	width: 325px;
+	padding: 20px 10px;
+	float: left;
+	background-color: #2C2F38;
+	@include round;
+	margin-right: 10px;
+	
+	.headline_biggy {
+		
+		font-size: 20px;
+		font-weight: bold;
+		color: #fff;
+		margin-bottom: 20px;
+		
+	}
+	
+	.monitor {
+		width: 300px !important;
+	}
+	
+}

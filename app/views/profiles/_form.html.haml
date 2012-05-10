@@ -10,10 +10,6 @@
           %li= msg  
 
   = form.input :name, :label => 'Name', :hint => "Your full name, not your username"
-  = form.input :street, :label => 'Street'
-  = form.input :zip, :label => 'Zip'
-  = form.input :city, :label => 'City'
-  = form.input :job_description, :label => 'Job Description'
   = form.input :bio, :label => 'About you'
   .avatar= @profile.avatar.url(:thumb).present? ? image_tag(@profile.avatar.url(:thumb)) : image_tag("dummy_user.jpg")
   = form.input :avatar, :label => 'Avatar'
@@ -21,5 +17,20 @@
   = form.input :birthday,:as => :date, :start_year => Date.today.year - 50, :end_year => Date.today.year - 18, :order => [:day, :month, :year], :label => 'Birthday'
   = form.input :website, :label => 'Website'
 
+  - if current_user.admin?
+    #admin_fields
+      = form.input :street, :label => 'Street'
+      = form.input :zip, :label => 'Zip'
+      = form.input :city, :label => 'City'   
+      = form.input :job_description, :label => 'Job Description'
+      = form.input :in_company_since
+      = form.input :freelancer                    
+      = form.input :time_mon, :label => 'Mon Hours' 
+      = form.input :time_tue, :label => 'Tue Hours' 
+      = form.input :time_wed, :label => 'Wed Hours' 
+      = form.input :time_thu, :label => 'Thu Hours' 
+      = form.input :time_fri, :label => 'Fri Hours' 
+                                                  
+                                                  
   .actions
     = form.button :submit

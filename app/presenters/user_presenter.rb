@@ -48,7 +48,9 @@ class UserPresenter < BasePresenter
   end
   
   def member_since
-    user.created_at.strftime("%B %e, %Y")
+    handle_none user.profile.in_company_since do
+      user.profile.in_company_since.strftime("%B %e, %Y")
+    end
   end
 
   def phone

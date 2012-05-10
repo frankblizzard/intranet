@@ -3,7 +3,9 @@
     %th= sortable "nr"
     %th= sortable "name"
     %th= sortable "client_id", "Client"
+    %th= sortable "deadline"
     %th= sortable "project_status_id", "Status"
+    %th= sortable "web_preoject", "Web"
     %th
     %th
     %th
@@ -13,7 +15,9 @@
       %td= link_to project.nr, project, :class => "blue"
       %td= link_to project.name, project, :class => "blue"
       %td= link_to project.client.name, project.client, :class => 'blue'
+      %td= project.deadline.strftime('%d.%m.%y')
       %td= project.project_status.name
+      %td= project.web? ? "&#x2713;".html_safe : ""
       %td= link_to image_tag('zoom_in.png'), project, :title => 'details'
       %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
       %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete

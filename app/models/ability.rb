@@ -12,7 +12,7 @@ class Ability
    can :manage, [Bug, Post, Comment, Hour], :user_id => user.id
    can [:create, :update], Profile, :user_id => user.id
    if user.project_manager?
-     can :manage, [Project, Client, Task]
+     can :manage, [Project, Client, Task, Hour]
      cannot :destroy, :project
    end
 

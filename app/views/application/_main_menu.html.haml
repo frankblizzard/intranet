@@ -1,6 +1,6 @@
 %ul
   %li{:class => current_page?(:controller => 'home', :action => 'index') ? 'active' : ''}
-    %span.title= link_to_unless_current("Home / Blog", { :controller => 'home', :action => "index" })
+    %span.title= link_to_unless_current("Dashboard", { :controller => 'home', :action => "index" })
     %br/
     %span.sub_info#newpostscount
 

@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin round {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+@mixin shadow {
+	-moz-box-shadow: inset 0 3px 6px rgba(0,0,0,.6);
+	-webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.6);
+ 	box-shadow: inset 0 3px 6px rgba(0,0,0,.5);
+}
 
 .content_window {
 	
@@ -17,7 +27,9 @@
 		}
 		
 	}
-	
+	.middle_col {
+		padding-left: 50px;
+	}
 	
 	ul {
 		list-style: none;
@@ -106,14 +118,20 @@
 }
 
 .task_details {
-	font-size: 12px;
-	
+  background-color: #2C2F38;
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 5px;
+	@include round;
+	@include shadow;
 	.task_description {
 		font-size: 12px;
 		font-style: italic;
 	}
 	
 }
+
+
 
 .task_fields {
 	
@@ -153,6 +171,7 @@ table.task_table {
 	}
 	td.planned{
 		background-color: green;
+		min-width: 80px;
 	}
 	td.red {
 		background-color: red !important;

@@ -892,13 +892,24 @@ ul.ui-autocomplete {
 	height: 120px;
 }
 
+#admin_fields {
+	padding: 20px 0px;
+	border: 1px dashed #333;
+	background: #ccc;
+	margin: 10px 0;
+}
+
 textarea.tinymce {
 	
-	width: 500px !important;
-	height: 225px !important;
+	width: 700px !important;
+	height: 425px !important;
 	
 }
 
 .simple_form .text input {
 		width: 350px;
+}
+
+tr.summe_2011 td {
+	color: yellow;
 }

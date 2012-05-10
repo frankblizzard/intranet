@@ -5,9 +5,17 @@
 jQuery ->
 	$('.hour_details .detail_link').each ->
 		$(this).click ->
-			$(this).next().slideToggle() 	
+			$(this).next().slideToggle()
+			
+	$('#all_detail_link').click ->
+		$('.hour_details .detail_link').each ->
+			$(this).next().slideToggle()
 
 	$("#projects_search input").keyup ->
 	  $.get $("#projects_search").attr("action"), $("#projects_search").serialize(), null, "script"
 	  false
+	
+	$('#secondary_update_link').click ->
+		$('#scrolldiv form').submit()
+		false
   
