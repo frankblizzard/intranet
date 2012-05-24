@@ -9,6 +9,17 @@
     %br/
     %span.sub_info
 
+  -if current_user.admin || current_user.project_manager?
+    %li{:class => current_page?(:controller => 'monitoring', :action => 'index') ? 'active' : ''}
+      %span.title= link_to_unless_current("Monitoring", { :controller => 'monitoring', :action => "index" })
+      %br/
+      %span.sub_info
+
+    %li{:class => current_page?(:controller => 'clients', :action => 'index') ? 'active' : ''}
+      %span.title= link_to_unless_current("Clients", { :controller => 'clients', :action => "index" })
+      %br/
+      %span.sub_info
+    
   %li{:class => current_page?(:controller => 'hours', :action => 'index') ? 'active' : ''}
     %span.title= link_to_unless_current("Timetracking", { :controller => 'hours', :action => "index" }) 
     %br/
@@ -19,5 +30,12 @@
     %br/
     %span.sub_info
 
-#bug_report
-  = link_to image_tag("bug2.png"), bugs_path, :title => "report a bug"
+  %li
+    %span.title= link_to "Wiki", "http://192.168.2.45/wiki/doku.php"
+    %br/
+    %span.sub_info
+
+
+
+-# #bug_report
+-#  = link_to image_tag("bug2.png"), bugs_path, :title => "report a bug"

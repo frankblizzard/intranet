@@ -19,6 +19,8 @@
 
   - if current_user.admin?
     #admin_fields
+      = form.input :is_client, :label => 'Is Client ?'
+      = form.association :client, :collection => Client.all(:order => 'name'), :label => 'Client', :prompt => "Choose Client..."
       = form.input :street, :label => 'Street'
       = form.input :zip, :label => 'Zip'
       = form.input :city, :label => 'City'   

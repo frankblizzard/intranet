@@ -1,16 +1,55 @@
-%p
-  %b Name:
-  = @client.name
-%p
-  %b Full name:
-  = @client.full_name
-%p
-  %b Client nr:
-  = @client.client_nr
-%p
-  %b Website:
-  = @client.website
+%h1.project_h1= @client.name
 
-= link_to 'Edit', edit_client_path(@client)
-\|
-= link_to 'Back', clients_path
+#scrolldiv
+	#client.content_window.fullsize
+		.header= link_to "Client Overview", "javascript:void(0)", :class => 'open', :title => "open / close"
+		
+		.inner
+			.column
+				.subtitle Projects
+				.subcontent
+					.description
+						%table.pretty
+							%tr
+								%th= "nr"
+								%th= "name"
+								%th= "deadline"
+								%th= "Status"
+								%th= "Web"
+							
+							
+							- @client.projects.order(:project_status_id).each do |project|
+								%tr
+									%td= link_to project.nr, project, :class => "blue"
+									%td= link_to project.name, project, :class => "blue"
+									%td= project.deadline.strftime('%d.%m.%y')
+									%td= project.project_status.name
+									%td= project.web? ? "&#x2713;".html_safe : ""
+	
+			
+			.column
+				.subtitle Name
+				.subcontent
+					.description= @client.name
+				%br
+				%br
+				.subtitle Full Name
+				.subcontent
+					.description= @client.full_name
+				%br
+				%br
+				.subtitle Website
+				.subcontent
+					.description= link_to @client.website, @client.website if @client.website
+			
+
+			
+			%br.clear
+			.edit_links
+				-if can? :update, @client
+					= link_to 'Edit', edit_client_path(@client)
+					\|
+				= link_to 'Back', clients_path
+
+
+

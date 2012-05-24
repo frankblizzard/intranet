@@ -1,0 +1,14 @@
+%ul
+  %li{:class => current_page?(:controller => 'home', :action => 'index') ? 'active' : ''}
+    %span.title= link_to_unless_current("Dashboard", { :controller => 'home', :action => "index" })
+    %br/
+    %span.sub_info#newpostscount
+
+  %li{:class => current_page?(:controller => 'projects', :action => 'index') ? 'active' : ''}
+    %span.title= link_to_unless_current("Projects", { :controller => 'projects', :action => "index" })
+    %br/
+    %span.sub_info
+
+
+-# #bug_report
+-#  = link_to image_tag("bug2.png"), bugs_path, :title => "report a bug"

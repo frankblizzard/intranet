@@ -12,7 +12,7 @@
 			.title
 				%span.name= image.name
 
-			.image= image_tag(image.source.url(:small))
+			.image= link_to image_tag(image.source.url(:small)), image.source.url(:big)
 			.edit
 				-if can? :update, image
 					=link_to "edit", edit_image_path(image)

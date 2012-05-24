@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!
   
   def index
+    
+    render :template => "home/client_view" if current_user.profile.is_client
+    
     @search = Post.search do
       fulltext params[:search]
       paginate :page => params[:page]
@@ -17,5 +20,6 @@ class HomeController < ApplicationController
     @holiday_peeps = Hour.where(:date => Date.today, :holiday => true)
     @comp_time_peeps = Hour.where(:date => Date.today, :comp_time => true)
   end
+  
 
 end

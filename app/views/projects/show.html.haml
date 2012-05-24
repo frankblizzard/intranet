@@ -31,6 +31,11 @@
 					.subtitle Deadline
 					.subcontent
 						.description= @project.deadline.strftime('%d.%m.%y')
+					%br
+					%br
+					.subtitle Total (plan | spent)
+					.subcontent
+						.description= "#{@project.sum_plan_hours} | #{@project.total_hours}"
 				
 				.column.tasks_col
 					.subtitle Tasks

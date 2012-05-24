@@ -3,6 +3,7 @@ class Client < ActiveRecord::Base
   validates_presence_of :name
 
   has_many :projects
+  has_many :profiles
   
   searchable do
     text :name, :boost => 3

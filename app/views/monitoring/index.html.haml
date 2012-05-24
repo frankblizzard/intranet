@@ -1,6 +1,6 @@
 %h1 Monitoring
 
-#scrolldiv
+#scrolldiv.monitoring
   .wrapdiv
     .headline_biggy OFFERING
     #infobox.content_window.smallsize.monitor
@@ -10,7 +10,7 @@
 
         %p
           -@new_projects.each do |dl|
-            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
 						
     #infobox.content_window.smallsize.monitor
       .header= link_to "Offered Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
@@ -19,7 +19,7 @@
     
         %p
           -@offered_projects.each do |dl|
-            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
 						
     #infobox.content_window.smallsize.monitor
       .header= link_to "Declined Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
@@ -28,7 +28,7 @@
    
         %p
           -@declined_projects.each do |dl|
-            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
 
   .wrapdiv
     .headline_biggy RUNNING
@@ -39,7 +39,7 @@
   
         %p
           -@progress_projects.each do |dl|
-            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
   
     #infobox.content_window.smallsize.monitor
       .header= link_to "Scheduling", "javascript:void(0)", :class => 'open', :title => "open / close"
@@ -48,7 +48,7 @@
   
         %p
           -@scheduled_projects.each do |dl|
-            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
   
     #infobox.content_window.smallsize.monitor
       .header= link_to "On Hold", "javascript:void(0)", :class => 'open', :title => "open / close"
@@ -57,7 +57,7 @@
   
         %p
           -@hold_projects.each do |dl|
-            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
 
   .wrapdiv
     .headline_biggy INVOICING
@@ -68,7 +68,7 @@
   
         %p
           -@completed_projects.each do |dl|
-            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
   
     #infobox.content_window.smallsize.monitor
       .header= link_to "Invoiced Germany", "javascript:void(0)", :class => 'open', :title => "open / close"
@@ -77,7 +77,7 @@
   
         %p
           -@invoiced_ger_projects.each do |dl|
-            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
   
     #infobox.content_window.smallsize.monitor
       .header= link_to "Invoiced Norway", "javascript:void(0)", :class => 'open', :title => "open / close"
@@ -86,4 +86,4 @@
   
         %p
           -@invoiced_nor_projects.each do |dl|
-            = content_tag(:div, "#{link_to dl.name_number, dl}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')

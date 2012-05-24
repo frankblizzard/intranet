@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328153431) do
+ActiveRecord::Schema.define(:version => 20120515121210) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(:version => 20120328153431) do
     t.float    "time_wed",         :default => 8.0
     t.float    "time_thu",         :default => 8.0
     t.float    "time_fri",         :default => 8.0
+    t.boolean  "is_client"
+    t.integer  "client_id"
   end
 
   create_table "project_statuses", :force => true do |t|

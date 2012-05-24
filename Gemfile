@@ -64,15 +64,18 @@ gem 'sunspot_rails'
 
 group :development do
   gem 'sunspot_solr'
+  gem 'log_buddy'
+  gem 'rails3-generators' # mainly for factory_girl & simple_form at this point
+  gem 'factory_girl_rails'
+  gem 'nifty-generators'
 end
 
-group :development, :test do
+group :test do
   gem 'database_cleaner'
   gem 'rails3-generators' # mainly for factory_girl & simple_form at this point
   gem 'factory_girl_rails'
-  gem 'cucumber-rails'
   gem 'rspec-rails'
-  gem 'nifty-generators'
+  gem 'cucumber-rails'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'growl'
   gem 'capybara'

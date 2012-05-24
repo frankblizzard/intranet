@@ -13,7 +13,7 @@ class HoursController < ApplicationController
   def index
     @user = current_user
     
-    if current_user.admin?
+    if current_user.admin? || current_user.project_manager?
       session[:hour_user_id] = params[:user_id] if params[:user_id]
       session[:hour_user_id] = current_user.id if session[:hour_user_id].nil?
       if(session[:hour_user_id])

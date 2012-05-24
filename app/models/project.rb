@@ -27,7 +27,7 @@ class Project < ActiveRecord::Base
   scope :in_progress, where(:project_status_id => '1')
   scope :future, :conditions => [' deadline >= ? ', Date.today ]
   scope :with_user, lambda { |user_id| joins(:assignments).where(:user_id => user_id) }
-  scope :with_status, lambda { |status_id| where( :project_status_id => status_id ) }
+  scope :with_status, lambda { |status_id| where( :project_status_id => status_id ).order(:deadline) }
   scope :continous, where(:project_status_id => '2')
   scope :scheduled, where(:project_status_id => '4')
   
@@ -68,6 +68,10 @@ class Project < ActiveRecord::Base
   
   def name_number
     "#{self.nr} - #{self.name[0..24]}"
+  end
+  
+  def sum_plan_hours
+    tasks.to_a.sum { |task| task.plan_hours.nil? ? 0 :  task.plan_hours}
   end
   
   # helper function for jQuery tokenized input

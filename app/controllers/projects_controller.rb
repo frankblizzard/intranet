@@ -14,7 +14,11 @@ class ProjectsController < ApplicationController
    #
    # @projects = @search.results
     
-    @projects = Project.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
+    if current_user.profile.is_client
+      @projects = current_user.profile.client.projects.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
+    else 
+      @projects = Project.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
+    end
     
   end
 
@@ -22,7 +26,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-
+    @project.tasks.order(:name)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -40,6 +44,7 @@ class ProjectsController < ApplicationController
     @project.tasks.new(:name => "Undividable 3D work for exteriors", :description => "Modeling/texturing of buildings and their surroundings. Populating/detailing with plants, outdoor furniture, traffic, etc.")
     @project.tasks.new(:name => "Undividable 3D work for interiors", :description => "Modeling/texturing of X apartments. Setting up furniture, accessories, decoration according to moodboards.")
     @project.tasks.new(:name => "#{propose_nr}-01_e", :description => "Scene setup, lighting and detail adjustments, rendering with subsequent post-production/compositing.")
+    @project.tasks.order(:name)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }

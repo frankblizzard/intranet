@@ -16,11 +16,21 @@ class User < ActiveRecord::Base
   has_many :hours
   
   validates_uniqueness_of :username
+  validates_uniqueness_of :email
+  validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
   
-  after_create :set_profile
+  
+  after_create :set_profile, :set_client
+
   
   def set_profile
-    self.build_profile(:user_id => self.id, :name => self.username)
+    self.build_profile(:user_id => self.id, :name => self.username, :in_company_since => Date.today - 1.day)
+  end
+  
+  # set the default new registration to "client" role so nobody can just register and see all!
+  def set_client
+    self.profile.is_client = 1
+    self.profile.save!
   end
   
   def hours_today

@@ -1,0 +1,30 @@
+%h1= "#{current_user.username.capitalize}'s Dashboard"
+
+#scrolldiv
+	#blog.content_window
+		.header= link_to "My Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
+
+	  	
+		.inner
+			%p blablabla
+
+			
+
+		
+		
+	#infobox.content_window.smallsize
+		.header= link_to "My Next Deadlines", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+		.inner
+  
+			%p
+
+  
+	#infobox.content_window.smallsize
+		.header= link_to "My Upcoming Projects", "javascript:void(0)", :class => 'open', :title => "open / close"
+  
+		.inner
+  
+			%p
+
+

@@ -14,8 +14,9 @@
 			%dl 
 				%dt= "Full Name"
 				%dd= user_presenter.name
-				%dt= "@Eve since:"
-				%dd= user_presenter.member_since
+				-unless @user.profile.client
+					%dt= "@Eve since:"
+					%dd= user_presenter.member_since
 				%dt= "Job Description:"
 				%dd= user_presenter.job_description
 				%dt= "Adress"
@@ -30,8 +31,9 @@
 				%dd= user_presenter.website
 				
 				%br
-				.user_statistics
-					= "#{user_presenter.username} shared #{@user.posts.count} Posts, posted #{@user.comments.count} comments and filed #{@user.bugs.count} bugs."
+				-unless @user.profile.client
+					.user_statistics
+						= "#{user_presenter.username} shared #{@user.posts.count} Posts, posted #{@user.comments.count} comments and filed #{@user.bugs.count} bugs."
 
 
 			.edit_links

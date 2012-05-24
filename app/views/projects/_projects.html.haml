@@ -5,7 +5,7 @@
     %th= sortable "client_id", "Client"
     %th= sortable "deadline"
     %th= sortable "project_status_id", "Status"
-    %th= sortable "web_preoject", "Web"
+    %th= sortable "web", "Web"
     %th
     %th
     %th
@@ -19,5 +19,6 @@
       %td= project.project_status.name
       %td= project.web? ? "&#x2713;".html_safe : ""
       %td= link_to image_tag('zoom_in.png'), project, :title => 'details'
-      %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
-      %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete
+      -if current_user.admin? || current_user.project_manager?
+        %td= link_to image_tag('edit.png'), edit_project_path(project), :title => 'edit'
+        %td= link_to image_tag('delete.png'), project, :title => 'delete', :confirm => 'Are you sure?', :method => :delete

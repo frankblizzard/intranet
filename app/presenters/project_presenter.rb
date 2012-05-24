@@ -36,7 +36,7 @@ class ProjectPresenter < BasePresenter
       str = '<ul class="tasks">'
       # hundred_percent = 250 # define the width in pixels that should be used to display 100% plan hours
  
-      project.tasks.order("deadline asc").each do |t|
+      project.tasks.order(:name).each do |t|
          # width of the maximum element 
         max_width = 250
         hundred_percent = 250
@@ -63,16 +63,30 @@ class ProjectPresenter < BasePresenter
           end
           
           str += "<table class=\"task_table\">"
-          str += "<tr><td class='planned' style='width:#{task_width}px;'>planned: #{t.plan_hours}</td></tr>"
-          str += "<tr><td class='spent #{ 'red' if width_done > task_width }' style='width:#{width_done}px;'>spent: #{t.total_hours}</td></tr>"
+          str += "<tr><td class='planned' style='width:#{task_width}px;'>#{t.plan_hours}</td></tr>"
+          str += "<tr><td class='spent #{ 'red' if width_done > task_width }' style='width:#{width_done}px;'>#{t.total_hours}</td></tr>"
           str += "</table>"
           str += "<br/>" 
           str += "<div class='task_description'>#{markdown(t.description)}</div>"
           str += "<br/>" 
         else
+          # use 100% for the task with the most hours in project
+          hundred_percent = 0
+          project.tasks.each do |pt|
+            if pt.total_hours && pt.total_hours > hundred_percent
+              hundred_percent = pt.total_hours 
+            end
+          end
+           # calculate with relative to maximum
+          if hundred_percent > 0
+            task_width = (t.total_hours / hundred_percent) * max_width
+          else 
+            task_width = 1
+          end
           
+      
           str += "<table class=\"task_table\">"
-          str += "<tr><td class='spent style='width:#{width_done}px;'>spent: #{t.total_hours}</td></tr>"
+          str += "<tr><td class='spent' style='width:#{task_width}px;'>#{t.total_hours}</td></tr>"
           str += "</table>"
           str += "<br/>" 
           str += "<div class='task_description'>#{markdown(t.description)}</div>"
@@ -141,7 +155,7 @@ class ProjectPresenter < BasePresenter
         str += '</tr>'
       end
       str += '<tr class="table_total">'
-      str += "<td><b>Summe</b></td><td><b>#{project.total_hours}</b></td><td><b>#{project.total_hours(nil, true)}</b></td><td><b>--</b></td>"
+      str += "<td><b>Summe</b></td><td><b>#{project.total_hours}</b> </td><td><b>#{project.total_hours(nil, true)}</b></td><td><b>--</b></td>"
       str += "</tr></table>"
       str.html_safe
     end  

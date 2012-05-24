@@ -9,6 +9,7 @@ class Profile < ActiveRecord::Base
   validates_uniqueness_of :user_id
   
   belongs_to :user
+  belongs_to :client
   
   has_many :assignments
   has_many :projects, :through => :assignments
@@ -17,7 +18,7 @@ class Profile < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   attr_accessible :avatar, :phone, :name, :website, :bio, :time_mon, :time_tue, :time_wed, :time_thu, :time_fri, :in_company_since, :freelancer,
-                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description
+                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description, :is_client, :client_id
   
   
   def self.next_birthdays

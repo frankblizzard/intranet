@@ -46,7 +46,8 @@
   
   
    <div id="main_menu">
-   <%= render 'main_menu' if current_user %>
+   		<%= render 'main_menu' if current_user && !current_user.profile.is_client %>
+			<%= render 'client_menu' if current_user && current_user.profile.is_client && current_user.profile.client_id %>
    </div>
   
   

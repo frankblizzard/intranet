@@ -88,4 +88,9 @@ class ClientsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def sort_column  
+    Project.column_names.include?(params[:sort]) ? params[:sort] : "nr"  
+  end
+  
 end

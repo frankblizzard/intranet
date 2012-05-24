@@ -15,6 +15,12 @@ class Ability
      can :manage, [Project, Client, Task, Hour]
      cannot :destroy, :project
    end
+   if user.profile.is_client?
+     cannot :read, :all
+     can [:create, :update, :delete], Comment
+     can :read, Project, :client_id => user.profile.client_id
+   end
+
 
    
     #
