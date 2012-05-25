@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
   
   helper_method :sort_column, :sort_direction 
+  
+
   
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message

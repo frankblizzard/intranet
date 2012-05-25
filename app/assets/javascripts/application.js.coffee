@@ -12,6 +12,7 @@
 //= require nested_form
 //= require jquery_ujs
 //= require tinymce-jquery
+//= require bootstrap
 //= require_tree .
 
 
@@ -53,7 +54,7 @@ jQuery ->
 
 	optimiseContentSize()
 	$('a[rel*=facebox]').facebox()
-	$('a[title!=""]').tipTip()
+	#$('a[title!=""]').tipTip()
 	
 	# bind loading toggle to any form submitted by ajax
 	$("form").bind("ajax:before", toggleLoading).bind("ajax:complete", toggleLoading)

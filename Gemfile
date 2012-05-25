@@ -17,13 +17,14 @@ gem "nested_form", :git => 'https://github.com/fxposter/nested_form.git'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'bootstrap-sass'
 end
 
 gem 'birthday'
-gem 'jquery-rails'
+gem "jquery-rails", "~> 1.0.19"
 gem 'tinymce-rails' #, :git => 'https://github.com/spohlenz/tinymce-rails.git'
 
 # authentication

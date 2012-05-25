@@ -1,0 +1,22 @@
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th= sortable "nr"
+      %th= sortable "name"
+      %th= sortable "client_id", "Client"
+      %th= sortable "deadline"
+      %th= sortable "project_status_id", "Status"
+      %th= sortable "web_preoject", "Web"
+      %th
+
+  %tbody
+  - @projects.each do |project|
+    %tr
+      %td
+        %span.badge.badge-info= project.nr
+      %td= link_to project.name, project, :class => "blue"
+      %td= project.client.name
+      %td= project.deadline.strftime('%d.%m.%y')
+      %td= project.project_status.name
+      %td= project.web? ? "&#x2713;".html_safe : ""
+      %td= link_to ((content_tag(:i, '', :class => 'icon-info-sign icon-white')) + ' Details').html_safe, project, :title => 'details', :class => 'btn btn-info'
