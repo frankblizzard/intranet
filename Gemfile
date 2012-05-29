@@ -9,6 +9,8 @@ gem 'rails', '3.1.1'
 
 gem 'mysql2', '0.3.11'
 
+
+gem "jquery-rails", "~> 1.0.19"
 gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
@@ -24,7 +26,6 @@ group :assets do
 end
 
 gem 'birthday'
-gem "jquery-rails", "~> 1.0.19"
 gem 'tinymce-rails' #, :git => 'https://github.com/spohlenz/tinymce-rails.git'
 
 # authentication

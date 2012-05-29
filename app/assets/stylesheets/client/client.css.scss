@@ -4,17 +4,7 @@
 	margin-bottom: 30px;
 }
 
-.navbar {
-	#avatar {
-		img {
-				height: 32px;	
-		}
-	}
-	.navbar-inner {
-		padding-top: 5px;
-	}
 
-}
 
 h1 {
 	margin-bottom: 20px;
@@ -23,4 +13,10 @@ h1 {
 .bottom-spacer {
 	display: block;
 	min-height: 30px !important;
+}
+
+.navbar-fixed-top li a {
+	
+	font-size: 14px;
+	
 }

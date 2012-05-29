@@ -38,10 +38,7 @@
 	    		<input type="text" class="search-query" placeholder="Search">
 	    	</form>
 				<ul class="nav pull-right">
-				<li id="avatar">
-					<%= link_to "#{current_user.profile.avatar.url.present? ? image_tag(current_user.profile.avatar.url(:thumb)) : image_tag('dummy_user.jpg')}".html_safe, current_user.profile  %>
-				</li>
-		    <li><%= link_to "My Account", profile_path(Profile.find_by_user_id(current_user.id)) %></li>
+		    <li><%= link_to "My Account", current_user.profile %></li>
 		    <li class="divider-vertical"></li>
 		    <li><%= link_to "Logout", destroy_user_session_url, :id => 'logout_link', :method => :delete, :title => "Logout" %></li>
 			  <li class="divider-vertical"></li>
