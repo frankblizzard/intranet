@@ -1,0 +1,180 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin round {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+@mixin shadow {
+	-moz-box-shadow: inset 0 3px 6px rgba(0,0,0,.6);
+	-webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.6);
+ 	box-shadow: inset 0 3px 6px rgba(0,0,0,.5);
+}
+
+.content_window {
+	
+	
+	.column {
+		width: 265px;
+		float: left;
+		height: 100%;
+		padding-top: 10px;
+		.subcontent {
+			padding: 10px 0 0 20px;
+
+		}
+		
+	}
+	.middle_col {
+		padding-left: 50px;
+	}
+	
+	ul {
+		list-style: none;
+		padding-left: 0;
+		
+	}
+	
+	.hours_spent {
+		margin-top: 50px;
+	}
+	
+	.tasks_col {
+		width: 300px;
+		
+		.subcontent {
+			padding: 10px 0 0 0px;
+
+		}
+		
+	}
+	
+	.hours_detail_table {
+		
+		margin-top: 20px;
+		width: 500px;
+
+		table {
+			border: 1px solid;
+			border-collapse: collapse;
+		}
+
+		tr {
+			border: 1px solid;
+			border-collapse: collapse;
+		}
+
+		
+		th, td {
+			text-align:left;
+			white-space: no-wrap;
+			border: 1px solid;
+			border-collapse: collapse;
+			padding: 2px 10px;
+			min-width: 100px;
+		}
+		
+		.user_hours {
+			display: none;
+			
+			table {
+				width: 350px;
+				margin: 10px;
+				border: 0;
+				
+				td, th {
+					min-width: 0;
+					width: auto;
+				}
+				
+			}
+			
+		.table_total td{
+			font-weight: bold;
+			
+		}	
+			
+		}
+		
+	}
+	
+	.subtitle {
+		font-size: 16px;
+		
+	}
+	
+  .paginator {
+	float: right;
+  margin-right: 5px;
+  margin-top: -5px;
+}
+	
+	
+
+	
+	
+}
+
+.task_details {
+  background-color: #2C2F38;
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding: 5px;
+	@include round;
+	@include shadow;
+	.task_description {
+		font-size: 12px;
+		font-style: italic;
+	}
+	
+}
+
+
+
+.task_fields {
+	
+	h4, a.add_nested_fields {
+		margin-left: 120px;
+		
+	}
+	a.remove_nested_fields {
+		margin-left: 250px;
+	}
+	
+}
+
+.simple_form .fields {
+	border: 1px dashed #999;
+	padding: 10px;
+	width: 420px;
+	margin-left: 110px; 
+	
+	label {
+		text-align: left;
+	}
+}
+
+table.task_table {
+	width: 300px;
+	
+	td {
+		height: 20px;
+		display: block;
+		float:left;
+		padding: 5px;
+	}
+	
+	td.spent{
+		background-color: blue;
+	}
+	td.planned{
+		background-color: green;
+		min-width: 80px;
+	}
+	td.red {
+		background-color: red !important;
+	}
+	
+}

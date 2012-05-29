@@ -1,4 +1,4 @@
-class MonitoringController < ApplicationController
+class MonitoringController < LoginRequiredController
  
   def index
     @new_projects = Project.with_status(11)

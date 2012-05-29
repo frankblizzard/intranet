@@ -1,0 +1,24 @@
+// Place all the styles related to the user controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#user {
+	width: 700px;
+	
+	.avatar {
+		width: 120px;
+		height: 120px;
+		-moz-box-shadow: 5px 5px 5px #222;
+		-webkit-box-shadow: 5px 5px 5px #222;
+		box-shadow: 5px 5px 5px #222;
+	}
+	
+	.main_text {
+		position: absolute;
+		width: 200px;
+		height: 120px;
+		left: 180px;
+		top: 30px;
+	}
+}
+

@@ -1,7 +1,6 @@
-class ProjectsController < ApplicationController
+class ProjectsController < LoginRequiredController
   load_and_authorize_resource
-  
-  before_filter :authenticate_user!
+
   
   # GET /projects
   # GET /projects.json
@@ -14,9 +13,11 @@ class ProjectsController < ApplicationController
    #
    # @projects = @search.results
     
-    if current_user.profile.is_client
-      @projects = current_user.profile.client.projects.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
-    else 
+
+    if current_user.profile.is_client?
+      @projects = Project.where(:client_id => current_user.profile.client_id).order(sort_column + ' ' + sort_direction).page(params[:page])
+      render :action => 'client_index'
+    else
       @projects = Project.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
     end
     
@@ -28,7 +29,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.tasks.order(:name)
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+        if current_user.profile.is_client?
+          render :action => 'client_show'
+        end
+      }
       format.json { render json: @project }
     end
   end

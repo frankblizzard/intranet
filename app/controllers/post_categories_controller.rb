@@ -1,5 +1,4 @@
-class PostCategoriesController < ApplicationController
-  before_filter :authenticate_user!
+class PostCategoriesController < LoginRequiredController
   
   # GET /post_categories
   # GET /post_categories.json
