@@ -4,13 +4,8 @@ class ClientsController < LoginRequiredController
   # GET /clients
   # GET /clients.json
   def index
-    @search = Client.search do
-      fulltext params[:search]
-      paginate :page => params[:page]
 
-    end
-    
-    @clients = @search.results
+    @clients = Client.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,7 +84,11 @@ class ClientsController < LoginRequiredController
   end
   
   def sort_column  
-    Project.column_names.include?(params[:sort]) ? params[:sort] : "nr"  
+    Project.column_names.include?(params[:sort]) ? params[:sort] : "name"  
+  end
+  
+  def sort_direction  
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"  
   end
   
 end

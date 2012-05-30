@@ -7,6 +7,7 @@ jQuery ->
 		$(this).click ->
 			$(this).next().slideToggle()
 			
+			
 	$('#all_detail_link').click ->
 		$('.hour_details .detail_link').each ->
 			$(this).next().slideToggle()

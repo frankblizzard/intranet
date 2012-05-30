@@ -14,7 +14,12 @@
 }
 
 .content_window {
+
+	position: relative;
 	
+	.cl_column {
+		width: 49%;
+	}
 	
 	.column {
 		width: 265px;
@@ -111,8 +116,6 @@
   margin-top: -5px;
 }
 	
-	
-
 	
 	
 }

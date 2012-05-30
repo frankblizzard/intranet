@@ -48,7 +48,7 @@
   
         %p
           -@scheduled_projects.each do |dl|
-            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
+            = content_tag(:div, "#{dl.deadline.strftime('%d. %b')}: #{link_to dl.name_number, dl} #{image_tag "images/locked_small.png" if dl.locked?}".html_safe, :class => 'deadline')
   
     #infobox.content_window.smallsize.monitor
       .header= link_to "On Hold", "javascript:void(0)", :class => 'open', :title => "open / close"

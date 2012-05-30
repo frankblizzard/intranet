@@ -2,12 +2,8 @@ class BugsController < ApplicationController
   # GET /bugs
   # GET /bugs.json
   def index
-    @search = Bug.search do
-      fulltext params[:search]
-      order_by :id
-    end 
-    
-    @bugs = @search.results
+  
+    @bugs = Bug.all
 
     respond_to do |format|
       format.html # index.html.erb

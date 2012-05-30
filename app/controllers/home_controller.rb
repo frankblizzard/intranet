@@ -4,16 +4,9 @@ class HomeController < LoginRequiredController
     
     render :template => "home/client_view" if current_user.profile.is_client
     
-    @search = Post.search do
-      fulltext params[:search]
-      paginate :page => params[:page]
-      order_by :created_at, :desc
-    end 
-   
-
     render :action => 'client_home' if current_user.profile.is_client?
 
-      @posts = @search.results
+      @posts = Post.all
       @next_birthdays = Profile.next_birthdays
       @next_deadlines = Project.next_deadlines(current_user.profile)
       @upcoming_projects = Project.upcoming_projects(current_user.profile)

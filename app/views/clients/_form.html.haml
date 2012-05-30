@@ -9,8 +9,10 @@
 
   = form.input :name, :label => 'Name'
   = form.input :full_name, :label => 'Full Name'
-  = form.input :client_nr, :label => 'Client Nr'
   = form.input :website, :label => 'Website'
+  = form.input :rg_adress, :label => 'Invoicing Adress'
+  = form.input :billing_code, :label => 'Billing Code', :input_html => {:size => 5}
+  = form.input :payment_within, :label => 'Payment Within',  :input_html => {:size => 5}
 
   .actions
     = form.button :submit

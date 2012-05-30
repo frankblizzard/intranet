@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515121210) do
+ActiveRecord::Schema.define(:version => 20120530143051) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(:version => 20120515121210) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "notes"
+    t.text     "rg_adress"
+    t.string   "billing_code"
+    t.integer  "payment_within", :default => 14
   end
 
   create_table "comments", :force => true do |t|

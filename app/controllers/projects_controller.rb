@@ -5,14 +5,6 @@ class ProjectsController < LoginRequiredController
   # GET /projects
   # GET /projects.json
   def index
-   # @search = Project.search do
-   #   fulltext params[:search]
-   #   paginate :page => params[:page]
-   #   order_by :nr, :desc
-   # end 
-   #
-   # @projects = @search.results
-    
 
     if current_user.profile.is_client?
       @projects = Project.where(:client_id => current_user.profile.client_id).order(sort_column + ' ' + sort_direction).page(params[:page])

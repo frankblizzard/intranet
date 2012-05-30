@@ -1,3 +1,3 @@
-LogBuddy.init({
-  :default_logger => Logger.new('log_buddy.log')
-})
+#LogBuddy.init({
+#  :default_logger => Logger.new('log_buddy.log')
+#})

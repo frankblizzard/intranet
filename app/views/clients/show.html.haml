@@ -5,7 +5,7 @@
 		.header= link_to "Client Overview", "javascript:void(0)", :class => 'open', :title => "open / close"
 		
 		.inner
-			.column
+			.cl_column
 				.subtitle Projects
 				.subcontent
 					.description
@@ -27,7 +27,7 @@
 									%td= project.web? ? "&#x2713;".html_safe : ""
 	
 			
-			.column
+			.cl_column
 				.subtitle Name
 				.subcontent
 					.description= @client.name
@@ -41,7 +41,22 @@
 				.subtitle Website
 				.subcontent
 					.description= link_to @client.website, @client.website if @client.website
-			
+				%br
+				%br
+				.subtitle Invoice Adress
+				.subcontent
+					.description= markdown(@client.rg_adress) if @client.rg_adress
+				%br
+				%br
+				.subtitle Billing Code
+				.subcontent
+					.description= @client.billing_code if @client.billing_code
+				%br
+				%br
+				.subtitle Payment within
+				.subcontent
+					.description= "#{@client.payment_within} days"
+
 
 			
 			%br.clear

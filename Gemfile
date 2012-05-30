@@ -61,11 +61,9 @@ gem 'table_builder', '0.0.3', :git => 'git://github.com/jchunky/table_builder.gi
 # autocomplete
 gem 'rails3-jquery-autocomplete'
 
-# search stuff
-gem 'sunspot_rails'
+
 
 group :development do
-  gem 'sunspot_solr'
   gem 'log_buddy'
   gem 'rails3-generators' # mainly for factory_girl & simple_form at this point
   gem 'factory_girl_rails'

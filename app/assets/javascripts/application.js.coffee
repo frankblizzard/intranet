@@ -20,8 +20,8 @@
 optimiseContentSize = ->
 	fit_w = $(window).width() - 260
 	i = 0
-	if (fit_w > 1150) 
-		fit_w = 1150 
+	if (fit_w > 1200) 
+		fit_w = 1200 
 	fit_h = $(window).height() - 20
 	$('#content').width(fit_w)
 	$('#content').height(fit_h)
