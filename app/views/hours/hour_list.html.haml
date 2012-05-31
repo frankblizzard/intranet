@@ -1,0 +1,45 @@
+%h1 Listing hours
+
+#calendar_stats
+  -if current_user.admin? || current_user.project_manager?
+    .username
+      Show User:
+    .user_selection
+      =collection_select(:hour, :user_id, User.order("username"), :id, :username, {:prompt => "select user", :selected => session[:hour_user_id] })
+
+
+
+#scrolldiv
+  #timetracking.content_window.fullsize
+    .headline
+      .month
+        = link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+        =h @date.strftime("%B %Y")
+        = link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d")
+        .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :selected => @date.month) 
+      .searchform
+        = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
+      .view_mode=link_to "calendar view", :view_mode => "calendar", :month => @date
+      %br.clear
+    .inner
+      %table.pretty
+        %thead
+          %tr
+            %th= sortable "date"
+            %th= sortable "amount"
+            %th= sortable "project_id", "Project"
+            %th= sortable "task_id",  "Task"
+            %th Description
+            %th
+            %th
+        %tbody      
+          -@hours.each do |h|
+            %tr
+              %td= h.date.strftime("%d.%m.%Y")
+              %td= h.amount
+              %td= link_to h.project.name_number, h.project, :class => 'blue'
+              %td= h.task ? h.task.name : "--"
+              %td= markdown(h.description)
+              %td= link_to "edit", edit_hour_path(h)
+              %td= link_to "delete", h, :confirm => 'Delete this hour?', :method => :delete
+      

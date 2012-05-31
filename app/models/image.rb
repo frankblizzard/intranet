@@ -1,6 +1,6 @@
 class Image < ActiveRecord::Base
   
-  attr_accessible :id, :project_id, :name, :source, :user_id, :size
+  #attr_accessible :id, :project_id, :name, :source, :user_id, :size
   belongs_to :project
   belongs_to :user
   

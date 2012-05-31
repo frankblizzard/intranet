@@ -6,7 +6,7 @@ class HomeController < LoginRequiredController
     
     render :action => 'client_home' if current_user.profile.is_client?
 
-      @posts = Post.all
+      @posts = Post.order("created_at desc")
       @next_birthdays = Profile.next_birthdays
       @next_deadlines = Project.next_deadlines(current_user.profile)
       @upcoming_projects = Project.upcoming_projects(current_user.profile)

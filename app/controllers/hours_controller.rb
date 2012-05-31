@@ -1,6 +1,4 @@
-class HoursController < ApplicationController
-  
-  before_filter :authenticate_user!
+class HoursController < LoginRequiredController
   
   autocomplete :project, :name, :display_value => :name_number
   
@@ -13,6 +11,11 @@ class HoursController < ApplicationController
   def index
     @user = current_user
     
+    
+    if params[:view_mode] 
+      session[:view_mode] = params[:view_mode] 
+    end
+    
     if current_user.admin? || current_user.project_manager?
       session[:hour_user_id] = params[:user_id] if params[:user_id]
       session[:hour_user_id] = current_user.id if session[:hour_user_id].nil?
@@ -20,10 +23,23 @@ class HoursController < ApplicationController
         @user = User.find(session[:hour_user_id])
       end
     end
-    @hours = @user.hours
+    # get date from date select box
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    
+    # check if calendar or list view
+    if session[:view_mode]=='list'
+      @hours = @user.hours.by_month(@date).order(sort_column + ' ' + sort_direction)
+    else
+      @hours = @user.hours.by_month(@date).to_a
+    end
+    
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {
+        if session[:view_mode]=='list'
+          # render special template for list view
+          render :action => 'hour_list'
+        end
+      }
       format.json { render json: @hours }
     end
   end
@@ -105,4 +121,9 @@ class HoursController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def sort_column  
+    controller_name.classify.constantize.column_names.include?(params[:sort]) ? params[:sort] : "date"  
+  end
+  
 end

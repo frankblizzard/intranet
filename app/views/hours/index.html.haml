@@ -19,6 +19,7 @@
         .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :selected => @date.month) 
       .searchform
         = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
+      .view_mode=link_to "list view", :view_mode => "list", :month => @date
       %br.clear
     .inner
       #calendar

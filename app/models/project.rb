@@ -33,18 +33,18 @@ class Project < ActiveRecord::Base
   
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
-  searchable do
-    integer :nr
-    text :name_number, :boost => 5
-    text :name, :boost => 4
-    text :description, :boost => 2
-    text :client do
-      client.name
-    end
-    text :tasks do 
-      tasks.map(&:name)
-    end
-  end
+  #searchable do
+  #  integer :nr
+  #  text :name_number, :boost => 5
+  #  text :name, :boost => 4
+  #  text :description, :boost => 2
+  #  text :client do
+  #    client.name
+  #  end
+  #  text :tasks do 
+  #    tasks.map(&:name)
+  #  end
+  #end
   
   def self.search(search)  
     if search  

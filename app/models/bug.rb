@@ -9,10 +9,5 @@ class Bug < ActiveRecord::Base
   
   has_many :comments, :as => :commentable, :dependent => :destroy
   
-  searchable do
-    text :title, :boost => 3
-    text :description
-    integer :id
-  end
   
 end
