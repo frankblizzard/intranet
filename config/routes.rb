@@ -1,5 +1,7 @@
 Intranet::Application.routes.draw do
 
+
+
   get "monitoring/index"
 
   resources :images
@@ -17,11 +19,14 @@ Intranet::Application.routes.draw do
   end
 
   resources :tasks
-
+  resources :review_images
+  resources :reviews
   resources :project_statuses
 
   resources :projects do
     resources :tasks
+    resources :review_images
+    resources :reviews
   end
 
   resources :clients
@@ -32,7 +37,7 @@ Intranet::Application.routes.draw do
   
   get 'users/show'
 
-  devise_for :users, :path_names => { :sign_up => "register"}
+  devise_for :users, :path_names => { :sign_up => "register", :sign_in => 'sign_in' }
 
   resources :post_categories
 

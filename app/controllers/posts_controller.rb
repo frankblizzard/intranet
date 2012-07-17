@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   
   def index
   
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     respond_to do |format|
       format.html { render 'home/index' }
       format.js { render 'posts/index.js' }

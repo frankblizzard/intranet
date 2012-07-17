@@ -1,0 +1,15 @@
+= simple_form_for @review_image do |form|
+
+  -if @review_image.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@review_image.errors.count, "error")} prohibited this #{ReviewImage.name.titleize} from being saved:"
+      %ul
+        - @review_image.errors.full_messages.each do |msg|
+          %li= msg  
+
+  = form.input :review_id, :label => 'Review'
+  = form.input :name, :label => 'Name'
+  = form.input :project_id, :label => 'Project'
+
+.actions
+  = form.button :submit

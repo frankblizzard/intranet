@@ -18,7 +18,7 @@
 								%th= "Web"
 							
 							
-							- @client.projects.order(:project_status_id).each do |project|
+							- @client.projects.order('deadline desc').each do |project|
 								%tr
 									%td= link_to project.nr, project, :class => "blue"
 									%td= link_to project.name, project, :class => "blue"

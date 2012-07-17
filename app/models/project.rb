@@ -16,6 +16,8 @@ class Project < ActiveRecord::Base
   
   has_many :hours
   
+  has_many :reviews
+  
   #attr_accessible :nr, :name, :client_id, :project_status_id, :hidden, :active, :description, :tasks_attributes, :profiles_attributes, :profile_tokens
   
   attr_reader :name_number, :profile_tokens
@@ -30,21 +32,10 @@ class Project < ActiveRecord::Base
   scope :with_status, lambda { |status_id| where( :project_status_id => status_id ).order(:deadline) }
   scope :continous, where(:project_status_id => '2')
   scope :scheduled, where(:project_status_id => '4')
+  scope :feedback_enabled, where(:feedback_enabled => true)
   
   accepts_nested_attributes_for :tasks, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
-  
-  #searchable do
-  #  integer :nr
-  #  text :name_number, :boost => 5
-  #  text :name, :boost => 4
-  #  text :description, :boost => 2
-  #  text :client do
-  #    client.name
-  #  end
-  #  text :tasks do 
-  #    tasks.map(&:name)
-  #  end
-  #end
+  accepts_nested_attributes_for :reviews, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true 
   
   def self.search(search)  
     if search  
@@ -64,6 +55,16 @@ class Project < ActiveRecord::Base
   
   def self.continous_projects(profile)
     profile.projects.continous.order(:nr)
+  end
+  
+  # returns all open / running reviews for this project
+  def open_reviews
+    self.reviews.running
+  end
+  
+  # returns all closed reviews
+  def closed_reviews
+    self.reviews.closed
   end
   
   def name_number

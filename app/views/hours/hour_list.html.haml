@@ -16,13 +16,13 @@
         = link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
         =h @date.strftime("%B %Y")
         = link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d")
-        .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :selected => @date.month) 
+        .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :default => @date) 
       .searchform
         = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
       .view_mode=link_to "calendar view", :view_mode => "calendar", :month => @date
       %br.clear
     .inner
-      %table.pretty
+      %table.pretty.hourlist
         %thead
           %tr
             %th= sortable "date"
@@ -33,8 +33,10 @@
             %th
             %th
         %tbody      
+          -last_day = nil
           -@hours.each do |h|
-            %tr
+            -day = h.date.strftime("%d")  
+            %tr{:class => ("top_line" if day != last_day)}
               %td= h.date.strftime("%d.%m.%Y")
               %td= h.amount
               %td= link_to h.project.name_number, h.project, :class => 'blue'
@@ -42,4 +44,5 @@
               %td= markdown(h.description)
               %td= link_to "edit", edit_hour_path(h)
               %td= link_to "delete", h, :confirm => 'Delete this hour?', :method => :delete
+              -last_day = day
       

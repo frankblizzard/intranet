@@ -16,7 +16,7 @@
         = link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
         =h @date.strftime("%B %Y")
         = link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d")
-        .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :selected => @date.month) 
+        .month_select= date_select("month", "date", :start_year => Time.now.year-1, :end_year => Time.now.year+1, :discard_day => true, :default => @date) 
       .searchform
         = text_field_tag "searchform", "search hours...", :class => "table_search", :onfocus => 'this.select();'
       .view_mode=link_to "list view", :view_mode => "list", :month => @date
@@ -36,6 +36,8 @@
               .calendar_day
                 = date.day
                 = tag("div", :class => "calendar_date", :data => { :date => date.to_s })
+            .daily_hours
+              = "#{ @user.daily_hours(date) }h" if @user.daily_hours(date) > 0
 
 
       #hours_overview

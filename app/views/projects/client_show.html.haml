@@ -5,13 +5,45 @@
     %p= "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   
   .span4
-    %table.table.table-striped
+    %table.table.table-striped.table-bordered
       %tr
-        %td Ihr Ansprechpartner
-        %td= link_to "kai@eve-images.com", "mailto:kai@eve-images.com"
+        %td Contact Person
+        %td= link_to @project_leader.user.email, "mailto:#{@project_leader.user.email}"
       %tr
         %td Rufnummer für Rückfragen
-        %td 0301234567890
+        %td= @project_leader.phone
       %tr
         %td Estimated Deadline
-        %td 12.10.2017
+        %td= @project.deadline.strftime('%d.%m.%Y')
+
+
+.row
+  .span12
+    %h2 Reviews
+    %p= "There are #{@project.open_reviews.count} running reviews and #{@project.closed_reviews.count} closed reviews for this project"
+    %table.table.table-striped.table-bordered
+      %tr
+        %th #
+        %th name
+        %th status
+        %th date opened
+        %th date closed
+        %th nr of images
+        %th nr of comments
+        %th details
+      -@project.reviews.each_with_index do |pr, i|
+        %tr{:class => ("inactive" if pr.closed?)}
+          %td= i
+          %td= link_to pr.name, pr
+          %td= pr.closed? ? "closed" : "running"
+          %td= pr.date_opened.strftime('%d.%m.%Y %H:%M')
+          %td= pr.date_closed.strftime('%d.%m.%Y %H:%M')
+          %td= pr.review_images.count
+          %td= "to do"
+          - if pr.closed?
+            %td= link_to ((content_tag(:i, '', :class => 'icon-info-sign icon-white')) + '  See Feedback').html_safe, pr, :title => 'Show Details', :class => 'btn btn-info'
+          - else
+            %td= link_to ((content_tag(:i, '', :class => 'icon-eye-open icon-white')) + '  Add Feedback').html_safe, pr, :title => 'Add Feedback', :class => 'btn btn-success'
+         
+
+         

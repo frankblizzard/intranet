@@ -3,6 +3,7 @@ class Client < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :billing_code, :minimum => 3, :maximum => 3, :allow_blank => true
   validates_numericality_of :payment_within
+  validates_uniqueness_of :billing_code
 
   has_many :projects
   has_many :profiles

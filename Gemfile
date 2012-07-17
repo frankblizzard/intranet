@@ -61,7 +61,10 @@ gem 'table_builder', '0.0.3', :git => 'git://github.com/jchunky/table_builder.gi
 # autocomplete
 gem 'rails3-jquery-autocomplete'
 
-
+# file attachments
+gem "paperclip", "~> 3.0"
+# cloud storage
+gem 'aws-sdk', '~> 1.3.4'
 
 group :development do
   gem 'log_buddy'

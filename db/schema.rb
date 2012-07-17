@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530143051) do
+ActiveRecord::Schema.define(:version => 20120710100836) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20120530143051) do
     t.float    "time_fri",         :default => 8.0
     t.boolean  "is_client"
     t.integer  "client_id"
+    t.boolean  "locked",           :default => false
   end
 
   create_table "project_statuses", :force => true do |t|
@@ -145,6 +146,39 @@ ActiveRecord::Schema.define(:version => 20120530143051) do
     t.boolean  "active",                         :default => true,         :null => false
     t.boolean  "locked"
     t.date     "deadline",                       :default => '2012-03-28'
+    t.boolean  "feedback_enabled",               :default => false
+  end
+
+  create_table "review_assignments", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "review_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "review_images", :force => true do |t|
+    t.integer  "review_id"
+    t.string   "name"
+    t.integer  "project_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.string   "name"
+    t.datetime "date_opened"
+    t.datetime "date_closed"
+    t.integer  "project_id"
+    t.boolean  "closed"
+    t.integer  "project_leader_id"
+    t.string   "email_when_changed"
+    t.string   "client_emails"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tasks", :force => true do |t|

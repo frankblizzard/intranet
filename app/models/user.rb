@@ -30,11 +30,13 @@ class User < ActiveRecord::Base
   # set the default new registration to "client" role so nobody can just register and see all!
   def set_client
     self.profile.is_client = 1
+    self.profile.client_id = 85
     self.profile.save!
   end
   
-  def hours_today
-    self.hours.where(:date => Date.today).to_a.sum { |hour| hour.amount }
+  
+  def daily_hours(date = Date.today)
+    self.hours.where(:date => date).to_a.sum { |hour| hour.amount }
   end
   
   # sum of all user hours in the given month

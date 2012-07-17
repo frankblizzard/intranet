@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Review:
+  = @review_image.review_id
+%p
+  %b Name:
+  = @review_image.name
+%p
+  %b Project:
+  = @review_image.project_id
+
+= link_to 'Edit', edit_review_image_path(@review_image)
+\|
+= link_to 'Back', review_images_path

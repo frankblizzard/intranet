@@ -6,6 +6,9 @@ jQuery ->
 	$('.hour_details .detail_link').each ->
 		$(this).click ->
 			$(this).next().slideToggle()
+
+	p = $('#reviews').detach()
+	$('#scrolldiv').append(p)
 			
 			
 	$('#all_detail_link').click ->

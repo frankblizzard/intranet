@@ -19,13 +19,5 @@ class Post < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
   
-  #searchable do
-  #  text :title, :boost => 3
-  #  text :body
-  #  time :created_at  
-  #  text :comments do 
-  #    comments.map(&:content)
-  #  end
-  #end
   
 end

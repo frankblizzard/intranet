@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :sort_column, :sort_direction 
   
 
+
   
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message

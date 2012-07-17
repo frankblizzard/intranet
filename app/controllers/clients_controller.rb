@@ -16,7 +16,7 @@ class ClientsController < LoginRequiredController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @client = Client.find(params[:id])
+    @client = Client.find(params[:id], :include => 'projects')
 
     respond_to do |format|
       format.html # show.html.erb

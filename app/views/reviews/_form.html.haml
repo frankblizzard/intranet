@@ -1,0 +1,39 @@
+#scrolldiv.review_page
+  = simple_nested_form_for @review, :html => { :multipart => true } do |form|
+  
+    -if @review.errors.any?
+      #errorExplanation
+        %h2= "#{pluralize(@review.errors.count, "error")} prohibited this #{Review.name.titleize} from being saved:"
+        %ul
+          - @review.errors.full_messages.each do |msg|
+            %li= msg  
+    = form.hidden_field :project_id, :value => @project.try(:id)
+    = form.input :name, :label => 'Name', :hint => 'Name of this review round, e.g. White Views, Finals, Previews etc.'
+    = form.input :date_opened, :label => 'Opending Date'
+    = form.input :date_closed, :label => 'Closing Date'
+    = form.input :closed, :label => 'Closed', :hint => 'Once closed, the client will not be able to leave feedback anymore to this review round'
+    = form.input :project_leader_id, :collection => Profile.all, :display => :name
+    %br
+    = form.input :profile_tokens, :label => 'Eve Involved',  :input_html => { :data => { :pre => @review.profiles.map(&:attributes).to_json }}, :hint => "Will receive emails when customer makes changes"
+  
+    = form.input :client_emails, :label => 'Client Emails', :hint => 'List of comma-seperated emails that should receive status update notifications'
+    %br.clear
+    .task_fields
+      %h4 Images
+      .form
+        = form.fields_for :review_images do |img_form|
+          - if img_form.object.new_record?
+            = img_form.input :name
+            = img_form.input :photo
+            = img_form.hidden_field :review_id, :value => @review.try(:id)
+            = img_form.hidden_field :project_id, :value => @project.try(:id)
+            = img_form.link_to_remove "Remove this Image"
+          - else
+            = image_tag(img_form.object.photo.url(:thumb))
+            = img_form.hidden_field :_destroy
+            = img_form.link_to_remove "remove"
+        
+      .add_link= form.link_to_add "Add an image", :review_images
+      %br
+    .actions
+      = form.button :submit

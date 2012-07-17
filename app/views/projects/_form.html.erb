@@ -18,10 +18,10 @@
   <%= form.association :project_status, :collection => ProjectStatus.all(:order => 'id'), :prompt => false %>
   <%= form.input :deadline %>
   <%= form.input :description, :label => 'Description',  :input_html => {:class => "tinymce", :rows => 40, :cols => 40, 
-:value =>  @project.new_record? ? "<p><strong>Output</strong></p>
-		<p>e: / i: / a:</p>
-		<p>web:</p>
-		<p>(fotoshooting?)</p>
+:value =>  @project.new_record? ? "		<p><strong>Output</strong></p>
+		<p>e:&nbsp;&nbsp; | &nbsp; i: (X rooms)&nbsp;&nbsp; | &nbsp; a:</p>
+		<p>(web?)</p>
+		<p>(photo shoot?)</p>
 		<p>(+ 1 free close-up?)</p>
 		<hr />
 		<p><strong>Project Description</strong></p>
@@ -39,11 +39,15 @@
 		<ol>
 		<li><em>Offer no</em>:</li>
 		<li><em>Billing Address</em>:</li>
-		<li><em>Contact Person</em>:</li>
+		<li><em>Client project no</em>:</li>
+		<li><em>Contact Person</em>s:</li>
 		<li><em>Invoice no</em>:</li>
 		</ol>".html_safe : @project.description } %>
+	<div class="admin_fields">
   <%= form.input :web, :label => 'Web Project?', :hint => 'project not relevant for 3D artists' %>
   <%= form.input :locked, :label => 'Lock Project', :hint => 'Hours cannot be changed anymore - no new bookings on this project' %>
+  <%= form.input :feedback_enabled, :label => 'Feedback Enabled?', :hint => 'If checked, project is available for client feedback.' %>
+  </div>
 	<%= form.input :profile_tokens, :label => 'Involved People',  :input_html => { :data => { :pre => @project.profiles.map(&:attributes).to_json }} %>
 	<br class="clear"/>
   <div class="task_fields">

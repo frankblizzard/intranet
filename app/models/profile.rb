@@ -13,12 +13,14 @@ class Profile < ActiveRecord::Base
   
   has_many :assignments
   has_many :projects, :through => :assignments
+  has_many :review_assignments
+  has_many :review, :through => :review_assignments
   
   
   mount_uploader :avatar, AvatarUploader
   
   attr_accessible :avatar, :phone, :name, :website, :bio, :time_mon, :time_tue, :time_wed, :time_thu, :time_fri, :in_company_since, :freelancer,
-                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description, :is_client, :client_id
+                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description, :is_client, :client_id, :locked
 
   
   

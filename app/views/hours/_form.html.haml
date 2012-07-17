@@ -14,6 +14,8 @@
     = form.input :extra, :label => 'Extra'
     = form.input :holiday, :label => 'Holiday'
     = form.input :ill, :label => 'Ill'
+    = form.input :public_holiday, :label => 'Public Holiday'
+    = form.input :comp_time, :label => 'Comp Time'
     = form.input :description, :label => 'Description'
     = form.hidden_field :user_id, :value => @hour.user.id
     = form.hidden_field :project_id, :id => "real_project_id"
@@ -26,4 +28,5 @@
         =form.grouped_collection_select :task_id, Project.order("nr"), :tasks, :name_number, :id, :name, :include_blank => true, :html_options => { :id => "task_indicator"}
  
     .actions
-      = form.button :submit
+      %span= form.button :submit
+      %span= link_to "delete", @hour, :confirm => 'Delete this hour?', :method => :delete

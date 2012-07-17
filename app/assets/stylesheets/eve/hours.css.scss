@@ -83,7 +83,15 @@ margin-top: 10px;
 	}
 	
 	
-
+.hourlist {
+	td {
+		border-top: 0 !important;
+	}
+	.top_line td {
+			border-top: 1px solid #BCBEC2 !important;
+	}
+	
+}
 	
 
 	#sidepanel {

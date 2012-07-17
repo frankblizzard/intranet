@@ -1,6 +1,4 @@
 // Set the correct sprite paths
-$iconSpritePath: image-path('glyphicons-halflings.png');
-$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 
 $navbarBackground: #555;
 $navbarBackgroundHighlight: #888;
@@ -13,6 +11,9 @@ body { padding-top: 60px; }
 
 @import "bootstrap-responsive";
 
+
 .navbar .brand {
   color: #3EB1E7;
 }
+
+@import "jquery.Jcrop";

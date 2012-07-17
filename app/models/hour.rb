@@ -6,7 +6,7 @@ class Hour < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :description
   
-  validate :project_locked
+  validate :project_locked, :task_in_project
   
   validates_numericality_of :amount, :greater_than => 0, :less_than => 24, :message => 'amount must be between 0.25 and 24 :) - use dot not comma'
   validates_format_of :amount, :with => /^\d+??(?:\.\d{0,2})?$/
@@ -20,10 +20,19 @@ class Hour < ActiveRecord::Base
   scope :day, lambda {|day| where(:date => day) }
   scope :holiday, where(:holiday => true)
   scope :ill, where(:ill => true) # ill
-  scope :comp_time, where(:comp_time => true) # ill
+  scope :comp_time, where(:comp_time => true) # fzA 
   scope :normal, where(:comp_time => false) # normal hours
   scope :not_future,  where('date <= ?', Date.today)
   scope :by_month, lambda { |d| { :conditions => { :date => d.beginning_of_month..d.end_of_month } } }
+  
+  
+  def self.search(search)  
+    if search  
+      where('description LIKE ?', "%#{search}%")  
+    else  
+      scoped  
+    end  
+  end
   
   def project_name
     project.try(:name)
@@ -56,6 +65,15 @@ class Hour < ActiveRecord::Base
     end
   end
   
+  def task_in_project
+    if task_id
+      unless self.task.project.id == self.project_id
+        errors.add :base, 'Task does not belong to Project!'
+      end
+    end
+  end
+      
+      
   
   
 end

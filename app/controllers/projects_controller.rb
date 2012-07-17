@@ -7,7 +7,7 @@ class ProjectsController < LoginRequiredController
   def index
 
     if current_user.profile.is_client?
-      @projects = Project.where(:client_id => current_user.profile.client_id).order(sort_column + ' ' + sort_direction).page(params[:page])
+      @projects = Project.feedback_enabled.where(:client_id => current_user.profile.client_id).order(sort_column + ' ' + sort_direction).page(params[:page])
       render :action => 'client_index'
     else
       @projects = Project.search(params[:search]).order(sort_column + ' ' + sort_direction).page(params[:page])
@@ -23,6 +23,8 @@ class ProjectsController < LoginRequiredController
     respond_to do |format|
       format.html {
         if current_user.profile.is_client?
+          # dirty hack---- needs to be in PROJECT
+          @project_leader = Profile.find(@project.reviews.first.project_leader_id)
           render :action => 'client_show'
         end
       }
@@ -34,12 +36,12 @@ class ProjectsController < LoginRequiredController
   # GET /projects/new.json
   def new
     propose_nr = Integer(Project.order("nr desc").first.nr) + 1
-    @project = Project.new(:nr => propose_nr, :active => true)
+    @project = Project.new(:nr => propose_nr, :active => true, :deadline => Date.today + 2.weeks)
     @project.tasks.new(:name => "Project Mgmt", :description => "")
     @project.tasks.new(:name => "Pre-P", :description => "Moodboards | Examining project data, plans, briefing, etc.")
     @project.tasks.new(:name => "Web", :description => "Flatfinder/Boligvelger (eve-Estate)  |  CMS/Website (eve-Publisher)  |  Landingpage")
     @project.tasks.new(:name => "Undividable 3D work for exteriors", :description => "Modeling/texturing of buildings and their surroundings. Populating/detailing with plants, outdoor furniture, traffic, etc.")
-    @project.tasks.new(:name => "Undividable 3D work for interiors", :description => "Modeling/texturing of X apartments. Setting up furniture, accessories, decoration according to moodboards.")
+    @project.tasks.new(:name => "Undividable 3D work for interiors", :description => "Modeling/texturing of X (apartment) rooms. Setting up furniture, accessories, decoration according to moodboards.")
     @project.tasks.new(:name => "#{propose_nr}-01_e", :description => "Scene setup, lighting and detail adjustments, rendering with subsequent post-production/compositing.")
     @project.tasks.order(:name)
     respond_to do |format|

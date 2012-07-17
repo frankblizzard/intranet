@@ -56,9 +56,24 @@
 			.inner
 				.column
 					.hour_details= project_presenter.hour_details
-		
-				%br.clear
-		        
+			
+
+			%br.clear
+  
+	#reviews.content_window.fullsize
+		.header= link_to "Reviews", "javascript:void(0)", :class => 'open', :title => "open / close"
+		.inner
+			.edit_links
+				- if @project.feedback_enabled?
+					%span= link_to 'new review round', new_review_path(:project_id => @project.id), :class => 'new_object_link'
+				- else
+					%span= "Project Feedback not enabled."
+			  
+			.column
+				.hour_details= project_presenter.reviews
+	
+			%br.clear
+	         
 
 
 

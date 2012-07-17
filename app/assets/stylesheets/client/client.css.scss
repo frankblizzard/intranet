@@ -2,9 +2,18 @@
 	margin-top: 20px;
 	padding-top: 10px;
 	margin-bottom: 30px;
+	position: relative;
+	
+	#top_username {
+		position: absolute;
+		top: -20px;
+		right: 5px;
+	}
 }
 
-
+tr.inactive {
+	background-color: #FFE1E0 !important;
+}
 
 h1 {
 	margin-bottom: 20px;
@@ -15,8 +24,45 @@ h1 {
 	min-height: 30px !important;
 }
 
+
 .navbar-fixed-top li a {
 	
 	font-size: 14px;
+	
+}
+
+.image_thumb_container {
+	
+		.review_image {
+			max-width: 200px;
+			max-height: 200px;
+			overflow:hidden;
+			margin: 10px 10px 0 0;
+			text-align:left;
+			float:left;
+			position: relative;
+			
+			.image_info {
+				position: absolute;
+				display: none;
+				left: 0px;
+				bottom: 0px;
+				width: 100%;
+				color: #3A87AD;
+		    padding: 5px 0;
+		    text-indent: 5px;
+				background-color: rgba(217,237,247,0.9);
+				
+			}
+			&:hover{
+				
+				.image_info {
+					display: block;
+
+				}
+				
+			}
+			
+		}
 	
 }

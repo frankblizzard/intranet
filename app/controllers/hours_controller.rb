@@ -28,9 +28,9 @@ class HoursController < LoginRequiredController
     
     # check if calendar or list view
     if session[:view_mode]=='list'
-      @hours = @user.hours.by_month(@date).order(sort_column + ' ' + sort_direction)
+      @hours = @user.hours(:include => :projects).by_month(@date).search(params[:search]).order(sort_column + ' ' + sort_direction)
     else
-      @hours = @user.hours.by_month(@date).to_a
+      @hours = @user.hours(:include => :projects).by_month(@date).to_a
     end
     
     respond_to do |format|
@@ -114,10 +114,12 @@ class HoursController < LoginRequiredController
   # DELETE /hours/1.json
   def destroy
     @hour = Hour.find(params[:id])
-    @hour.destroy
     authorize! :destroy, @hour
+    @date = @hour.date
+    @hour.destroy
+    
     respond_to do |format|
-      format.html { redirect_to hours_url }
+      format.html { redirect_to hours_path(:month => @date) }
       format.json { head :ok }
     end
   end

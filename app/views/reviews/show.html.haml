@@ -1,0 +1,33 @@
+#scrolldiv
+  .review_detail.review_page
+    %h1= "Review: #{ @review.name }"
+    #scrolldiv
+      .detail_info
+        .project= link_to @review.project.name_number, @review.project
+      .dates
+        .from= "started: #{ @review.date_opened.strftime('%d.%m.%Y') }"
+        .ends= "ends: #{ @review.date_closed.strftime('%d.%m.%Y') }"
+      .people
+        .project_leader
+          %span= "Project Leader: "
+          %span= link_to @project_leader.name, @project_leader
+        .people_involved
+          %span Receive notifications
+          %ul.involved
+            - @review.review_assignments.each do |ra|
+              %li= link_to ra.profile.name, ra.profile
+      .client_info
+        .emails= "Client emails: #{ @review.client_emails }"
+      %br
+      .images
+        - @review.review_images.each do |ri|
+          .review_image
+            = image_tag ri.photo.url(:medium)
+            .comments_count= "There are #{ pluralize( ri.comments.count , 'comment') } for #{ ri.name }"
+      
+      
+  .edit_links
+    = link_to 'Edit', edit_project_review_path(@review)
+    \|
+    = link_to 'Back', project_path(@review.project)
+  

@@ -161,6 +161,23 @@ class ProjectPresenter < BasePresenter
     end  
   end
 
+  def reviews
+    handle_none project.reviews do
+      str = '<div>'
+      str += '<table class="pretty project_reviews">'
+      str += '<thead>'
+      str += "<th width="">name</th><th>start date</th><th>end date</th><th>status</th><th></th>"
+      str += '</thead>'
+      str += '<tbody>'
+      project.reviews.each do |pv|
+        str += "<tr><td>#{ pv.name }</td><td>#{ pv.date_opened.strftime('%d.%m.%Y') }</td><td>#{ pv.date_closed.strftime('%d.%m.%Y')}</td><td>#{ pv.closed? ? 'closed' : 'running' }</td><td>#{ link_to 'details', pv }</td></tr>"
+      end
+      str += '</table>'
+      str += '</div>'
+      str.html_safe
+    end
+  end
+
  
 private
   

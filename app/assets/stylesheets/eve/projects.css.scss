@@ -134,7 +134,10 @@
 	
 }
 
-
+table.project_reviews {
+	width: 700px;
+	
+}
 
 .task_fields {
 	
@@ -159,6 +162,9 @@
 	}
 }
 
+.simple_form .boolean .hint {
+    margin-left: 0px !important;
+}
 table.task_table {
 	width: 300px;
 	

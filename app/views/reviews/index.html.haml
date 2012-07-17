@@ -1,0 +1,33 @@
+%h1 Listing reviews
+
+%table
+  %tr
+    %th Name
+    %th Date opened
+    %th Date closed
+    %th Project
+    %th Closed
+    %th Project leader
+    %th Email when changed
+    %th Client emails
+    %th
+    %th
+    %th
+
+  - @reviews.each do |review|
+    %tr
+      %td= review.name
+      %td= review.date_opened
+      %td= review.date_closed
+      %td= review.project_id
+      %td= review.closed
+      %td= review.project_leader_id
+      %td= review.email_when_changed
+      %td= review.client_emails
+      %td= link_to 'Show', review
+      %td= link_to 'Edit', edit_review_path(review)
+      %td= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Review', new_review_path

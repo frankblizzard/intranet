@@ -1,0 +1,48 @@
+.review_detail
+  %h1= "Review: #{ @review.name }"
+  #review_data
+    - if @review.closed?
+      %p.alert= "This review round is <strong>closed</strong>. You can not add feedback to this round anymore.".html_safe
+    - else
+      %p.alert.alert-info= "Welcome to the review screen. Here you have the possibility to review images that we prepared for you. Please make sure to <strong>add your feedback until #{@review.date_closed.strftime('%d.%m.%Y')}</strong>. It helps us to make even better images for you and stay inside project deadlines. Thank you.".html_safe
+
+    .detail_info
+      %h3.headline Info Box
+      %table.table.table-striped.table-bordered
+        %tr
+          %th name
+          %th project
+          %th date opened
+          %th date closed
+          %th nr of images
+          %th nr of comments
+          %th project leader
+        %tr
+          %td= @review.name
+          %td= link_to @review.project.name_number, @review.project
+          %td= @review.date_opened.strftime('%d.%m.%Y')
+          %td= @review.date_closed.strftime('%d.%m.%Y')
+          %td= @review.review_images.count
+          %td= @review.comments_count
+          %td= link_to @project_leader.user.email, @project_leader.user.email, :title => "Send E-Mail"
+
+    %br
+    %br
+
+.row
+  .span12
+    %h2 Images
+    .image_thumb_container
+      - @review.review_images.each do |ri|
+        .review_image
+          = image_tag ri.photo.url(:thumb, :class => "preview_thumb")
+          .image_info
+            .image_name= ri.name
+            .comments_count= pluralize( ri.comments.count , 'comment')
+          
+    
+  
+%br.clear
+  
+.backlink
+  = link_to "Go Back", project_path(@review.project), :title => 'Back to Project', :class => 'btn' 
