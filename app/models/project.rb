@@ -107,6 +107,7 @@ class Project < ActiveRecord::Base
     user_list.uniq
   end
   
+  
   protected
   
   def ensure_no_hours

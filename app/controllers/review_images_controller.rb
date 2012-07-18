@@ -1,11 +1,15 @@
-class ReviewImagesController < ApplicationController
+class ReviewImagesController < LoginRequiredController
   # GET /review_images
   # GET /review_images.json
   def index
     @review_images = ReviewImage.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {
+        if current_user.profile.is_client?
+          redirect_to root_url, :flash => { :error => "Permission denied!" }
+        end
+      }
       format.json { render json: @review_images }
     end
   end
@@ -14,9 +18,12 @@ class ReviewImagesController < ApplicationController
   # GET /review_images/1.json
   def show
     @review_image = ReviewImage.find(params[:id])
-
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+        if current_user.profile.is_client?
+          render :action => 'client_show'
+        end
+      }
       format.json { render json: @review_image }
     end
   end

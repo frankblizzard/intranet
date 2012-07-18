@@ -35,10 +35,10 @@
     .image_thumb_container
       - @review.review_images.each do |ri|
         .review_image
-          = image_tag ri.photo.url(:thumb, :class => "preview_thumb")
+          = link_to image_tag(ri.photo.url(:thumb, :class => "preview_thumb")), ri, :title => "Add Feedback"
           .image_info
             .image_name= ri.name
-            .comments_count= pluralize( ri.comments.count , 'comment')
+            .comments_count= pluralize( ri.jc_comments.count , 'comment')
           
     
   

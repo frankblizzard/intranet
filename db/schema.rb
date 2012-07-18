@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710100836) do
+ActiveRecord::Schema.define(:version => 20120718085017) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -81,6 +81,21 @@ ActiveRecord::Schema.define(:version => 20120710100836) do
     t.integer  "project_id"
     t.float    "rating"
     t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jc_comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.text     "content"
+    t.integer  "x1"
+    t.integer  "y1"
+    t.integer  "x2"
+    t.integer  "y2"
+    t.integer  "w"
+    t.integer  "h"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -217,6 +232,9 @@ ActiveRecord::Schema.define(:version => 20120710100836) do
     t.date     "bday"
     t.string   "phone"
     t.boolean  "freelancer",                            :default => false
+    t.integer  "failed_attempts",                       :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

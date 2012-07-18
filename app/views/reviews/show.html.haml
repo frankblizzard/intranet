@@ -23,7 +23,7 @@
         - @review.review_images.each do |ri|
           .review_image
             = image_tag ri.photo.url(:medium)
-            .comments_count= "There are #{ pluralize( ri.comments.count , 'comment') } for #{ ri.name }"
+            .comments_count= "There are #{ pluralize( ri.jc_comments.count , 'comment') } for #{ ri.name }"
       
       
   .edit_links

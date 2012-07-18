@@ -24,7 +24,7 @@ class Review < ActiveRecord::Base
   end
   
   def comments_count
-    review_images.to_a.sum { |review_image| review_image.comments.nil? ? 0 :  review_image.comments.count }
+    review_images.to_a.sum { |review_image| review_image.jc_comments.nil? ? 0 :  review_image.jc_comments.count }
   end
   
 end

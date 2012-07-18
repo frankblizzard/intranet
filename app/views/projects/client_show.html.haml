@@ -39,7 +39,7 @@
           %td= pr.date_opened.strftime('%d.%m.%Y %H:%M')
           %td= pr.date_closed.strftime('%d.%m.%Y %H:%M')
           %td= pr.review_images.count
-          %td= "to do"
+          %td= pr.comments_count
           - if pr.closed?
             %td= link_to ((content_tag(:i, '', :class => 'icon-info-sign icon-white')) + '  See Feedback').html_safe, pr, :title => 'Show Details', :class => 'btn btn-info'
           - else

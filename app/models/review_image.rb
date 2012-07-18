@@ -8,7 +8,7 @@ class ReviewImage < ActiveRecord::Base
   belongs_to :review
   belongs_to :project
 
-  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :jc_comments, :as => :commentable, :dependent => :destroy
   
   has_attached_file :photo,
                     :processors => [:watermark],

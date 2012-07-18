@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
          
 
@@ -22,19 +22,25 @@ class User < ActiveRecord::Base
   
   after_create :set_profile, :set_client
 
+
+  # checks if a user is locked when signing in
+  def active_for_authentication?
+    super && !profile.locked?
+  end
   
+  # builds the user profile instance after registration
   def set_profile
     self.build_profile(:user_id => self.id, :name => self.username, :in_company_since => Date.today - 1.day)
   end
   
   # set the default new registration to "client" role so nobody can just register and see all!
   def set_client
-    self.profile.is_client = 1
-    self.profile.client_id = 85
+    self.profile.is_client = 1 # set the is_client field to true when somebody registers... need to be changed by an admin in order to access eve's sensitive data
+    self.profile.client_id = 85 # 85 = dummy client
     self.profile.save!
   end
   
-  
+  # shows how many hours the user booked today
   def daily_hours(date = Date.today)
     self.hours.where(:date => date).to_a.sum { |hour| hour.amount }
   end
@@ -67,6 +73,7 @@ class User < ActiveRecord::Base
     (sum / 8).to_i
   end
   
+  # returns the number of workdays in a given month of the current year
   def workdays(month)
     d1 = Date.new( Time.now.year, month, 1) #first day of month\period
     d2 = Date.new( Time.now.year, month, -1) #end day of month\period
@@ -74,6 +81,11 @@ class User < ActiveRecord::Base
     weekdays = (d1..d2).reject { |d| wdays.include? d.wday} #Day.wday number day in week
   end
 
+
+
+  #
+  # calculates the extra hours of a user within a given year/month depending on user's to-do hours, which are found in the user's profile (e.g. profile.time_mon)
+  #  
   def extra_hours(year, month)
     d1 = Date.new( year, month, 1) #first day of month\period
     d2 = Date.new( year, month, -1) #end day of month\period
