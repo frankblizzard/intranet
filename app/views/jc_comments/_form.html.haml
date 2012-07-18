@@ -1,0 +1,12 @@
+= simple_form_for @jc_comment do |form|
+
+  -if @jc_comment.errors.any?
+    #errorExplanation
+      %h2= "#{pluralize(@jc_comment.errors.count, "error")} prohibited this #{JcComment.name.titleize} from being saved:"
+      %ul
+        - @jc_comment.errors.full_messages.each do |msg|
+          %li= msg  
+
+
+  .actions
+    = form.button :submit

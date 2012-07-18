@@ -10,13 +10,27 @@
   .span8
     .review_image_detail
       .image= image_tag @review_image.photo.url(:medium), :id => "review_image"
-      .comments
+      #comments
+        - @feedback.with_position.each do |fb|
+          .feedback{ :style => "position: absolute; left: #{fb.x1}px; top: #{fb.y1}px; width: #{fb.w}px; height: #{fb.h}px" }= fb.content
+
+    .comments_area
+      - @feedback.with_position.each do |fb|
+        .user_feedback
+          %span.user= fb.user.profile.name
+          %span.date= " wrote #{time_ago_in_words(fb.created_at)} ago: "
+          %span.message= fb.content
+
       
     %br.clear
   .span4
     .preview_window= image_tag @review_image.photo.url(:medium), :id => "preview"
-    .coords= render :partial => 'coord_form'
+    .coords= render :partial => 'coord_form', :locals => {:image_id => @review_image.id}
 
 
 .backlink= link_to "Go Back", review_path(@review_image.review), :title => 'Back to Project', :class => 'btn' 
+%br
+.debug= debug @feedback
+%br
+%br
   

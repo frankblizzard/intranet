@@ -23,6 +23,8 @@ class Profile < ActiveRecord::Base
                   :birthday, :phone, :street, :zip, :city, :user_id, :job_description, :is_client, :client_id, :locked
 
   
+  scope :eve, where(:is_client => false)
+  scope :client, where(:is_client => true)
   
   def self.next_birthdays
     self.find_birthdays_for(Date.today, Date.today + 30.days)

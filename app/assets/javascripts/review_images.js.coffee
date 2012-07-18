@@ -2,36 +2,39 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-jc_height = 0
-jc_width = 0
-preview_height = 0
-preview_width = 0
+
 
 showPreview = (coords) ->
-  rx = preview_width / coords.w
-  ry = preview_height / coords.h
-  $("#x").val coords.x
-  $("#y").val coords.y
-  $("#x2").val coords.x2
-  $("#y2").val coords.y2
-  $("#w").val coords.w
-  $("#h").val coords.h
+  rx = 350 / coords.w
+  ry = 350 / coords.h
+  $("#jc_comment_x1").val coords.x
+  $("#jc_comment_y1").val coords.y
+  $("#jc_comment_x2").val coords.x2
+  $("#jc_comment_y2").val coords.y2
+  $("#jc_comment_w").val coords.w
+  $("#jc_comment_h").val coords.h
   $("#preview").css
-    width: Math.round(rx * jc_width) + "px"
-    height: Math.round(ry *jc_height) + "px"
+    width: Math.round(rx * $('#review_image').width()) + "px"
+    height: Math.round(ry *$('#review_image').height()) + "px"
     marginLeft: "-" + Math.round(rx * coords.x) + "px"
     marginTop: "-" + Math.round(ry * coords.y) + "px"
 
+
+prepareFeedback = () ->
+	$('.jcrop-tracker').attr('id', 'test')
+	$('#comments .feedback').each ->
+    fb = $(this).detach()
+    $('.jcrop-tracker').after(fb)
+
+    
+
+
 jQuery ->
-  jc_height = $('#review_image').height()
-  jc_width = $('#review_image').width()
-  preview_height = $('.preview_window:first').height()
-  preview_width = $('.preview_window:first').width()
-  console.log(jc_height)
-  console.log(jc_width)
-  console.log(preview_height)
-  console.log(preview_width)
   $("#review_image").Jcrop
     onChange: showPreview
     onSelect: showPreview
     aspectRatio: 1
+  , ->
+    prepareFeedback()
+
+

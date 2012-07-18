@@ -2,6 +2,8 @@
   .review_image_detail
      .image= image_tag (@review_image.photo.url(:medium))
      .comments
+       = @feedback.with_position.each do |fb|
+         .feedback{ :style => "position: absolute; left: #{fb.x1}px; top: #{y1}px; width: #{fb.w}px" }= fb.content
   
 
 

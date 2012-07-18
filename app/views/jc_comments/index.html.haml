@@ -1,0 +1,17 @@
+%h1 Listing jc_comments
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @jc_comments.each do |jc_comment|
+    %tr
+      %td= link_to 'Show', jc_comment
+      %td= link_to 'Edit', edit_jc_comment_path(jc_comment)
+      %td= link_to 'Destroy', jc_comment, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Jc comment', new_jc_comment_path

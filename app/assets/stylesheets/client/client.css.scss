@@ -70,8 +70,34 @@ h1 {
 	height: 350px;
 	overflow: hidden;
 	border: 1px solid black;
+	
+	img {
+		max-width: none;
+	}
+	
 	#preview {
 		display:inline;
 	}
 	
 }
+
+/* FEEDBACK IMAGES */
+
+.image{
+	
+	.feedback {
+		background-color: rgba(255,255,255,0.3);
+		display:none;
+		z-index: 999;
+	}
+	
+	&:hover {
+		
+		.feedback {
+			display: block;
+		}
+		
+	}
+	
+}
+

@@ -1,6 +1,6 @@
 Intranet::Application.routes.draw do
 
-
+  resources :jc_comments
 
   get "monitoring/index"
 
@@ -19,14 +19,21 @@ Intranet::Application.routes.draw do
   end
 
   resources :tasks
-  resources :review_images
+  
+  resources :review_images do
+    resources :jc_comments
+  end
+  
   resources :reviews
   resources :project_statuses
 
   resources :projects do
     resources :tasks
-    resources :review_images
-    resources :reviews
+    resources :reviews do
+      resources :review_images do
+         resources :jc_comments
+      end
+    end
   end
 
   resources :clients

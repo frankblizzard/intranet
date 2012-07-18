@@ -23,7 +23,7 @@ class ReviewsController < LoginRequiredController
   # GET /reviews/1.json
   def show
     @review = Review.find(params[:id])
-    @project_leader = Profile.find(@review.project_leader_id)
+    @project_leader = Profile.find(@review.project_leader_id) || Profile.first
     respond_to do |format|
       format.html {
         if current_user.profile.is_client?

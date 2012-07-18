@@ -18,6 +18,7 @@ class ReviewImagesController < LoginRequiredController
   # GET /review_images/1.json
   def show
     @review_image = ReviewImage.find(params[:id])
+    @feedback = @review_image.jc_comments
     respond_to do |format|
       format.html {
         if current_user.profile.is_client?

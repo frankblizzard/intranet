@@ -4,7 +4,7 @@ class ProfilesController < LoginRequiredController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.where("name like ?", "%#{params[:q]}%").order("name")
+    @profiles = Profile.eve.where("name like ?", "%#{params[:q]}%").order("name")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @profiles.map(&:attributes) }
