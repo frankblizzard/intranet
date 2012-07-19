@@ -44,7 +44,7 @@ class JcCommentsController < ApplicationController
 
     respond_to do |format|
       if @jc_comment.save
-        format.html { redirect_to @jc_comment, notice: 'Jc comment was successfully created.' }
+        format.html { redirect_to @jc_comment.commentable, notice: 'Comment was successfully created.' }
         format.json { render json: @jc_comment, status: :created, location: @jc_comment }
       else
         format.html { render action: "new" }

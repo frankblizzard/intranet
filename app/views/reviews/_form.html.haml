@@ -27,6 +27,7 @@
             = img_form.input :name
             = img_form.input :photo
             = img_form.hidden_field :review_id, :value => @review.try(:id)
+            = img_form.hidden_field :nested, :value => true
             = img_form.hidden_field :project_id, :value => @project.try(:id)
             = img_form.link_to_remove "Remove this Image"
           - else

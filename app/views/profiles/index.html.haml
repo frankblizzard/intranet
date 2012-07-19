@@ -6,6 +6,7 @@
       = text_field_tag "searchform", "search users...", :class => "table_search", :onfocus => 'this.select();'
     %br.clear
   .inner
+    %h2 Co-Workers
     %table.pretty
       %tr
         %th Username
@@ -16,7 +17,7 @@
         %th
       
     
-      - @profiles.each do |profile|
+      - @profiles.eve.each do |profile|
         %tr
           %td= link_to profile.user.username, profile, :class => 'blue'
           %td= link_to profile.name, profile, :class => 'blue'
@@ -26,7 +27,29 @@
           %td
             -if can? :update, profile
               = link_to 'Edit', edit_profile_path(profile) 
-    
+
+    %h2 Client Profiles
+    %table.pretty
+      %tr
+        %th Username
+        %th Name
+        %th E-Mail
+        %th Job description
+        %th
+        %th
+
+
+      - @profiles.client.each do |profile|
+        %tr
+          %td= link_to profile.user.username, profile, :class => 'blue'
+          %td= link_to profile.name, profile, :class => 'blue'
+          %td= profile.user.email
+          %td= profile.job_description
+          %td= link_to 'Show', profile
+          %td
+            -if can? :update, profile
+              = link_to 'Edit', edit_profile_path(profile)
+
 %br
 
 /= link_to 'New Profile', new_profile_path, :class => 'new_object_link'

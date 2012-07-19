@@ -2,7 +2,9 @@ require 'paperclip_processors/watermark'
 
 class ReviewImage < ActiveRecord::Base
   
-  validates_presence_of :review_id
+  validates_presence_of :review_id, :unless => :nested
+
+  attr_accessor :nested
   
   
   belongs_to :review

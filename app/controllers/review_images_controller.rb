@@ -49,7 +49,7 @@ class ReviewImagesController < LoginRequiredController
   # POST /review_images.json
   def create
     @review_image = ReviewImage.new(params[:review_image])
-
+    @review_image.name ="#{@review_image.project.name_number}_#{@review_image.photo_file_name}" if @review_image.name.blank?
     respond_to do |format|
       if @review_image.save
         format.html { redirect_to @review_image, notice: 'Review image was successfully created.' }

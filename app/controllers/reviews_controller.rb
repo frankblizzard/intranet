@@ -61,7 +61,9 @@ class ReviewsController < LoginRequiredController
   # POST /reviews.json
   def create
     @review = Review.new(params[:review])
-
+    @review.review_images.each do |ri|
+      ri.name ="#{ri.project.name_number}_#{ri.photo_file_name}" if ri.name.blank?
+    end
     respond_to do |format|
       if @review.save
         format.html { 
@@ -80,7 +82,9 @@ class ReviewsController < LoginRequiredController
   # PUT /reviews/1.json
   def update
     @review = Review.find(params[:id])
-
+    @review.review_images.each do |ri|
+      ri.name ="#{ri.project.name_number}_#{ri.photo_file_name}"
+    end
     respond_to do |format|
       if @review.update_attributes(params[:review])
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }

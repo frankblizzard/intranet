@@ -23,9 +23,10 @@
         - @review.review_images.each do |ri|
           .review_image
             = image_tag ri.photo.url(:medium)
-            .comments_count= "There are #{ pluralize( ri.jc_comments.count , 'comment') } for #{ ri.name }"
+            .comments_count= "#{ pluralize( ri.jc_comments.count , 'comment') } for #{ ri.name }"
       
-      
+  .debug= debug @review.review_images.first
+   
   .edit_links
     = link_to 'Edit', edit_project_review_path(@review)
     \|

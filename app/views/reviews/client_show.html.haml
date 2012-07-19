@@ -1,5 +1,5 @@
 .review_detail
-  %h1= "Review: #{ @review.name }"
+  %h1= "Review: #{ @review.name } #{ '(closed)' if @review.closed? }""
   #review_data
     - if @review.closed?
       %p.alert= "This review round is <strong>closed</strong>. You can not add feedback to this round anymore.".html_safe
