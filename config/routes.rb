@@ -3,6 +3,8 @@ Intranet::Application.routes.draw do
   resources :jc_comments
 
   get "monitoring/index"
+  
+  get "monitoring/controlling"
 
   resources :images
 
@@ -55,6 +57,8 @@ Intranet::Application.routes.draw do
   match 'login' => 'users#login', :as => :login  
   
   match 'monitor' => 'monitoring#index', :as => :monitor
+  
+  match 'controlling' => 'monitoring#controlling', :as => :controlling
   
   get "home/index"
 

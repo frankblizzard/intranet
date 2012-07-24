@@ -13,5 +13,18 @@ class MonitoringController < LoginRequiredController
     @invoiced_ger_projects = Project.with_status(6)
     @invoiced_nor_projects = Project.with_status(7)
   end
+  
+  def controlling
+    @profiles = Profile.eve.worker.order('name')
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    respond_to do |format|
+      format.html {
+        if current_user.profile.is_client?
+          redirect_to root_url, :flash => { :error => 'Access denied!' }
+        end
+      }
+      format.xls
+    end
+  end
 
 end

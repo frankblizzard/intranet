@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   
   
   after_create :set_profile, :set_client
+  
 
 
   # checks if a user is locked when signing in
@@ -81,6 +82,41 @@ class User < ActiveRecord::Base
     weekdays = (d1..d2).reject { |d| wdays.include? d.wday} #Day.wday number day in week
   end
 
+
+
+  def todo_hours(date = Date.today)
+    d1 = date.beginning_of_month
+    d2 = date.end_of_month
+    
+    
+    if profile.in_company_since
+      return 0 if d2 < profile.in_company_since
+      d1 = profile.in_company_since if d1 < profile.in_company_since # check if date was before user joined company
+    end
+    
+    wdays = [0,6] #weekend days by numbers on week
+    weekdays = (d1..d2).reject { |d| wdays.include? d.wday} #Day.wday number day in week
+    
+    todo_hours = 0
+    
+    weekdays.each do |wd|
+      case wd.wday
+        when 1 #monday
+           todo_hours += profile.time_mon
+        when 2 #tuesday
+           todo_hours += profile.time_tue
+        when 3 #wednesday
+           todo_hours += profile.time_wed
+        when 4 #thursday
+           todo_hours += profile.time_thu
+        when 5 #friday
+           todo_hours += profile.time_fri
+        else
+          break
+      end
+    end
+    todo_hours
+  end
 
 
   #

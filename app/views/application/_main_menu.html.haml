@@ -14,6 +14,8 @@
     %li{:class => current_page?(:controller => 'monitoring', :action => 'index') ? 'active' : ''}
       %span.title= link_to_unless_current("Monitoring", { :controller => 'monitoring', :action => "index" })
 
+    %li{:class => current_page?(:controller => 'monitoring', :action => 'controlling') ? 'active' : ''}
+      %span.title= link_to_unless_current("Controlling", { :controller => 'monitoring', :action => "controlling" })
 
     %li{:class => current_page?(:controller => 'clients', :action => 'index') ? 'active' : ''}
       %span.title= link_to_unless_current("Clients", { :controller => 'clients', :action => "index" })

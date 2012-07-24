@@ -7,6 +7,7 @@ class Review < ActiveRecord::Base
   has_many :review_images, :dependent => :destroy
   
   has_many :review_assignments
+  
   has_many :profiles, :through => :review_assignments, :class_name => "Profile", :source => :profile
 
   has_many :comments, :as => :commentable, :dependent => :destroy

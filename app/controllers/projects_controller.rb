@@ -5,7 +5,6 @@ class ProjectsController < LoginRequiredController
   # GET /projects
   # GET /projects.json
   def index
-
     if current_user.profile.is_client?
       @projects = Project.feedback_enabled.where(:client_id => current_user.profile.client_id).order(sort_column + ' ' + sort_direction).page(params[:page])
       render :action => 'client_index'
@@ -29,6 +28,7 @@ class ProjectsController < LoginRequiredController
         end
       }
       format.json { render json: @project }
+      format.xls
     end
   end
 
@@ -36,7 +36,7 @@ class ProjectsController < LoginRequiredController
   # GET /projects/new.json
   def new
     propose_nr = Integer(Project.order("nr desc").first.nr) + 1
-    @project = Project.new(:nr => propose_nr, :active => true, :deadline => Date.today + 2.weeks)
+    @project = Project.new(:nr => propose_nr, :active => true, :deadline => Date.today + 2.weeks, :project_status_id => 11)
     @project.tasks.new(:name => "Project Mgmt", :description => "")
     @project.tasks.new(:name => "Pre-P", :description => "Moodboards | Examining project data, plans, briefing, etc.")
     @project.tasks.new(:name => "Web", :description => "Flatfinder/Boligvelger (eve-Estate)  |  CMS/Website (eve-Publisher)  |  Landingpage")

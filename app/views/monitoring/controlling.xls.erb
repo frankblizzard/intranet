@@ -1,0 +1,128 @@
+  <% intern = [] %> 
+  <% extern = [] %> 
+  <% absence = [] %>
+  <% summe = [] %>  
+  <% todoo = [] %> 
+  <% saldoo = [] %>  
+  <% ss_index = 5 %>
+  <% i = 0 %>
+  <% j = 0 %>
+	<% y = 0 %>
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Verdana"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s21">
+   <Font ss:FontName="Verdana" ss:Bold="1"/>
+  </Style>
+ </Styles>
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+	   <Row>
+	    <Cell ss:Index="2"><Data ss:Type="String">Controlling matrix for <%= @date.strftime('%B %Y') %> - <%= (@date - 11.month).strftime('%B %Y') %></Data></Cell>
+	   </Row>
+	
+			<Row ss:Index="3" ss:StyleID="s21">
+				<Cell><Data ss:Type="String"></Data></Cell>
+			<% 12.times do %>
+				<% date = @date - y.month %>
+       <Cell><Data ss:Type="String"><%= date.strftime('%B %Y') %></Data></Cell>
+       <Cell><Data ss:Type="String"></Data></Cell>
+       <Cell><Data ss:Type="String"></Data></Cell>
+       <Cell><Data ss:Type="String"></Data></Cell>
+       <Cell><Data ss:Type="String"></Data></Cell>
+			 <Cell><Data ss:Type="String"></Data></Cell>
+			 <% y = y+1 %>	
+			<% end %>	
+
+     </Row>
+	   <Row ss:Index="4" ss:StyleID="s21">
+        <Cell><Data ss:Type="String">employee</Data></Cell>
+
+			<% 12.times do %>
+
+        <Cell><Data ss:Type="String">inhouse</Data></Cell>
+        <Cell><Data ss:Type="String">extern</Data></Cell>
+        <Cell><Data ss:Type="String">absence</Data></Cell>
+        <Cell><Data ss:Type="String">summe</Data></Cell>
+				<Cell><Data ss:Type="String">todo</Data></Cell>
+				<Cell><Data ss:Type="String">saldo (+/-)</Data></Cell>
+				
+			<% end %>	
+				
+      </Row>
+
+
+    <% @profiles.each do |p| %>
+      <% u = p.user %>
+    	  <Row>
+    	    <Cell><Data ss:Type="String"><%= u.username %></Data></Cell>
+
+					<% 12.times do %>
+					   
+						
+						
+						
+					 <% intern[i]  = 0  %>
+					 <% extern[i]  = 0  %>
+					 <% absence[i] = 0  %>
+					 <% summe[i]   = 0  %>
+					 <% todoo[i]   = 0  %>
+					 <% saldoo[i]  = 0  %>
+						
+						<% date = @date - i.month %>
+          	<% h = u.hours.no_absence.by_month(date).eve_intern.to_a.sum { |hour| hour.amount } %>
+    	    	<Cell><Data ss:Type="Number"><%= h %></Data></Cell>
+          	<% intern[i] += h %>
+						<% s1 = h %>
+						<% h = u.hours.no_absence.by_month(date).extern.to_a.sum { |hour| hour.amount } %>
+    	    	<Cell><Data ss:Type="Number"><%= h %></Data></Cell>
+          	<% extern[i] += h %>
+          	<% s2 = h %>
+  					<% h = u.hours.by_month(date).absence.to_a.sum { |hour| hour.amount } %>
+    	    	<Cell><Data ss:Type="Number"><%= h %></Data></Cell>
+						<% absence[i] += h %>
+						<% s3 = h %>
+						<% sum_tmp = s1+s2+s3  # summe aus 1 - 3 %>
+    	    	<Cell><Data ss:Type="Number"><%= sum_tmp %></Data></Cell>
+            <% summe[i] += sum_tmp %>
+						<% h = u.todo_hours(date) %>
+    	    	<Cell><Data ss:Type="Number"><%= h %></Data></Cell>
+						<% todoo[i] += h %>
+						<% sum_tmp = sum_tmp - h %>
+    	    	<Cell><Data ss:Type="Number"><%= sum_tmp %></Data></Cell>
+						<% saldoo[i] += sum_tmp %>
+						<% i= i+1 %>
+						
+					<% end %>
+					
+					<% ss_index += 1 %>
+    	  </Row>
+    <% end %>
+		 <Row ss:Index="<%= ss_index %>" ss:StyleID="s21">
+       <Cell><Data ss:Type="String">TOTAL</Data></Cell>
+			<% 12.times do %>
+       <Cell><Data ss:Type="Number"><%= intern[j] %></Data></Cell>
+       <Cell><Data ss:Type="Number"><%= extern[j] %></Data></Cell>
+       <Cell><Data ss:Type="Number"><%= absence[j] %></Data></Cell>
+       <Cell><Data ss:Type="Number"><%= summe[j] %></Data></Cell>
+			 <Cell><Data ss:Type="Number"><%= todoo[j] %></Data></Cell>
+			 <Cell><Data ss:Type="Number"><%= saldoo[j] %></Data></Cell>
+			 <% j = j+1 %>
+			<% end %>
+     </Row>
+    </Table>
+  </Worksheet>
+</Workbook>
+

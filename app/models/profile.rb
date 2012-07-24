@@ -20,11 +20,13 @@ class Profile < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   attr_accessible :avatar, :phone, :name, :website, :bio, :time_mon, :time_tue, :time_wed, :time_thu, :time_fri, :in_company_since, :freelancer,
-                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description, :is_client, :client_id, :locked
+                  :birthday, :phone, :street, :zip, :city, :user_id, :job_description, :is_client, :client_id, :locked, :management
 
   
   scope :eve, where(:is_client => false)
   scope :client, where(:is_client => true)
+  scope :operations, where(:management => true)
+  scope :worker, where(:management => false)
   
   def self.next_birthdays
     self.find_birthdays_for(Date.today, Date.today + 30.days)

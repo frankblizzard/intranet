@@ -19,12 +19,17 @@ class Hour < ActiveRecord::Base
   
   scope :day, lambda {|day| where(:date => day) }
   scope :holiday, where(:holiday => true)
+  scope :no_holiday, where(:holiday => false)
   scope :ill, where(:ill => true) # ill
   scope :comp_time, where(:comp_time => true) # fzA 
   scope :normal, where(:comp_time => false) # normal hours
+  scope :eve_intern, lambda { joins(:project).merge(Project.internal) }
+  scope :extern, lambda { joins(:project).merge(Project.external) }
+  scope :no_absence, lambda { joins(:project).merge(Project.no_absence) }
   scope :not_future,  where('date <= ?', Date.today)
   scope :by_month, lambda { |d| { :conditions => { :date => d.beginning_of_month..d.end_of_month } } }
-  
+  scope :by_user, lambda {|user| where(:user_id => user) }
+  scope :absence, where("task_id = 72 OR task_id = 73 OR task_id = 74")
   
   def self.search(search)  
     if search  
@@ -34,6 +39,7 @@ class Hour < ActiveRecord::Base
     end  
   end
   
+   
   def project_name
     project.try(:name)
   end

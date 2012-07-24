@@ -31,6 +31,9 @@ class Project < ActiveRecord::Base
   scope :with_user, lambda { |user_id| joins(:assignments).where(:user_id => user_id) }
   scope :with_status, lambda { |status_id| where( :project_status_id => status_id ).order(:deadline) }
   scope :continous, where(:project_status_id => '2')
+  scope :external, where(:internal => false)
+  scope :internal,  where(:internal => true)
+  scope :no_absence, :conditions => ['nr <> ? ', '00' ] # 189 = id of Project 00 - Absence
   scope :scheduled, where(:project_status_id => '4')
   scope :feedback_enabled, where(:feedback_enabled => true)
   

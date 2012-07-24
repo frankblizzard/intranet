@@ -29,5 +29,33 @@
 	.monitor {
 		width: 300px !important;
 	}
+		
+}
+
+.controlling {
+	border-collapse: collapse;
 	
+	td,th {
+		padding: 2px 10px;
+	}
+	tr {
+		border-bottom: 1px solid;
+	}
+	th {
+		font-weight: bold !important;
+	}
+	td {
+		border-right: 1px solid;
+		text-align: right;
+
+	}
+	td.bold {
+		font-weight:bold;
+	}
+	td.extern {
+		border-right: 2px solid;
+	}
+	td.summe {
+		text-align: center;
+	}
 }

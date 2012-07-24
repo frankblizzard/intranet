@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718085017) do
+ActiveRecord::Schema.define(:version => 20120723091751) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "profile_id"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20120718085017) do
     t.boolean  "is_client"
     t.integer  "client_id"
     t.boolean  "locked",           :default => false
+    t.boolean  "management",       :default => false
   end
 
   create_table "project_statuses", :force => true do |t|
@@ -162,6 +163,8 @@ ActiveRecord::Schema.define(:version => 20120718085017) do
     t.boolean  "locked"
     t.date     "deadline",                       :default => '2012-03-28'
     t.boolean  "feedback_enabled",               :default => false
+    t.integer  "project_leader_id"
+    t.boolean  "internal",                       :default => false
   end
 
   create_table "review_assignments", :force => true do |t|

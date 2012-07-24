@@ -35,8 +35,10 @@ jQuery ->
       updateTasksField(data.item.value, tasks)
   $("#hour_user_id").change ->
 	  window.location.replace "/hours?user_id=" + $(this).val() #+ "&view_mode=<%= params[:view_mode] %>"
-  $("#month_date_2i").change ->
+  $(".month_select #month_date_2i").change ->
  	  window.location.replace "/hours?month=" + $("#month_date_1i").val() + "-" + $("#month_date_2i").val() + "-01"
+  $(".controlling_month_select #month_date_2i").change ->
+ 	  window.location.replace "/monitoring/controlling?date=" + $("#month_date_1i").val() + "-" + $("#month_date_2i").val() + "-01"
   $('ul.stunden li.extra, ul.stunden li.regular, ul.stunden li.holiday, .stunden .ill, .stunden .comp_time, .stunden .public_holiday').each ->
     $(this).click ->
       task_clicked = $(this).attr("data-task-id")
